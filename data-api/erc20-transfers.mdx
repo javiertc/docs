@@ -1,0 +1,16 @@
+---
+title: 'How to get all ERC20 transfers by wallet'
+icon: 'wallet'
+---
+
+### Primary Network ###
+Avalanche is a heterogeneous network of blockchains. As opposed to homogeneous networks, where all applications reside in the same chain, heterogeneous networks allow separate chains to be created for different applications. The Primary Network is a special Subnet that runs three blockchains:
+
+### The Contract Chain (C-Chain) ###
+The C-Chain is an implementation of the Ethereum Virtual Machine (EVM). The primary network endpoints only provide information related to C-Chain atomic memory balances and import/export transactions. For additional data, please reference the EVM APIs.
+
+### The Platform Chain (P-Chain) ###
+The P-Chain is responsible for all validator and Subnet-level operations. The P-Chain supports the creation of new blockchains and Subnets, the addition of validators to Subnets, staking operations, and other platform-level operations.
+
+### The Exchange Chain (X-Chain) ###
+The X-Chain is responsible for operations on digital smart assets known as Avalanche Native Tokens. A smart asset is a representation of a real-world resource (for example, equity, or a bond) with sets of rules that govern its behavior, like "can’t be traded until tomorrow." The X-Chain supports the creation and trade of Avalanche Native Tokens.

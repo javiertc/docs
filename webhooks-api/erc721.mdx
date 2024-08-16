@@ -1,0 +1,16 @@
+---
+title: 'Track ERC-20 Transfers'
+icon: 'hexagon-vertical-nft'
+---
+
+In a smart contract, events serve as notifications of specific occurrences, like transactions, or changes in ownership. Each event is uniquely identified by its event signature, which is calculated using the keccak 256 hash of the event name and its input argument types.
+
+For example, for an ERC-20 transfer event, the event signature is determined by taking the hash of Transfer(address,address,uint256). To compute this hash yourself, you can use an online keccak-256 converter and you’ll see that the hexadecimal representation of Transfer(address,address,uint256) is 0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef. For a full list of signatures check https://www.4byte.directory/event-signatures/.
+
+Take into consideration that the Transfer event for ERC-20 and ERC-721 tokens is similar. Here is the Transfer event prototype on each standard:
+
+- ERC20: event Transfer(address indexed _from, address indexed _to, uint256 _value)
+- ERC721: event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);
+These two signatures are indeed the same when you hash them to identifyTransfer events. The example below illustrates how to set up filtering to receive transfer events.
+
+In this example, we will monitor all the USDT transfers on the C-chain. If we go to any block explorer, select a USDT transaction, and look at Topic 0 from the transfer event, we can get the signature.

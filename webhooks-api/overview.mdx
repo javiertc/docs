@@ -1,0 +1,45 @@
+---
+title: 'Overview'
+icon: 'webhook'
+---
+
+### What is the Glacier Webhooks? ###
+With Glacier Webhooks, you can monitor real-time events on the Avalanche C-chain and subnets. For example, you can monitor smart contract events, track NFT transfers, and observe wallet-to-wallet transactions.
+
+![Webhooks](/images/webhooks.jpg)
+
+### Key Features: ###
+- Real-time notifications: Receive immediate updates on specified on-chain activities without polling.
+- Customizable: Specify the desired event type to listen for, customizing notifications according to individual requirements.
+- Secure: Employ shared secrets and signature-based verification to guarantee that notifications originate from a trusted source.
+- Broad Coverage: Support for C-chain mainnet, testnet, and subnets within the Avalanche ecosystem, ensuring wide-ranging monitoring capabilities.
+
+### Use cases ###
+- NFT Marketplace Transactions: Get alerts for NFT minting, transfers, auctions, bids, sales, and other interactions within NFT marketplaces.
+- Wallet Notifications: Receive alerts when an address performs actions such as sending, receiving, swapping, or burning assets.
+- DeFi Activities: Receive notifications for various DeFi activities such as liquidity provisioning, yield farming, borrowing, lending, and liquidations.
+
+
+### What are Webhooks? ####
+A webhook is a communication mechanism to provide applications with real-time information. It delivers data to other applications as it happens, meaning you get data immediately, unlike typical APIs where you would need to poll for data to get it in "real-time". This makes webhooks much more efficient for both providers and consumers. Webhooks work by registering a URL to send notifications once certain events occur.
+You can create receiver endpoints in your server in any programming language and those will have an associated URL (e.g. https://myserver.com/callback). This object contains all the relevant information about what just happened, including the type of event and the data associated with that event.
+
+
+
+<Note>
+**Webhooks vs. WebSockets:**\
+The difference between webhooks and WebSockets is that webhooks can only facilitate one-way communication between two services. In contrast, WebSockets can facilitate two-way communication between a user and a service, recognizing events and displaying them to the user as they occur.
+</Note>
+
+### Event structure ###
+The Event structure always begins with the following parameters:
+
+```json
+{
+  "webhookId": "6d1bd383-aa8d-47b5-b793-da6d8a115fde",
+  "eventType": "address_activity",
+  "messageId": "8e4e7284-852a-478b-b425-27631c8d22d2",
+  "event": {
+  }
+}
+```

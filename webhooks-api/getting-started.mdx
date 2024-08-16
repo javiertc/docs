@@ -1,0 +1,33 @@
+---
+title: 'Getting Started'
+icon: 'rocket'
+---
+
+Creating a webhook using the AvaCloud portal
+There are many websites you can use to test out webhooks. For example, you can use https://webhook.site/ and copy your unique URL. Once you have the URL, you can test using the following steps:
+
+1. Navigate to the AvaCloud dashboard
+2. Click "Create Webhook"
+3. Fill out the form with the unique URL generated in `https://webhook.site/` and the address you want to monitor. In this example, we want to monitor USDC on the mainnet. The address for the USDC contract is the C-chain is `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E`. The event type is address_activity and leave the event signature empty.
+4. Click Create and go to webhook.site, you should see something like this:
+
+<Steps>
+  <Step title="First Step">
+    Navigate to the AvaCloud dashboard.
+  </Step>
+  <Step title="Second Step">
+    Click "Create Webhook"
+  </Step>
+  <Step title="Third Step">
+    Fill out the form with the unique URL generated in `https://webhook.site/` and the address you want to monitor. In this example, we want to monitor USDC on the mainnet. The address for the USDC contract is the C-chain is `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E`. The event type is address_activity and leave the event signature empty.
+  </Step>
+  <Step title="Forth Step">
+    Click Create and go to webhook.site, you should see something like this:
+  </Step>
+</Steps>
+
+## Managing webhooks using Glacier API ##
+You can programmatically manage webhooks using Glacier API. For example:
+
+1. Navigate to the AvaCloud dashboard
+2. Click "Add API Key"

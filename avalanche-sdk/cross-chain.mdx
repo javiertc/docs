@@ -1,0 +1,38 @@
+---
+title: 'Cross-Chain EVM Requests'
+icon: 'code'
+---
+
+
+### Setup and Authentication ###
+In order to utilize your accounts rate limits, you will need to make API requests with an API key. You can generate API Keys from the AvaCloud portal. Once you've created and retrieved that, you will be able to make authenticated queries by passing in your API key in the x-glacier-api-key header of your HTTP request.
+
+An example curl request can be found below:
+
+```bash
+curl -H "Content-Type: Application/json" -H "x-glacier-api-key: your_api_key" \
+  "https://glacier-api.avax.network/v1/chains"
+```
+
+### Rate Limits ###
+The Glacier API has rate limits in place to maintain it's stability and protect from bursts of incoming traffic. The rate limits associated with various plans can be found within AvaCloud.
+
+When you hit your rate limit, the server will respond with a 429 http response code, and response headers to help you determine when you should start to make additional requests. The response headers follow the standards set in the RateLimit header fields for HTTP draft from the Internet Engineering Task Force.
+
+With every response with a valid api key, the server will include the following headers:
+
+ratelimit-policy - The rate limit policy tied to your api key.
+ratelimit-limit - The number of requests you can send according to your policy.
+ratelimit-remaining - How many request remaining you can send in the period for your policy
+For any request after the rate limit has been reached, the server will also respond with these headers:
+
+ratelimit-reset
+retry-after
+Both of these headers are set to the number of seconds until your period is over and requests will start succeeding again.
+
+If you start receiving rate limit errors with the 429 response code, we recommend you discontinue sending requests to the server. You should wait to retry requests for the duration specified in the response headers. Alternatively, you can implement an exponential backoff algorithm to prevent continuous errors. Failure to discontinue requests may result in being temporarily blocked from accessing the API.
+
+Error Types
+The Glacier API generates standard error responses along with error codes based on provided requests and parameters.
+
+Typically, response codes within the 2XX range signifies successful requests, while those within the 4XX range points to errors originating from the client's side. Meanwhile, response codes within the 5XX range indicates problems on the server's side.

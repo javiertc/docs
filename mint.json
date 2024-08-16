@@ -1,15 +1,16 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Starter Kit",
+  "name": "Avalanche Developer Hub",
   "logo": {
-    "dark": "/logo/dark.svg",
-    "light": "/logo/light.svg"
+    "dark": "/logo/avacloud-dark.svg",
+    "light": "/logo/avacloud-light.svg"
   },
-  "favicon": "/favicon.svg",
+  "theme": "prism",
+  "favicon": "./favicon.svg",
   "colors": {
-    "primary": "#0D9373",
-    "light": "#07C983",
-    "dark": "#0D9373",
+    "primary": "#3E6BF9",
+    "light": "#3E6BF9",
+    "dark": "#0944FD",
     "anchors": {
       "from": "#0D9373",
       "to": "#07C983"
@@ -18,74 +19,112 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:hi@mintlify.com"
+      "url": "mailto:javier.toledo@avalabs.org"
     }
   ],
   "topbarCtaButton": {
     "name": "Dashboard",
-    "url": "https://dashboard.mintlify.com"
+    "url": "https://app.avacloud.io/"
   },
   "tabs": [
     {
-      "name": "API Reference",
-      "url": "api-reference"
+      "name": "Data API",
+      "url": "data-api"
+    },
+    {
+      "name": "Metrics API",
+      "url": "metrics-api"
+    },
+    {
+      "name": "Webhooks API",
+      "url": "webhooks-api"
+    },
+    {
+      "name": "Avalanche SDK",
+      "url": "avalanche-sdk"
+    },
+    {
+      "name": "Changelog",
+      "url": "changelog"
     }
   ],
   "anchors": [
     {
-      "name": "Documentation",
+      "name": "Academy",
       "icon": "book-open-cover",
-      "url": "https://mintlify.com/docs"
+      "url": "https://academy.avax.network/"
+    },
+    {
+      "name": "Telegram",
+      "icon": "telegram",
+      "url": "https://t.me/+KDajA4iToKY2ZjBk"
     },
     {
       "name": "Community",
-      "icon": "slack",
-      "url": "https://mintlify.com/community"
-    },
-    {
-      "name": "Blog",
-      "icon": "newspaper",
-      "url": "https://mintlify.com/blog"
+      "icon": "discord",
+      "url": "https://discord.gg/avalanche-578992315641626624"
     }
   ],
   "navigation": [
     {
       "group": "Get Started",
+      "pages": ["introduction", "quickstart", "development"]
+    },
+    {
+      "group": "Get Started",
       "pages": [
-        "introduction",
-        "quickstart",
-        "development"
+        "data-api/quickstart",
+        "data-api/features",
+        "data-api/usage",
+        "data-api/rate-limits"
       ]
     },
     {
-      "group": "Essentials",
+      "group": "Tutorials",
       "pages": [
-        "essentials/markdown",
-        "essentials/code",
-        "essentials/images",
-        "essentials/settings",
-        "essentials/navigation",
-        "essentials/reusable-snippets"
+        "data-api/native-balance",
+        "data-api/address-transactions",
+        "data-api/erc20-transfers"
       ]
     },
     {
-      "group": "API Documentation",
+      "group": "Get Started",
       "pages": [
-        "api-reference/introduction"
+        "webhooks-api/overview",
+        "webhooks-api/getting-started",
+        "webhooks-api/signature"
       ]
     },
     {
-      "group": "Endpoint Examples",
+      "group": "Tutorials",
       "pages": [
-        "api-reference/endpoint/get",
-        "api-reference/endpoint/create",
-        "api-reference/endpoint/delete"
+        "webhooks-api/multiple",
+        "webhooks-api/erc20",
+        "webhooks-api/erc721",
+        "webhooks-api/push"
+      ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "metrics-api/quickstart",
+        "metrics-api/features",
+        "metrics-api/usage"
+      ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "avalanche-sdk/quickstart",
+        "avalanche-sdk/errors",
+        "avalanche-sdk/cross-chain",
+        "avalanche-sdk/advanced"
       ]
     }
   ],
   "footerSocials": {
-    "x": "https://x.com/mintlify",
-    "github": "https://github.com/mintlify",
-    "linkedin": "https://www.linkedin.com/company/mintsearch"
+    "x": "https://x.com/AvaxDevelopers",
+    "github": "https://github.com/ava-labs",
+    "medium": "https://medium.com/@avaxdevelopers"
   }
 }
