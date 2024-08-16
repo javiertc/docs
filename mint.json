@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/schema.json",
-  "name": "Avalanche Developer Hub",
+  "name": "AvaCloud Developer Hub",
   "logo": {
     "dark": "/logo/avacloud-dark.svg",
     "light": "/logo/avacloud-light.svg"
@@ -12,8 +12,8 @@
     "light": "#3E6BF9",
     "dark": "#0944FD",
     "anchors": {
-      "from": "#0D9373",
-      "to": "#07C983"
+      "from": "#3E6BF9",
+      "to": "#0944FD"
     }
   },
   "topbarLinks": [
