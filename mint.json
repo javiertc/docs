@@ -29,15 +29,18 @@
   "tabs": [
     {
       "name": "Data API",
-      "url": "data-api"
+      "url": "data-api",
+      "openapi": "https://glacier-api.avax.network/api-json"
     },
     {
       "name": "Metrics API",
-      "url": "metrics-api"
+      "url": "metrics-api",
+      "openapi": "/metrics-api/swagger.json"
     },
     {
       "name": "Webhooks API",
-      "url": "webhooks-api"
+      "url": "webhooks-api",
+      "openapi": "/webhooks-api/openapi.json"
     },
     {
       "name": "Avalanche SDK",
