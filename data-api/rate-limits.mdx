@@ -1,6 +1,7 @@
 ---
 title: 'Rate Limits'
 icon: 'monitor-waveform'
+mode: 'wide'
 ---
 
 Glacier's rate limiting is handled using a weighted scoring system. This allows users to make more basic requests and will better allow Glacier to handle more computationally complex requests.
@@ -30,100 +31,103 @@ The keys and values for each weight are as follows:
 
 ## Rate Limits for Glacier Endpoints ##
 The weights for each route are defined in the table below:
-| Endpoint                                                              | Method | Weight |
-| --------------------------------------------------------------------- | ------ | ------ |
-| /v1/chains                                                            | GET    | Free   |
-| /v1/chains/{chainId}                                                  | GET    | Free   |
-| /v1/chains/{chainId}/blocks                                           | GET    | Small  |
-| /v1/chains/{chainId}/blocks/{blockId}                                 | GET    | Small  |
-| /v1/chains/{chainId}/contracts/{address}/transactions:getDeployment   | GET    | Medium |
-| /v1/chains/{chainId}/contracts/{address}/deployments                  | GET    | Medium |
-| /v1/chains/{chainId}/tokens/{address}/transfers                       | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions                 | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions:listNative      | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions:listErc20       | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions:listErc721      | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions:listErc1155     | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/transactions:listInternals   | GET    | Medium |
-| /v1/chains/{chainId}/transactions/{txHash}                            | GET    | Medium |
-| /v1/chains/{chainId}/blocks/{blockId}/transactions                    | GET    | Medium |
-| /v1/chains/{chainId}/transactions                                     | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/balances:getNative           | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/balances:listErc20           | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/balances:listErc721          | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/balances:listErc1155         | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}/balances:listCollectibles    | GET    | Medium |
-| /v1/chains/{chainId}/addresses/{address}                              | GET    | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}    | GET    | XL     |
-| /v1/networks/{network}/addresses:listChainIds                         | GET    | XL     |
-| /v1/networks/{network}                                                | GET    | XL     |
-| /v1/networks/{network}/blockchains                                    | GET    | Medium |
-| /v1/networks/{network}/subnets                                        | GET    | Medium |
-| /v1/networks/{network}/validators                                     | GET    | Medium |
-| /v1/networks/{network}/validators/{nodeId}                            | GET    | Medium |
-| /v1/networks/{network}/delegators                                     | GET    | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/blocks/{blockId}    | GET    | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/nodes/{nodeId}/blocks | GET  | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/blocks              | GET    | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/vertices            | GET    | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/vertices/{vertexHash} | GET  | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/vertices:listByHeight | GET  | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/transactions/{txHash} | GET  | Medium |
-| /v1/networks/{network}/blockchains/{blockchainId}/transactions        | GET    | XL     |
-| /v1/networks/{network}/blockchains/{blockchainId}/transactions:listStaking | GET | XL     |
-| /v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}/transactions | GET | XL |
-| /v1/networks/{network}/blockchains/{blockchainId}/balances            | GET    | XL     |
-| /v1/networks/{network}/blockchains/{blockchainId}/utxos               | GET    | XL     |
-| /v1/networks/{network}/rewards:listPending                            | GET    | XL     |
-| /v1/networks/{network}/rewards                                        | GET    | XL     |
-| /v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}:reindex | POST | Small  |
-| /v1/chains/{chainId}/nfts/collections/{address}/tokens                | GET    | Medium |
-| /v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}      | GET    | Medium |
-| /v1/operations/{operationId}                                          | GET    | Small  |
-| /v1/operations/transactions:export                                    | POST   | Medium |
-| /v1/health-check                                                     | GET    | Small  |
-| /v1/teleporter/messages/{messageId}                                   | GET    | Medium |
-| /v1/teleporter/messages                                               | GET    | Medium |
-| /v1/webhooks                                                          | POST   | Medium |
-| /v1/webhooks                                                          | GET    | Small  |
-| /v1/webhooks/{id}                                                     | GET    | Small  |
-| /v1/webhooks/{id}                                                     | DELETE | Medium |
-| /v1/webhooks/{id}                                                     | PATCH  | Medium |
-| /v1/webhooks:generateOrRotateSharedSecret                             | POST   | Medium |
-| /v1/webhooks:getSharedSecret                                          | GET    | Small  |
+
+| Endpoint                                                              | Method | Weight | Value |
+| --------------------------------------------------------------------- | ------ | ------ | ----- |
+| `/v1/chains`                                                          | GET    | Free   | 1     |
+| `/v1/chains/{chainId}`                                                | GET    | Free   | 1     |
+| `/v1/chains/{chainId}/blocks`                                         | GET    | Small  | 10    |
+| `/v1/chains/{chainId}/blocks/{blockId}`                               | GET    | Small  | 10    |
+| `/v1/chains/{chainId}/contracts/{address}/transactions:getDeployment` | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/contracts/{address}/deployments`                | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/tokens/{address}/transfers`                     | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions`               | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions:listNative`    | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions:listErc20`     | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions:listErc721`    | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions:listErc1155`   | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/transactions:listInternals` | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/transactions/{txHash}`                          | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/blocks/{blockId}/transactions`                  | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/transactions`                                   | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/balances:getNative`         | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/balances:listErc20`         | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/balances:listErc721`        | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/balances:listErc1155`       | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}/balances:listCollectibles`  | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/addresses/{address}`                            | GET    | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}`  | GET    | XL     | 100   |
+| `/v1/networks/{network}/addresses:listChainIds`                       | GET    | XL     | 100   |
+| `/v1/networks/{network}`                                              | GET    | XL     | 100   |
+| `/v1/networks/{network}/blockchains`                                  | GET    | Medium | 20    |
+| `/v1/networks/{network}/subnets`                                      | GET    | Medium | 20    |
+| `/v1/networks/{network}/validators`                                   | GET    | Medium | 20    |
+| `/v1/networks/{network}/validators/{nodeId}`                          | GET    | Medium | 20    |
+| `/v1/networks/{network}/delegators`                                   | GET    | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/blocks/{blockId}`  | GET    | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/nodes/{nodeId}/blocks` | GET  | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/blocks`            | GET    | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/vertices`          | GET    | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/vertices/{vertexHash}` | GET  | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/vertices:listByHeight` | GET  | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/transactions/{txHash}` | GET  | Medium | 20    |
+| `/v1/networks/{network}/blockchains/{blockchainId}/transactions`      | GET    | XL     | 100   |
+| `/v1/networks/{network}/blockchains/{blockchainId}/transactions:listStaking` | GET | XL | 100   |
+| `/v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}/transactions` | GET | XL | 100 |
+| `/v1/networks/{network}/blockchains/{blockchainId}/balances`          | GET    | XL     | 100   |
+| `/v1/networks/{network}/blockchains/{blockchainId}/utxos`             | GET    | XL     | 100   |
+| `/v1/networks/{network}/rewards:listPending`                          | GET    | XL     | 100   |
+| `/v1/networks/{network}/rewards`                                      | GET    | XL     | 100   |
+| `/v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}:reindex` | POST | Small  | 10    |
+| `/v1/chains/{chainId}/nfts/collections/{address}/tokens`              | GET    | Medium | 20    |
+| `/v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}`    | GET    | Medium | 20    |
+| `/v1/operations/{operationId}`                                        | GET    | Small  | 10    |
+| `/v1/operations/transactions:export`                                  | POST   | Medium | 20    |
+| `/v1/health-check`                                                    | GET    | Small  | 10    |
+| `/v1/teleporter/messages/{messageId}`                                 | GET    | Medium | 20    |
+| `/v1/teleporter/messages`                                             | GET    | Medium | 20    |
+| `/v1/webhooks`                                                        | POST   | Medium | 20    |
+| `/v1/webhooks`                                                        | GET    | Small  | 10    |
+| `/v1/webhooks/{id}`                                                   | GET    | Small  | 10    |
+| `/v1/webhooks/{id}`                                                   | DELETE | Medium | 20    |
+| `/v1/webhooks/{id}`                                                   | PATCH  | Medium | 20    |
+| `/v1/webhooks:generateOrRotateSharedSecret`                           | POST   | Medium | 20    |
+| `/v1/webhooks:getSharedSecret`                                        | GET    | Small  | 10    |
+
 
 ## Rate Limits for RPC endpoints ##
 The weights for RPC calls will be calculated based on the RPC method(s) within the request. The methods are weighted as follows:
-| Method                                     | Weight |
-| ------------------------------------------ | ------ |
-| eth_accounts                               | Medium |
-| eth_blockNumber                            | Small  |
-| eth_call                                   | Small  |
-| eth_coinbase                               | Small  |
-| eth_chainId                                | Free   |
-| eth_gasPrice                               | Small  |
-| eth_getBalance                             | Small  |
-| eth_getBlockByHash                         | Small  |
-| eth_getBlockByNumber                       | Small  |
-| eth_getBlockTransactionCountByNumber       | Medium |
-| eth_getCode                                | Medium |
-| eth_getLogs                                | XXL    |
-| eth_getStorageAt                           | Medium |
-| eth_getTransactionByBlockNumberAndIndex    | Medium |
-| eth_getTransactionByHash                   | Small  |
-| eth_getTransactionCount                    | Small  |
-| eth_getTransactionReceipt                  | Small  |
-| eth_sendRawTransaction                     | Small  |
-| eth_syncing                                | Free   |
-| net_listening                              | Free   |
-| net_version                                | Free   |
-| web3_clientVersion                         | Small  |
-| web3_sha3                                  | Small  |
-| eth_maxPriorityFeePerGas                   | Small  |
-| eth_baseFee                                | Small  |
-| rpc_modules                                | Free   |
-| eth_getChainConfig                         | Small  |
-| eth_feeConfig                              | Small  |
-| eth_getActivePrecompilesAt                 | Small  |
+
+| Method                                     | Weight | Value |
+| ------------------------------------------ | ------ | ----- |
+| eth_accounts                               | Medium | 20    |
+| eth_blockNumber                            | Small  | 10    |
+| eth_call                                   | Small  | 10    |
+| eth_coinbase                               | Small  | 10    |
+| eth_chainId                                | Free   | 1     |
+| eth_gasPrice                               | Small  | 10    |
+| eth_getBalance                             | Small  | 10    |
+| eth_getBlockByHash                         | Small  | 10    |
+| eth_getBlockByNumber                       | Small  | 10    |
+| eth_getBlockTransactionCountByNumber       | Medium | 20    |
+| eth_getCode                                | Medium | 20    |
+| eth_getLogs                                | XXL    | 200   |
+| eth_getStorageAt                           | Medium | 20    |
+| eth_getTransactionByBlockNumberAndIndex    | Medium | 20    |
+| eth_getTransactionByHash                   | Small  | 10    |
+| eth_getTransactionCount                    | Small  | 10    |
+| eth_getTransactionReceipt                  | Small  | 10    |
+| eth_sendRawTransaction                     | Small  | 10    |
+| eth_syncing                                | Free   | 1     |
+| net_listening                              | Free   | 1     |
+| net_version                                | Free   | 1     |
+| web3_clientVersion                         | Small  | 10    |
+| web3_sha3                                  | Small  | 10    |
+| eth_maxPriorityFeePerGas                   | Small  | 10    |
+| eth_baseFee                                | Small  | 10    |
+| rpc_modules                                | Free   | 1     |
+| eth_getChainConfig                         | Small  | 10    |
+| eth_feeConfig                              | Small  | 10    |
+| eth_getActivePrecompilesAt                 | Small  | 10    |
 
 <Info>All rate limits, weights, and values are subject to change</Info>

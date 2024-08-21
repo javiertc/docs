@@ -16,6 +16,17 @@
       "to": "#0944FD"
     }
   },
+  "feedback": {
+    "suggestEdit": true,
+    "raiseIssue": true,
+    "thumbsRating": true
+  },
+  "metadata": {
+    "og:image": "https://avacloud.io/images/glacier.jpg",
+    "og:description": "All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code. Built by @AvaLabs",
+    "og:site_name": "Avacloud API Docs",
+    "twitter:site": "@AvaCloud"
+  },
   "topbarLinks": [
     {
       "name": "Support",
@@ -29,8 +40,7 @@
   "tabs": [
     {
       "name": "Data API",
-      "url": "data-api",
-      "openapi": "https://glacier-api.avax.network/api-json"
+      "url": "data-api"
     },
     {
       "name": "Metrics API",
@@ -39,8 +49,7 @@
     },
     {
       "name": "Webhooks API",
-      "url": "webhooks-api",
-      "openapi": "/webhooks-api/openapi.json"
+      "url": "webhooks-api"
     },
     {
       "name": "Avalanche SDK",
@@ -91,6 +100,134 @@
       ]
     },
     {
+      "group": "EVM",
+      "pages": [
+        {
+          "group": "Chains",
+          "pages": [
+            "data-api/evm-chains/list-chains",
+            "data-api/evm-chains/get-chain-information"
+          ]
+        },
+        {
+          "group": "Blocks",
+          "pages": [
+            "data-api/evm-blocks/list-latest-blocks",
+            "data-api/evm-blocks/get-block"
+          ]
+        },
+        {
+          "group": "Transactions",
+          "pages": [
+            "data-api/evm-transactions/get-deployment-transaction",
+            "data-api/evm-transactions/list-deployed-contracts",
+            "data-api/evm-transactions/list-erc-transfers",
+            "data-api/evm-transactions/list-transactions",
+            "data-api/evm-transactions/list-native-transactions",
+            "data-api/evm-transactions/list-erc-20-transfers",
+            "data-api/evm-transactions/list-erc-721-transfers",
+            "data-api/evm-transactions/list-erc-1155-transfers",
+            "data-api/evm-transactions/list-internal-transactions",
+            "data-api/evm-transactions/get-transaction",
+            "data-api/evm-transactions/list-transactions-for-a-block",
+            "data-api/evm-transactions/list-latest-transactions"
+          ]
+        },
+        {
+          "group": "Balances",
+          "pages": [
+            "data-api/evm-balances/get-native-token-balance",
+            "data-api/evm-balances/list-erc-20-balances",
+            "data-api/evm-balances/list-erc-721-balances",
+            "data-api/evm-balances/list-erc-1155-balances",
+            "data-api/evm-balances/list-collectible-erc-721erc-1155-balances"
+          ]
+        },
+        {
+          "group": "Contracts",
+          "pages": [
+            "data-api/evm-contracts/get-contract-metadata"
+          ]
+        },
+        {
+          "group": "NFTs",
+          "pages": [
+            "data-api/nfts/reindex-nft-metadata",
+            "data-api/nfts/list-tokens",
+            "data-api/nfts/get-token-details"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Primary Network",
+      "pages": [
+        {
+          "group": "Network, Chains and subnet",
+          "pages": [
+            "data-api/primary-network/get-chain-interactions-for-addresses",
+            "data-api/primary-network/get-network-details",
+            "data-api/primary-network/list-blockchains",
+            "data-api/primary-network/list-subnets",
+            "data-api/primary-network/get-subnet-details-by-id"
+          ]
+        },
+        {
+          "group": "Validators and Delegators",
+          "pages": [
+            "data-api/primary-network/list-validators",
+            "data-api/primary-network/get-single-validator-details",
+            "data-api/primary-network/list-delegators"
+          ]
+        },
+        {
+          "group": "Blocks",
+          "pages": [
+            "data-api/primary-network-blocks/get-block",
+            "data-api/primary-network-blocks/list-blocks-proposed-by-node",
+            "data-api/primary-network-blocks/list-latest-blocks"
+          ]
+        },
+        {
+          "group": "Vertices",
+          "pages": [
+            "data-api/primary-network-vertices/list-vertices",
+            "data-api/primary-network-vertices/get-vertex",
+            "data-api/primary-network-vertices/list-vertices-by-height"
+          ]
+        },
+        {
+          "group": "Transactions",
+          "pages": [
+            "data-api/primary-network-transactions/get-transaction",
+            "data-api/primary-network-transactions/list-latest-transactions",
+            "data-api/primary-network-transactions/list-staking-transactions",
+            "data-api/primary-network-transactions/list-asset-transactions"
+          ]
+        },
+        {
+          "group": "Balances and UTXOs",
+          "pages": [
+            "data-api/primary-network-balances/get-balances",
+            "data-api/primary-network-utxos/list-utxos"
+          ]
+        },
+        {
+          "group": "Rewards",
+          "pages": [
+            "data-api/primary-network-rewards/list-pending-rewards",
+            "data-api/primary-network-rewards/list-historical-rewards"
+          ]
+        },
+        {
+          "group": "Assets",
+          "pages": [
+            "data-api/primary-network/get-asset-details"
+          ]
+        }
+      ]
+    },
+    {
       "group": "Get Started",
       "pages": [
         "webhooks-api/overview",
@@ -108,6 +245,21 @@
       ]
     },
     {
+      "group": "API Reference",
+      "pages": [
+        "webhooks-api/webhooks/list-webhooks",
+        "webhooks-api/webhooks/create-a-webhook",
+        "webhooks-api/webhooks/get-a-webhook-by-id",
+        "webhooks-api/webhooks/deactivate-a-webhook",
+        "webhooks-api/webhooks/update-a-webhook",
+        "webhooks-api/webhooks/generate-a-shared-secret",
+        "webhooks-api/webhooks/get-a-shared-secret",
+        "webhooks-api/webhooks/list-adresses-by-webhook",
+        "webhooks-api/webhooks/remove-addresses-from-webhook",
+        "webhooks-api/webhooks/add-addresses-to-webhook"
+      ]
+    },
+    {
       "group": "Get Started",
       "pages": [
         "metrics-api/quickstart",
@@ -120,14 +272,19 @@
       "pages": [
         "avalanche-sdk/quickstart",
         "avalanche-sdk/errors",
-        "avalanche-sdk/cross-chain",
-        "avalanche-sdk/advanced"
+        "avalanche-sdk/cross-chain"
       ]
+    },
+    {
+      "group": "Get Started",
+      "pages": ["changelog/changelog"]
     }
   ],
   "footerSocials": {
     "x": "https://x.com/AvaxDevelopers",
     "github": "https://github.com/ava-labs",
+    "youtube": "https://www.youtube.com/@Avalancheavax",
+    "discord": "https://discord.gg/avalanche-578992315641626624",
     "medium": "https://medium.com/@avaxdevelopers"
   }
 }

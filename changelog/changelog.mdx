@@ -1,0 +1,69 @@
+---
+title: 'Changelog'
+icon: 'newspaper'
+mode: "wide"
+---
+
+### Webhook service launched ###
+The new webhook service allows you to receive blockchain data in real-time. With Glacier Webhooks, you can monitor real-time events on the Avalanche C-chain and subnets. For example, you can monitor smart contract events, track NFT transfers, and observe wallet-to-wallet transactions.
+Aug  20th, 2024
+Features:
+
+Subnet enabled: Support for C-chain mainnet, testnet, and subnets within the Avalanche ecosystem, ensuring wide-ranging monitoring capabilities.
+Real-time notifications: Receive immediate updates on specified on-chain activities without making many RPC calls.
+Customizable: Specify the desired event type to listen for, customizing notifications according to individual requirements.
+Secure: Employ shared secrets and signature-based verification to guarantee that notifications originate from a trusted source.
+Use cases
+
+NFTs: Get instant alerts for NFT minting, transfers, sales, and other marketplace activities, ensuring up-to-date data and immediate notifications for successful ERC721 and ERC1155 NFT transactions.
+Wallets: Receive alerts when an address performs actions such as sending, receiving, or swapping assets.
+DeFi: Receive notifications for various DeFi activities such as liquidity provisioning, yield farming, borrowing, lending, and liquidations.
+Smart contracts: Monitor your smart contract events by specifying contracts and on-chain events of interest. Add the contract address, to receive the necessary events, addresses, and internal transactions efficiently.
+For further details, visit our:
+
+User Guide
+Getting Started
+Tutorials
+API Reference
+
+
+### New endpoint - Get subnet details by subnetID ###
+August 6th, 2024
+**Get Subnet Details by ID**
+
+Endpoint: GET https://glacier-api.avax.network/v1/networks/{network}/subnets/{subnetId}
+
+This endpoint retrieves detailed information about a specific subnet registered on the network. By providing the network type (mainnet or a testnet) and the subnet ID, you can fetch various details including the subnet’s creation timestamp, ownership information, and associated blockchains.
+
+Example response:
+
+```JSON
+{
+  "createBlockTimestamp": 1599696000,
+  "createBlockIndex": "-1",
+  "subnetId": "11111111111111111111111111111111LpoYY",
+  "ownerAddresses": [
+    ""
+  ],
+  "threshold": 0,
+  "locktime": 0,
+  "subnetOwnershipInfo": {
+    "addresses": [
+      "0"
+    ],
+    "locktime": 0,
+    "threshold": null
+  },
+  "blockchains": [
+    {
+      "blockchainId": "11111111111111111111111111111111LpoYY"
+    },
+    {
+      "blockchainId": "2oYMBNV4eNHyqk2fjjV5nVQLDbtmNJzq5s3qs3Lo6ftnC6FByM"
+    },
+    {
+      "blockchainId": "2q9e4r6Mu3U68nU1fYjgbR6JvwrRx36CohpAX5UQxse55x1Q5"
+    }
+  ]
+}
+```
