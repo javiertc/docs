@@ -16,7 +16,8 @@ Subscription Level	Per Minute Limit	Per Day Limit
 | Base               | 10,000           | 3,750,000     |
 | Growth             | 14,000           | 11,200,000    |
 | Pro                | 20,000           | 25,000,000    |
-To update your subscription level use the AvaCloud Portal
+
+To update your subscription level use the [AvaCloud Portal](https://app.avacloud.io/)
 
 ## Rate Limit Categories ##
 The keys and values for each weight are as follows:
@@ -100,34 +101,34 @@ The weights for RPC calls will be calculated based on the RPC method(s) within t
 
 | Method                                     | Weight | Value |
 | ------------------------------------------ | ------ | ----- |
-| eth_accounts                               | Medium | 20    |
-| eth_blockNumber                            | Small  | 10    |
-| eth_call                                   | Small  | 10    |
-| eth_coinbase                               | Small  | 10    |
-| eth_chainId                                | Free   | 1     |
-| eth_gasPrice                               | Small  | 10    |
-| eth_getBalance                             | Small  | 10    |
-| eth_getBlockByHash                         | Small  | 10    |
-| eth_getBlockByNumber                       | Small  | 10    |
-| eth_getBlockTransactionCountByNumber       | Medium | 20    |
-| eth_getCode                                | Medium | 20    |
-| eth_getLogs                                | XXL    | 200   |
-| eth_getStorageAt                           | Medium | 20    |
-| eth_getTransactionByBlockNumberAndIndex    | Medium | 20    |
-| eth_getTransactionByHash                   | Small  | 10    |
-| eth_getTransactionCount                    | Small  | 10    |
-| eth_getTransactionReceipt                  | Small  | 10    |
-| eth_sendRawTransaction                     | Small  | 10    |
-| eth_syncing                                | Free   | 1     |
-| net_listening                              | Free   | 1     |
-| net_version                                | Free   | 1     |
-| web3_clientVersion                         | Small  | 10    |
-| web3_sha3                                  | Small  | 10    |
-| eth_maxPriorityFeePerGas                   | Small  | 10    |
-| eth_baseFee                                | Small  | 10    |
-| rpc_modules                                | Free   | 1     |
-| eth_getChainConfig                         | Small  | 10    |
-| eth_feeConfig                              | Small  | 10    |
-| eth_getActivePrecompilesAt                 | Small  | 10    |
+| `eth_accounts`                             | Medium | 20    |
+| `eth_blockNumber`                          | Small  | 10    |
+| `eth_call`                                 | Small  | 10    |
+| `eth_coinbase`                             | Small  | 10    |
+| `eth_chainId`                              | Free   | 1     |
+| `eth_gasPrice`                             | Small  | 10    |
+| `eth_getBalance`                           | Small  | 10    |
+| `eth_getBlockByHash`                       | Small  | 10    |
+| `eth_getBlockByNumber`                     | Small  | 10    |
+| `eth_getBlockTransactionCountByNumber`     | Medium | 20    |
+| `eth_getCode`                              | Medium | 20    |
+| `eth_getLogs`                              | XXL    | 200   |
+| `eth_getStorageAt`                         | Medium | 20    |
+| `eth_getTransactionByBlockNumberAndIndex`  | Medium | 20    |
+| `eth_getTransactionByHash`                 | Small  | 10    |
+| `eth_getTransactionCount`                  | Small  | 10    |
+| `eth_getTransactionReceipt`                | Small  | 10    |
+| `eth_sendRawTransaction`                   | Small  | 10    |
+| `eth_syncing`                              | Free   | 1     |
+| `net_listening`                            | Free   | 1     |
+| `net_version`                              | Free   | 1     |
+| `web3_clientVersion`                       | Small  | 10    |
+| `web3_sha3`                                | Small  | 10    |
+| `eth_maxPriorityFeePerGas`                 | Small  | 10    |
+| `eth_baseFee`                              | Small  | 10    |
+| `rpc_modules`                              | Free   | 1     |
+| `eth_getChainConfig`                       | Small  | 10    |
+| `eth_feeConfig`                            | Small  | 10    |
+| `eth_getActivePrecompilesAt`               | Small  | 10    |
 
 <Info>All rate limits, weights, and values are subject to change</Info>

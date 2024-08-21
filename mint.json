@@ -17,8 +17,8 @@
     }
   },
   "feedback": {
-    "suggestEdit": true,
-    "raiseIssue": true,
+    "suggestEdit": false,
+    "raiseIssue": false,
     "thumbsRating": true
   },
   "metadata": {
@@ -100,10 +100,23 @@
       ]
     },
     {
+      "group": "Health Check",
+      "pages": [
+        {
+          "group": "Health Check",
+          "icon": "heart-pulse",
+          "pages": [
+             "data-api/health-check/get-the-health-of-the-service"
+          ]
+        }
+      ]
+    },
+    {
       "group": "EVM",
       "pages": [
         {
           "group": "Chains",
+          "icon": "link",
           "pages": [
             "data-api/evm-chains/list-chains",
             "data-api/evm-chains/get-chain-information"
@@ -111,6 +124,7 @@
         },
         {
           "group": "Blocks",
+          "icon": "block-brick",
           "pages": [
             "data-api/evm-blocks/list-latest-blocks",
             "data-api/evm-blocks/get-block"
@@ -118,6 +132,7 @@
         },
         {
           "group": "Transactions",
+          "icon": "pipe-circle-check",
           "pages": [
             "data-api/evm-transactions/get-deployment-transaction",
             "data-api/evm-transactions/list-deployed-contracts",
@@ -135,6 +150,7 @@
         },
         {
           "group": "Balances",
+          "icon": "square-poll-vertical",
           "pages": [
             "data-api/evm-balances/get-native-token-balance",
             "data-api/evm-balances/list-erc-20-balances",
@@ -145,12 +161,14 @@
         },
         {
           "group": "Contracts",
+          "icon": "file-contract",
           "pages": [
             "data-api/evm-contracts/get-contract-metadata"
           ]
         },
         {
           "group": "NFTs",
+          "icon": "hexagon-vertical-nft",
           "pages": [
             "data-api/nfts/reindex-nft-metadata",
             "data-api/nfts/list-tokens",
@@ -163,7 +181,8 @@
       "group": "Primary Network",
       "pages": [
         {
-          "group": "Network, Chains and subnet",
+          "group": "Network, Chains & subnet",
+          "icon": "link",
           "pages": [
             "data-api/primary-network/get-chain-interactions-for-addresses",
             "data-api/primary-network/get-network-details",
@@ -173,7 +192,8 @@
           ]
         },
         {
-          "group": "Validators and Delegators",
+          "group": "Validators & Delegators",
+          "icon": "server",
           "pages": [
             "data-api/primary-network/list-validators",
             "data-api/primary-network/get-single-validator-details",
@@ -182,6 +202,7 @@
         },
         {
           "group": "Blocks",
+          "icon": "block-brick",
           "pages": [
             "data-api/primary-network-blocks/get-block",
             "data-api/primary-network-blocks/list-blocks-proposed-by-node",
@@ -190,6 +211,7 @@
         },
         {
           "group": "Vertices",
+          "icon": "triangle",
           "pages": [
             "data-api/primary-network-vertices/list-vertices",
             "data-api/primary-network-vertices/get-vertex",
@@ -198,6 +220,7 @@
         },
         {
           "group": "Transactions",
+          "icon": "pipe-circle-check",
           "pages": [
             "data-api/primary-network-transactions/get-transaction",
             "data-api/primary-network-transactions/list-latest-transactions",
@@ -206,7 +229,8 @@
           ]
         },
         {
-          "group": "Balances and UTXOs",
+          "group": "Balances & UTXOs",
+          "icon": "square-poll-vertical",
           "pages": [
             "data-api/primary-network-balances/get-balances",
             "data-api/primary-network-utxos/list-utxos"
@@ -214,6 +238,7 @@
         },
         {
           "group": "Rewards",
+          "icon": "coin-blank",
           "pages": [
             "data-api/primary-network-rewards/list-pending-rewards",
             "data-api/primary-network-rewards/list-historical-rewards"
@@ -221,8 +246,37 @@
         },
         {
           "group": "Assets",
+          "icon": "basket-shopping",
           "pages": [
             "data-api/primary-network/get-asset-details"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Teleporter",
+      "icon": "coin-blank",
+      "pages": [
+        {
+          "group": "Teleporter",
+          "icon": "ufo-beam",
+          "pages": [
+            "data-api/teleporter/get-a-teleporter-message",
+            "data-api/teleporter/list-teleporter-messages"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Operations",
+      "icon": "coin-blank",
+      "pages": [
+        {
+          "group": "Operations",
+          "icon": "gear-code",
+          "pages": [
+            "data-api/operations/get-operation",
+            "data-api/operations/create-transaction-export-operation"
           ]
         }
       ]
