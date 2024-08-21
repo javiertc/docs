@@ -62,7 +62,7 @@
   ],
   "anchors": [
     {
-      "name": "Academy",
+      "name": "Avalanche Academy",
       "icon": "book-open-cover",
       "url": "https://academy.avax.network/"
     },
@@ -105,9 +105,7 @@
         {
           "group": "Health Check",
           "icon": "heart-pulse",
-          "pages": [
-             "data-api/health-check/get-the-health-of-the-service"
-          ]
+          "pages": ["data-api/health-check/get-the-health-of-the-service"]
         }
       ]
     },
@@ -162,9 +160,7 @@
         {
           "group": "Contracts",
           "icon": "file-contract",
-          "pages": [
-            "data-api/evm-contracts/get-contract-metadata"
-          ]
+          "pages": ["data-api/evm-contracts/get-contract-metadata"]
         },
         {
           "group": "NFTs",
@@ -247,9 +243,7 @@
         {
           "group": "Assets",
           "icon": "basket-shopping",
-          "pages": [
-            "data-api/primary-network/get-asset-details"
-          ]
+          "pages": ["data-api/primary-network/get-asset-details"]
         }
       ]
     },
