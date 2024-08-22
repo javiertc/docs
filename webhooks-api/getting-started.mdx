@@ -7,28 +7,204 @@ mode: 'wide'
 Creating a webhook using the AvaCloud portal
 There are many websites you can use to test out webhooks. For example, you can use https://webhook.site/ and copy your unique URL. Once you have the URL, you can test using the following steps:
 
-1. Navigate to the AvaCloud dashboard
-2. Click "Create Webhook"
-3. Fill out the form with the unique URL generated in `https://webhook.site/` and the address you want to monitor. In this example, we want to monitor USDC on the mainnet. The address for the USDC contract is the C-chain is `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E`. The event type is address_activity and leave the event signature empty.
-4. Click Create and go to webhook.site, you should see something like this:
-
-<Steps>
-  <Step title="First Step">
-    Navigate to the AvaCloud dashboard.
-  </Step>
-  <Step title="Second Step">
-    Click "Create Webhook"
-  </Step>
-  <Step title="Third Step">
-    Fill out the form with the unique URL generated in `https://webhook.site/` and the address you want to monitor. In this example, we want to monitor USDC on the mainnet. The address for the USDC contract is the C-chain is `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E`. The event type is address_activity and leave the event signature empty.
-  </Step>
-  <Step title="Forth Step">
-    Click Create and go to webhook.site, you should see something like this:
-  </Step>
-</Steps>
+1. Navigate to the [Avacloud Dashboard](https://app.avacloud.io/) and click on **Web3 Data API**
+2. Click **Create Webhook**
+3. Fill out the form with the unique URL generated in `https://webhook.site/` and the address you want to monitor. In this example, we want to monitor USDC on the mainnet. The address for the USDC contract is the C-chain is `0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E`.
+  ![Webhook.site](/images/create-webhook-ui.png)
+4. Click **Create** and go to `https://webhook.site/, you should see something like this:
+  ![Webhook.site](/images/webhook-site.png)
 
 ## Managing webhooks using Glacier API ##
 You can programmatically manage webhooks using Glacier API. For example:
 
-1. Navigate to the AvaCloud dashboard
-2. Click "Add API Key"
+1. Navigate to the [Avacloud Dashboard](https://app.avacloud.io/) and click on **Web3 Data API**
+2. Click on **Add API Key**
+3. Copy your API key and use it to create a webhook. For example:
+```bash
+curl --location 'https://glacier-api.avax.network/v1/webhooks' \
+--header 'Content-Type: application/json' \
+--header 'x-glacier-api-key: <YOUR_API_KEY>' \
+--data '{
+    "url": "https://webhook.site/af5cfd05-d104-4573-8ff0-6f11dffbf1eb",
+    "chainId": "43114",
+    "eventType": "address_activity",
+    "metadata": {
+        "addresses": ["0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"]
+    },
+   "name": "Dokyo",
+   "description": "Dokyo NFT"
+   "includeInternalTxs": true,
+   "includeLogs": True
+}'
+```
+Use all Glacier methods at your convenience to `create`, `update`, `delete` or `list` the webhooks in your AvaCloud account.
+
+### Local testing with a Node.js Express app ###
+If we want to test the webhook in our computer and we are behind a proxy/NAT device or a firewall we need a tool like Ngrok. Avacloud will trigger the webhook and make a POST to the Ngrok cloud, then the request is forwarded to your local Ngrok client who in turn forwards it to the Node.js app listening on port 8000.
+Go to https://ngrok.com/ create a free account, download the binary, and connect to your account. Create a Node.js app with Express and paste the following code to receive the webhook:
+```javascript
+const express = require('express');
+const app = express();
+
+app.post('/callback', express.json({ type: 'application/json' }), (request, response) => {
+   const { body, headers } = request;
+   // Handle the event
+   switch (body.eventType) {
+       case 'address_activity':
+           console.log("*** Address_activity ***");
+           console.log(body);
+           break;
+       // ... handle other event types
+       default:
+           console.log(`Unhandled event type ${body}`);
+   }
+   // Return a response to acknowledge receipt of the event
+   response.json({ received: true });
+});
+
+const PORT = 8000;
+app.listen(PORT, () => console.log(`Running on port ${PORT}`));
+```
+Run the app with the following command:
+
+```shell
+node app.js
+The Express app will be listening on port 8000. To start an HTTP tunnel forwarding to your local port 8000 with Ngrok, run this next:
+```
+```shell
+./ngrok http 8000
+```
+You should see something like this:
+```bash
+ngrok                                                                                                                                                                           (Ctrl+C to quit)
+
+Take our ngrok in production survey! https://forms.gle/aXiBFWzEA36DudFn6
+
+Session Status                online
+Account                       javier.toledo@avalabs.org (Plan: Free)
+Update                        update available (version 3.7.0, Ctrl-U to update)
+Version                       3.5.0
+Region                        United States (us)
+Latency                       -
+Web Interface                 http://127.0.0.1:4040
+Forwarding                    https://825a-2600-1700-5220-11a0-385f-7786-5e74-32cb.ngrok-free.app -> http://localhost:8000
+
+Connections                   ttl     opn     rt1     rt5     p50     p90
+                              0       0       0.00    0.00    0.00    0.00
+
+```
+
+Copy the HTTPS forwarding URL and append the `/callbackpath` and type the address you want to monitor.
+If we transfer AVAX to the address AvaCloud will detect the payment and the webhook will be triggered. Now we can receive the event on our local server. The response should be something like this:
+```json
+{
+  "webhookId": "8ca68f98-18e5-47fb-a669-9ba7a6ed32b0",
+  "eventType": "address_activity",
+  "messageId": "ad66c866-17b4-44f7-9485-32211170da86",
+  "event": {
+    "transaction": {
+      "blockHash": "0x924ab683b4eba825410b8f233297927aa91af9483fe2d7dd799afbe0e70ea2db",
+      "blockNumber": "42776050",
+      "from": "0x4962aE47413a39fe219e17679124DF0086f0C369",
+      "gas": "296025",
+      "gasPrice": "35489466312",
+      "maxFeePerGas": "35489466312",
+      "maxPriorityFeePerGas": "1500000000",
+      "txHash": "0x9d3b6efae152cd17a30e5522b07d7217a9809a4a437b3269ded7474cfdecd167",
+      "txStatus": "1",
+      "input": "0x3593564c000000000000000000000000000000000000000000000000000000000000006000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000065ef6db400000000000000000000000000000000000000000000000000000000000000020b000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a00000000000000000000000000000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000009b6e64a8ec600000000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000009b6e64a8ec60000000000000000000000000000000000000000000000000001d16b69c3febc194200000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000042b31f66aa3c1e785363f0875a1b74e27b85fd66c70001f4b97ef9ef8734c71904d8002f8b6bc66dd9c48a6e000bb8d586e7f844cea2f87f50152665bcbc2c279d8d70000000000000000000000000000000000000000000000000000000000000",
+      "nonce": "0",
+      "to": "0x4dae2f939acf50408e13d58534ff8c2776d45265",
+      "transactionIndex": 17,
+      "value": "700000000000000000",
+      "type": 2,
+      "chainId": "43114",
+      "receiptCumulativeGasUsed": "2215655",
+      "receiptGasUsed": "244010",
+      "receiptEffectiveGasPrice": "28211132966",
+      "receiptRoot": "0x40d0ea00b2ce9e72a4bdebfbdc8dd4d73ebecbf80f1c107993eb78a5d28a44bf",
+      "contractAddress": "0x0000000000000000000000000000000000000000",
+      "blockTimestamp": 1710189471
+    },
+    "logs": [
+      {
+        "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+        "topic0": "0xe1fffcc4923d04b559f4d29a8bfc6cda04eb5b0d3c460751c2402c5c5cc9109c",
+        "topic1": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic2": null,
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000009b6e64a8ec60000",
+        "transactionIndex": 17,
+        "logIndex": 39,
+        "removed": false
+      },
+      {
+        "address": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+        "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "topic1": "0x000000000000000000000000fae3f424a0a47706811521e3ee268f00cfb5c45e",
+        "topic2": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000000000000020826ca",
+        "transactionIndex": 17,
+        "logIndex": 40,
+        "removed": false
+      },
+      {
+        "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+        "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "topic1": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic2": "0x000000000000000000000000fae3f424a0a47706811521e3ee268f00cfb5c45e",
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000009b6e64a8ec60000",
+        "transactionIndex": 17,
+        "logIndex": 41,
+        "removed": false
+      },
+      {
+        "address": "0xfAe3f424a0a47706811521E3ee268f00cFb5c45E",
+        "topic0": "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67",
+        "topic1": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic2": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000009b6e64a8ec60000fffffffffffffffffffffffffffffffffffffffffffffffffffffffffdf7d93600000000000000000000000000000000000000000000751b593c19962c0ca27000000000000000000000000000000000000000000000000006d2063b8b0f00effffffffffffffffffffffffffffffffffffffffffffffffffffffffffffc606b",
+        "transactionIndex": 17,
+        "logIndex": 42,
+        "removed": false
+      },
+      {
+        "address": "0xd586E7F844cEa2F87f50152665BCbc2C279D8d70",
+        "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "topic1": "0x000000000000000000000000a7141c79d3d4a9ad67ba95d2b97fe7eed9fb92b3",
+        "topic2": "0x0000000000000000000000004962ae47413a39fe219e17679124df0086f0c369",
+        "topic3": null,
+        "data": "0x000000000000000000000000000000000000000000000001d75d7654d90a2700",
+        "transactionIndex": 17,
+        "logIndex": 43,
+        "removed": false
+      },
+      {
+        "address": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+        "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "topic1": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic2": "0x000000000000000000000000a7141c79d3d4a9ad67ba95d2b97fe7eed9fb92b3",
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000000000000020826ca",
+        "transactionIndex": 17,
+        "logIndex": 44,
+        "removed": false
+      },
+      {
+        "address": "0xA7141C79d3d4a9ad67bA95D2b97Fe7EeD9fB92B3",
+        "topic0": "0xc42079f94a6350d7e6235f29174924f928cc2ac818eb64fed8004e115fbcca67",
+        "topic1": "0x0000000000000000000000004dae2f939acf50408e13d58534ff8c2776d45265",
+        "topic2": "0x0000000000000000000000004962ae47413a39fe219e17679124df0086f0c369",
+        "topic3": null,
+        "data": "0x00000000000000000000000000000000000000000000000000000000020826cafffffffffffffffffffffffffffffffffffffffffffffffe28a289ab26f5d90000000000000000000000000000000000000f410a3539e2dfdf2b8bb00e7cab2f00000000000000000000000000000000000000000000000099a49d85f5d9286a000000000000000000000000000000000000000000000000000000000004375d",
+        "transactionIndex": 17,
+        "logIndex": 45,
+        "removed": false
+      }
+    ]
+  }
+}
+```
