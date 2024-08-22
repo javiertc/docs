@@ -15,9 +15,11 @@ Take into consideration that the Transfer event for ERC-20 and ERC-721 tokens is
 - **ERC721**:\
 `event Transfer(address indexed _from, address indexed _to, uint256 indexed _tokenId);`
 
-These two signatures are indeed the same when you hash them to identifyTransfer events. The example below illustrates how to set up filtering to receive transfer events.
+These two signatures are indeed the same when you hash them to identify `Transfer` events. The example below illustrates how to set up filtering to receive transfer events.
 
-In this example, we will monitor all the USDT transfers on the C-chain. If we go to any block explorer, select a USDT transaction, and look at Topic 0 from the transfer event, we can get the signature.
+In this example, we will monitor all the USDT transfers on the C-chain. If we go to any block explorer, select a USDT transaction, and look at `Topic 0` from the transfer event, we can get the signature.
+
+![function signature](/images/function-signature.png)
 
 With the event signature, we can create the webhook as follows:
 ```bash

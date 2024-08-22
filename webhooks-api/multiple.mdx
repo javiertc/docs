@@ -53,8 +53,8 @@ It returns the following:
     "description": "Track tokens"
 }
 ```
-Adding addresses to monitor
-With the webhook id we can add more addresses. In this case, let's add the contract addresses for JOE and PNG:
+### Adding addresses to monitor ###
+With the webhook `id` we can add more addresses. In this case, let's add the contract addresses for JOE and PNG:
 
 ```bash
 curl --location --request PATCH 'https://glacier-api.avax.network/v1/webhooks/401da7d9-d6d7-46c8-b431-72ff1e1543f4/addresses' \
@@ -69,7 +69,7 @@ curl --location --request PATCH 'https://glacier-api.avax.network/v1/webhooks/40
 ```
 Following that, we will begin to receive events from the four smart contracts integrated into the webhook: USDC, USDT, JOE, and PNG.
 
-Deleting addresses
+### Deleting addresses ###
 To remove addresses, simply send an array:
 
 ```bash

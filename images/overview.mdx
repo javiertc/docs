@@ -1,0 +1,339 @@
+---
+title: 'Overview'
+icon: 'webhook'
+mode: 'wide'
+---
+
+### What is the Glacier Webhooks? ###
+With Glacier Webhooks, you can monitor real-time events on the Avalanche C-chain and L1s. For example, you can monitor smart contract events, track NFT transfers, and observe wallet-to-wallet transactions.
+
+![webhooks](/images/webhooks.png)
+
+### Key Features: ###
+- **Real-time notifications**: Receive immediate updates on specified on-chain activities without polling.
+- **Customizable**: Specify the desired event type to listen for, customizing notifications according to individual requirements.
+- **Secure**: Employ shared secrets and signature-based verification to guarantee that notifications originate from a trusted source.
+- **Broad Coverage**: Support for C-chain mainnet, testnet, and L1s within the Avalanche ecosystem, ensuring wide-ranging monitoring capabilities.
+
+### Use cases ###
+- **NFT Marketplace Transactions**: Get alerts for NFT minting, transfers, auctions, bids, sales, and other interactions within NFT marketplaces.
+- **Wallet Notifications**: Receive alerts when an address performs actions such as sending, receiving, swapping, or burning assets.
+- **DeFi Activities**: Receive notifications for various DeFi activities such as liquidity provisioning, yield farming, borrowing, lending, and liquidations.
+
+### Supported L1s ###
+Webhooks are currently enabled for the following L1s. Additional L1s will be added in the future:
+
+**Mainnet**
+
+| L1   | Chain ID |
+|----------|----------|
+| Beam     | 4337     |
+| DFK      | 53935    |
+| Dexalot  | 432204   |
+| Shrapnel | 2044     |
+| Testnet  | Fuji     |
+
+**Testnet**
+
+| L1   | Chain ID |
+|----------|----------|
+| Pulsar   | 431234   |
+| Beam     | 13337    |
+| Dexalot  | 432201   |
+| DFK      | 335      |
+| WAGMI    | 11111    |
+| Shrapnel | 2038     |
+
+### What are Webhooks? ####
+A webhook is a communication mechanism to provide applications with real-time information. It delivers data to other applications as it happens, meaning you get data immediately, unlike typical APIs where you would need to poll for data to get it in "real-time". This makes webhooks much more efficient for both providers and consumers. Webhooks work by registering a URL to send notifications once certain events occur.
+You can create receiver endpoints in your server in any programming language and those will have an associated URL (e.g. https://myserver.com/callback). This object contains all the relevant information about what just happened, including the type of event and the data associated with that event.
+
+
+<Note>
+**Webhooks vs. WebSockets:**\
+The difference between webhooks and WebSockets is that webhooks can only facilitate one-way communication between two services. In contrast, WebSockets can facilitate two-way communication between a user and a service, recognizing events and displaying them to the user as they occur.
+</Note>
+
+### Event structure ###
+The Event structure always begins with the following parameters:
+
+```json
+{
+  "webhookId": "6d1bd383-aa8d-47b5-b793-da6d8a115fde",
+  "eventType": "address_activity",
+  "messageId": "8e4e7284-852a-478b-b425-27631c8d22d2",
+  "event": {
+  }
+}
+```
+
+**Parameters:**
+
+- `webhookId`: Unique identifier for the webhook in your account.
+- `eventType`: The event that caused the webhook to be triggered. In the future, there will be multiple types of events, for the time being only the address_activity event is supported. The address_activity event gets triggered whenever the specified addresses participate in a token or AVAX transaction.
+- `messageId`: Unique identifier per event sent.
+- `event`: Event payload. It contains details about the transaction, logs, and traces. By default logs and internal transactions are not included, if you want to include them use `"includeLogs": true`, and `"includeInternalTxs": true`.
+
+
+### Address Activity webhook ###
+The address activity webhook allows you to track any interaction with an address (any address). Here is an example of this type of event:
+
+```json
+{
+  "webhookId": "263942d1-74a4-4416-aeb4-948b9b9bb7cc",
+  "eventType": "address_activity",
+  "messageId": "94df1881-5d93-49d1-a1bd-607830608de2",
+  "event": {
+    "transaction": {
+      "blockHash": "0xbd093536009f7dd785e9a5151d80069a93cc322f8b2df63d373865af4f6ee5be",
+      "blockNumber": "44568834",
+      "from": "0xf73166f0c75a3DF444fAbdFDC7e5EE4a73fA51C7",
+      "gas": "651108",
+      "gasPrice": "31466275484",
+      "maxFeePerGas": "31466275484",
+      "maxPriorityFeePerGas": "31466275484",
+      "txHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4",
+      "txStatus": "1",
+      "input": "0xb80c2f090000000000000000000000000000000000000000000000000000000000000000000000000000000000000000eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee000000000000000000000000b97ef9ef8734c71904d8002f8b6bc66dd9c48a6e000000000000000000000000000000000000000000000000006ca0c737b131f2000000000000000000000000000000000000000000000000000000000011554e000000000000000000000000000000000000000000000000000000006627dadc0000000000000000000000000000000000000000000000000000000000000120000000000000000000000000000000000000000000000000000000000000016000000000000000000000000000000000000000000000000000000000000004600000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000006ca0c737b131f2000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000a000000000000000000000000000000000000000000000000000000000000000e000000000000000000000000000000000000000000000000000000000000001200000000000000000000000000000000000000000000000000000000000000160000000000000000000000000b31f66aa3c1e785363f0875a1b74e27b85fd66c70000000000000000000000000000000000000000000000000000000000000001000000000000000000000000be882fb094143b59dc5335d32cecb711570ebdd40000000000000000000000000000000000000000000000000000000000000001000000000000000000000000be882fb094143b59dc5335d32cecb711570ebdd400000000000000000000000000000000000000000000000000000000000000010000000000000000000027100e663593657b064e1bae76d28625df5d0ebd44210000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000000c0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000400000000000000000000000000000000000000000000000000000000000000060000000000000000000000000b31f66aa3c1e785363f0875a1b74e27b85fd66c7000000000000000000000000b97ef9ef8734c71904d8002f8b6bc66dd9c48a6e0000000000000000000000000000000000000000000000000000000000000bb80000000000000000000000000000000000000000000000000000000000000000",
+      "nonce": "4",
+      "to": "0x1dac23e41fc8ce857e86fd8c1ae5b6121c67d96d",
+      "transactionIndex": 0,
+      "value": "30576074978046450",
+      "type": 0,
+      "chainId": "43114",
+      "receiptCumulativeGasUsed": "212125",
+      "receiptGasUsed": "212125",
+      "receiptEffectiveGasPrice": "31466275484",
+      "receiptRoot": "0xf355b81f3e76392e1b4926429d6abf8ec24601cc3d36d0916de3113aa80dd674",
+      "erc20Transfers": [
+        {
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4",
+          "type": "ERC20",
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "value": "30576074978046450",
+          "blockTimestamp": 1713884373,
+          "logIndex": 2,
+          "erc20Token": {
+            "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+            "name": "Wrapped AVAX",
+            "symbol": "WAVAX",
+            "decimals": 18,
+            "valueWithDecimals": "0.030576074978046448"
+          }
+        },
+        {
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4",
+          "type": "ERC20",
+          "from": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "to": "0xf73166f0c75a3DF444fAbdFDC7e5EE4a73fA51C7",
+          "value": "1195737",
+          "blockTimestamp": 1713884373,
+          "logIndex": 3,
+          "erc20Token": {
+            "address": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+            "name": "USD Coin",
+            "symbol": "USDC",
+            "decimals": 6,
+            "valueWithDecimals": "1.195737"
+          }
+        },
+        {
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4",
+          "type": "ERC20",
+          "from": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "to": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "value": "30576074978046450",
+          "blockTimestamp": 1713884373,
+          "logIndex": 4,
+          "erc20Token": {
+            "address": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+            "name": "Wrapped AVAX",
+            "symbol": "WAVAX",
+            "decimals": 18,
+            "valueWithDecimals": "0.030576074978046448"
+          }
+        }
+      ],
+      "erc721Transfers": [],
+      "erc1155Transfers": [],
+      "internalTransactions": [
+        {
+          "from": "0xf73166f0c75a3DF444fAbdFDC7e5EE4a73fA51C7",
+          "to": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "internalTxType": "CALL",
+          "value": "30576074978046450",
+          "gasUsed": "212125",
+          "gasLimit": "651108",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xF2781Bb34B6f6Bb9a6B5349b24de91487E653119",
+          "internalTxType": "DELEGATECALL",
+          "value": "30576074978046450",
+          "gasUsed": "176417",
+          "gasLimit": "605825",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "9750",
+          "gasLimit": "585767",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "to": "0x30DFE0469803BcE76F8F62aC24b18d33D3d6FfE6",
+          "internalTxType": "DELEGATECALL",
+          "value": "0",
+          "gasUsed": "2553",
+          "gasLimit": "569571",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "CALL",
+          "value": "30576074978046450",
+          "gasUsed": "23878",
+          "gasLimit": "566542",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "25116",
+          "gasLimit": "540114",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "81496",
+          "gasLimit": "511279",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "491",
+          "gasLimit": "501085",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "to": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "74900",
+          "gasLimit": "497032",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "to": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "32063",
+          "gasLimit": "463431",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "to": "0x30DFE0469803BcE76F8F62aC24b18d33D3d6FfE6",
+          "internalTxType": "DELEGATECALL",
+          "value": "0",
+          "gasUsed": "31363",
+          "gasLimit": "455542",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "2491",
+          "gasLimit": "430998",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "to": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "7591",
+          "gasLimit": "427775",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xbe882fb094143B59Dc5335D32cEcB711570EbDD4",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "6016",
+          "gasLimit": "419746",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x0E663593657B064e1baE76d28625Df5D0eBd4421",
+          "to": "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "491",
+          "gasLimit": "419670",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "3250",
+          "gasLimit": "430493",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "to": "0x30DFE0469803BcE76F8F62aC24b18d33D3d6FfE6",
+          "internalTxType": "DELEGATECALL",
+          "value": "0",
+          "gasUsed": "2553",
+          "gasLimit": "423121",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0x1daC23e41Fc8ce857E86fD8C1AE5b6121C67D96d",
+          "to": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "internalTxType": "STATICCALL",
+          "value": "0",
+          "gasUsed": "1250",
+          "gasLimit": "426766",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        },
+        {
+          "from": "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+          "to": "0x30DFE0469803BcE76F8F62aC24b18d33D3d6FfE6",
+          "internalTxType": "DELEGATECALL",
+          "value": "0",
+          "gasUsed": "553",
+          "gasLimit": "419453",
+          "transactionHash": "0xf6a791920652e87ccc91d2f1b20c1505a94452b88f359acdeb5a6fa8205638c4"
+        }
+      ],
+      "blockTimestamp": 1713884373
+    }
+  }
+}
+```
+
+<Note>In the free plan webhooks are automatically disabled after delivering 10 consecutive unsuccessful events.</Note>

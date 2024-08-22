@@ -58,6 +58,10 @@
     {
       "name": "Changelog",
       "url": "changelog"
+    },
+    {
+      "name": "RPC",
+      "url": "rpc"
     }
   ],
   "anchors": [
