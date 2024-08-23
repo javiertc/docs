@@ -53,7 +53,8 @@
     },
     {
       "name": "Avalanche SDK",
-      "url": "avalanche-sdk"
+      "url": "avalanche-sdk",
+      "openapi": "/avalanche-sdk.yaml"
     },
     {
       "name": "Changelog",
