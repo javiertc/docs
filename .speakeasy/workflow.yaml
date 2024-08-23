@@ -1,0 +1,12 @@
+workflowVersion: 1.0.0
+speakeasyVersion: latest
+sources:
+    avalanche-sdk:
+        inputs:
+            - location: https://51ba-2405-201-3027-2887-41ce-a5b-9add-5061.ngrok-free.app/api-json
+        overlays:
+            - location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk-ts-code-samples
+        output: avalanche-sdk.yaml
+        registry:
+            location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk
+targets: {}
