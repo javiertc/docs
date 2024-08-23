@@ -19,7 +19,10 @@ These two signatures are indeed the same when you hash them to identify `Transfe
 
 In this example, we will monitor all the USDT transfers on the C-chain. If we go to any block explorer, select a USDT transaction, and look at `Topic 0` from the transfer event, we can get the signature.
 
-![function signature](/images/function-signature.png)
+<Frame>
+  <img src="/images/function-signature.png" />
+</Frame>
+
 
 With the event signature, we can create the webhook as follows:
 ```bash

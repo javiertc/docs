@@ -19,12 +19,20 @@ To get started, the first step is to create a free account on OneSignal. Once yo
 For this example, we'll focus on using Web push notifications, but keep in mind that the process is quite similar for mobile apps.
 
 Create a new OneSignal App and select Web. Once your app is created, you'll be provided with an App ID and API Key. Keep these credentials handy as we'll need them later to integrate OneSignal with our code.
-![New OneSignal App](/images/new-onesignal-app.png)
-Next, click on Configure Your Platform and select Web, select Code Custom, and set the site URL `http://localhost:3000` and enable both toggles for local development.
-![Web Configuration](/images/onesignal-web-configuration.png)
-This will generate a code snippet to add to your code. Download the OneSignal SDK files and copy them to the top-level root of your directory.
-![OneSignal Code Snipped](/images/onsignal-snippet.png)
 
+<Frame>
+  <img src="/images/new-onesignal-app.png" />
+</Frame>
+
+Next, click on Configure Your Platform and select Web, select Code Custom, and set the site URL `http://localhost:3000` and enable both toggles for local development.
+<Frame>
+  <img src="/images/onesignal-web-configuration.png" />
+</Frame>
+
+This will generate a code snippet to add to your code. Download the OneSignal SDK files and copy them to the top-level root of your directory.
+<Frame>
+  <img src="/images/onsignal-snippet.png" />
+</Frame>
 
 ### Step 2 - Frontend Setup ###
 In a real-world scenario, your architecture typically involves customers signing up for subscriptions within your Web or Mobile App. To ensure these notifications are sent out, your app needs to register with a push notification provider such as OneSignal.
@@ -86,10 +94,15 @@ npm install express axios path body-parser dotenv
 node app.js
 ```
 Open a Chrome tab and type `http://localhost:3000`, you should see something like this. Then click on Connect and accept receiving push notifications. If you are using MacOS, check in **System Settings** > **Notifications** that you have enabled notifications for the browser.
-![OneSignal connect](/images/onesignal-connect.png)
+<Frame>
+  <img src="/images/onesignal-connect.png" />
+</Frame>
+
 
 If everything runs correctly your browser should be registered in OneSignal. To check go to **Audience** > **Subscriptions** and verify that your browser is registered.
-![OneSignal Subscription](/images/onesignal-subscription.png)
+<Frame>
+  <img src="/images/onesignal-subscription.png" />
+</Frame>
 
 ### Step 3 - Backend Setup ###
 Now, let's configure the backend to manage webhook events and dispatch notifications based on the incoming data. Here's the step-by-step process:
@@ -282,11 +295,14 @@ app.listen(port, () => {
 
 You can now start your backend server by running:
 ```Shell
-node app.js`
+node app.js
 ```
 
 Send AVAX from another wallet to the wallet being monitored by the webhook and you should receive a notification with the amount of Avax received. You can try it with any other ERC20 token as well.
-![OneSigna notification](/images/onesignal-notification.png)
+
+<Frame>
+  <img src="/images/onesignal-notification.png" />
+</Frame>
 
 ### Conclusion ###
 In this tutorial, we've set up a frontend to connect to the Core wallet and enable push notifications using OneSignal. We've also implemented a backend to handle webhook events and send notifications based on the received data. By integrating the frontend with the backend, users can receive real-time notifications for blockchain events.

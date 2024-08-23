@@ -4,14 +4,45 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-### Primary Network ###
-Avalanche is a heterogeneous network of blockchains. As opposed to homogeneous networks, where all applications reside in the same chain, heterogeneous networks allow separate chains to be created for different applications. The Primary Network is a special Subnet that runs three blockchains:
+**Step 1: Set Up AvaCloud**
 
-### The Contract Chain (C-Chain) ###
-The C-Chain is an implementation of the Ethereum Virtual Machine (EVM). The primary network endpoints only provide information related to C-Chain atomic memory balances and import/export transactions. For additional data, please reference the EVM APIs.
+Begin by reading the article Setting Up AvaCloud: Getting Started and ensure you complete all the steps outlined there. It is essential to finish this setup before proceeding with the rest of this guide.
 
-### The Platform Chain (P-Chain) ###
-The P-Chain is responsible for all validator and Subnet-level operations. The P-Chain supports the creation of new blockchains and Subnets, the addition of validators to Subnets, staking operations, and other platform-level operations.
+**Step 2: Retrieve the Native Balance of an Address**
 
-### The Exchange Chain (X-Chain) ###
-The X-Chain is responsible for operations on digital smart assets known as Avalanche Native Tokens. A smart asset is a representation of a real-world resource (for example, equity, or a bond) with sets of rules that govern its behavior, like "can’t be traded until tomorrow." The X-Chain supports the creation and trade of Avalanche Native Tokens.
+To obtain the native balance of a wallet address, AvaCloud offers the Get Native Token Balance API endpoint.
+
+You’ll need two parameters: chainId and address.
+
+Once you have both the address and chain ID, use the following command:
+
+```bash
+curl --request GET \
+  --url https://glacier-api.avax.network/v1/chains/{chainId}/addresses/{address}/balances:getNative
+```
+
+Response
+```json
+{
+  "nativeTokenBalance": {
+    "chainId": "43114",
+    "name": "Avalanche",
+    "symbol": "AVAX",
+    "decimals": 18,
+    "price": {
+      "currencyCode": "usd",
+      "value": 26.32
+    },
+    "balance": "3316667947990566036",
+    "balanceValue": {
+      "currencyCode": "usd",
+      "value": 87.29
+    },
+    "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/5VHupNKwnDYJvqMENeV7iJ/3e4b8ff10b69bfa31e70080a4b142cd0/avalanche-avax-logo.svg"
+  }
+}
+```
+
+Success! 🎉
+
+You’ve successfully retrieved the native balance of a wallet address using just a few lines of code with the AvaCloud Data API!
