@@ -53,8 +53,7 @@
     },
     {
       "name": "Avalanche SDK",
-      "url": "avalanche-sdk",
-      "openapi": "/avalanche-sdk.yaml"
+      "url": "avalanche-sdk"
     },
     {
       "name": "Changelog",
@@ -331,8 +330,10 @@
       "group": "Get Started",
       "pages": [
         "avalanche-sdk/quickstart",
-        "avalanche-sdk/errors",
-        "avalanche-sdk/cross-chain"
+        "avalanche-sdk/global-parameters",
+        "avalanche-sdk/retries",
+        "avalanche-sdk/pagination",
+        "avalanche-sdk/error"
       ]
     },
     {

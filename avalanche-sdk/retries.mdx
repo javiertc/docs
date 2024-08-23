@@ -1,0 +1,68 @@
+---
+title: 'Retries'
+icon: 'code'
+---
+
+Some of the endpoints in this SDK support retries. If you use the SDK without any configuration, it will fall back to the default retry strategy provided by the API. However, the default retry strategy can be overridden on a per-operation basis, or across the entire SDK.
+
+To change the default retry strategy for a single API call, simply provide a retryConfig object to the call:
+
+```javascript
+import { AvalancheSDK } from "@avalabs/avalanche-sdk";
+
+const avalancheSDK = new AvalancheSDK({
+    glacierApiKey: "<YOUR_API_KEY_HERE>",
+    chainId: "43114",
+    network: "mainnet",
+});
+
+async function run() {
+    const result = await avalancheSDK.glacier.healthCheck.glacierHealthCheck({
+        retries: {
+            strategy: "backoff",
+            backoff: {
+                initialInterval: 1,
+                maxInterval: 50,
+                exponent: 1.1,
+                maxElapsedTime: 100,
+            },
+            retryConnectionErrors: false,
+        },
+    });
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+```
+If you'd like to override the default retry strategy for all operations that support retries, you can provide a retryConfig at SDK initialization:
+```
+import { AvalancheSDK } from "@avalabs/avalanche-sdk";
+
+const avalancheSDK = new AvalancheSDK({
+    retryConfig: {
+        strategy: "backoff",
+        backoff: {
+            initialInterval: 1,
+            maxInterval: 50,
+            exponent: 1.1,
+            maxElapsedTime: 100,
+        },
+        retryConnectionErrors: false,
+    },
+    glacierApiKey: "<YOUR_API_KEY_HERE>",
+    chainId: "43114",
+    network: "mainnet",
+});
+
+async function run() {
+    const result = await avalancheSDK.glacier.healthCheck.glacierHealthCheck();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+
+```
