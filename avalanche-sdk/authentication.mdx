@@ -1,0 +1,32 @@
+---
+title: 'Authentication'
+icon: 'user-tag'
+---
+
+### Per-Client Security Schemes ###
+This SDK supports the following security scheme globally:
+
+| Name           | Type  | Scheme  |
+|----------------|-------|---------|
+| glacierApiKey  | apiKey| API key |
+
+To authenticate with the API the glacierApiKey parameter must be set when initializing the SDK client instance. For example:
+
+```javascript
+import { AvalancheSDK } from "@avalabs/avalanche-sdk";
+
+const avalancheSDK = new AvalancheSDK({
+    glacierApiKey: "<YOUR_API_KEY_HERE>",
+    chainId: "43114",
+    network: "mainnet",
+});
+
+async function run() {
+    const result = await avalancheSDK.glacier.healthCheck.glacierHealthCheck();
+
+    // Handle the result
+    console.log(result);
+}
+
+run();
+```

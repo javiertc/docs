@@ -330,10 +330,12 @@
       "group": "Get Started",
       "pages": [
         "avalanche-sdk/quickstart",
+        "avalanche-sdk/authentication",
         "avalanche-sdk/global-parameters",
         "avalanche-sdk/retries",
         "avalanche-sdk/pagination",
-        "avalanche-sdk/error"
+        "avalanche-sdk/error",
+        "avalanche-sdk/custom-http"
       ]
     },
     {
