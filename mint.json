@@ -44,8 +44,7 @@
     },
     {
       "name": "Metrics API",
-      "url": "metrics-api",
-      "openapi": "/metrics-api/swagger.json"
+      "url": "metrics-api"
     },
     {
       "name": "Webhooks API",
@@ -288,6 +287,103 @@
     {
       "group": "Get Started",
       "pages": [
+        "metrics-api/quickstart",
+        "metrics-api/features",
+        "metrics-api/usage"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        {
+          "group": "Health Check",
+          "icon": "heart-pulse",
+          "pages": ["metrics-api/health-check/get-the-health-of-the-service"]
+        },
+        {
+          "group": "EVM Chains",
+          "icon": "link",
+          "pages": [
+            "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
+            "metrics-api/evm-chains/get-chain-information-for-supported-blockchain",
+            "metrics-api/evm-chains/subnet-id-to-evm-chain-id-mappings",
+            "metrics-api/evm-chains/subnet-id-to-evm-chain-id-mappings-1",
+            "metrics-api/evm-chains/chain-information-by-network",
+            "metrics-api/evm-chains/chain-information-by-network-and-subnet-id",
+            "metrics-api/evm-chains/subnet-information-by-network",
+            "metrics-api/evm-chains/subnet-information-by-network-and-subnet-id"
+          ]
+        },
+        {
+          "group": "Chain Metrics",
+          "icon": "server",
+          "pages": [
+            "metrics-api/chain-metrics/get-metrics-for-evm-chains",
+            "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
+            "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet"
+          ]
+        },
+        {
+          "group": "Looking Glass",
+          "icon": "parachute-box",
+          "pages": [
+            "metrics-api/looking-glass/get-nft-holders-by-contract-address",
+            "metrics-api/looking-glass/get-addresses-by-balance-over-time",
+            "metrics-api/looking-glass/get-addresses-by-btcb-bridged-balance",
+            "metrics-api/looking-glass/get-addresses-running-validators-during-a-given-time-frame",
+            "metrics-api/looking-glass/composite-query",
+            "metrics-api/looking-glass/composite-query-1"
+          ]
+        },
+        {
+          "group": "Chain Throughput",
+          "icon": "gauge-high",
+          "pages": [
+            "metrics-api/chain-throughput/active-senders",
+            "metrics-api/chain-throughput/active-addresses",
+            "metrics-api/chain-throughput/gas-used",
+            "metrics-api/chain-throughput/transaction-count",
+            "metrics-api/chain-throughput/average-gas-consumed-per-second",
+            "metrics-api/chain-throughput/maxumum-gas-consumed-per-second",
+            "metrics-api/chain-throughput/average-transactions-per-second",
+            "metrics-api/chain-throughput/maximum-transactions-per-second",
+            "metrics-api/chain-throughput/average-gas-price",
+            "metrics-api/chain-throughput/maximum-gas-price",
+            "metrics-api/chain-throughput/rolling-window-of-gas-used",
+            "metrics-api/chain-throughput/rolling-window-of-tx-count",
+            "metrics-api/chain-throughput/rolling-window-of-average-gps-consumed",
+            "metrics-api/chain-throughput/rolling-window-of-max-gps",
+            "metrics-api/chain-throughput/rolling-window-of-average-tps",
+            "metrics-api/chain-throughput/rolling-window-of-max-tps",
+            "metrics-api/chain-throughput/rolling-window-of-average-gas-price",
+            "metrics-api/chain-throughput/rolling-window-of-max-gas-price"
+          ]
+        },
+        {
+          "group": "Cumulative",
+          "icon": "pipe-circle-check",
+          "pages": [
+            "metrics-api/cumulative/cumulative-number-of-addresses",
+            "metrics-api/cumulative/cumulative-number-of-contracts",
+            "metrics-api/cumulative/cumulative-transaction-count",
+            "metrics-api/cumulative/cumulative-number-of-deployers"
+          ]
+        },
+        {
+          "group": "Staking Information",
+          "icon": "square-poll-vertical",
+          "pages": [
+            "metrics-api/staking-information/get-validation-count-by-subnet-id",
+            "metrics-api/staking-information/get-validation-weight-by-subnet-id",
+            "metrics-api/staking-information/get-delegation-count-by-subnet-id",
+            "metrics-api/staking-information/get-delegation-weight-by-subnet-id"
+          ]
+        }
+      ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
         "webhooks-api/overview",
         "webhooks-api/getting-started",
         "webhooks-api/signature",
@@ -316,14 +412,6 @@
         "webhooks-api/webhooks/list-adresses-by-webhook",
         "webhooks-api/webhooks/remove-addresses-from-webhook",
         "webhooks-api/webhooks/add-addresses-to-webhook"
-      ]
-    },
-    {
-      "group": "Get Started",
-      "pages": [
-        "metrics-api/quickstart",
-        "metrics-api/features",
-        "metrics-api/usage"
       ]
     },
     {
