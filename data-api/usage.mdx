@@ -4,9 +4,8 @@ icon: 'code'
 mode: 'wide'
 ---
 
-
 ### Setup and Authentication ###
-In order to utilize your accounts rate limits, you will need to make API requests with an API key. You can generate API Keys from the AvaCloud portal. Once you've created and retrieved that, you will be able to make authenticated queries by passing in your API key in the x-glacier-api-key header of your HTTP request.
+In order to utilize your accounts rate limits, you will need to make API requests with an API key. You can generate API Keys from the AvaCloud portal. Once you've created and retrieved that, you will be able to make authenticated queries by passing in your API key in the `x-glacier-api-key` header of your HTTP request.
 
 An example curl request can be found below:
 
@@ -36,12 +35,12 @@ If you start receiving rate limit errors with the 429 response code, we recommen
 Error Types
 The Glacier API generates standard error responses along with error codes based on provided requests and parameters.
 
-Typically, response codes within the 2XX range signifies successful requests, while those within the 4XX range points to errors originating from the client's side. Meanwhile, response codes within the 5XX range indicates problems on the server's side.
+Typically, response codes within the `2XX` range signifies successful requests, while those within the `4XX` range points to errors originating from the client's side. Meanwhile, response codes within the `5XX` range indicates problems on the server's side.
 
 ### Error Types ###
 The Glacier API generates standard error responses along with error codes based on provided requests and parameters.
 
-Typically, response codes within the 2XX range signifies successful requests, while those within the 4XX range points to errors originating from the client's side. Meanwhile, response codes within the 5XX range indicates problems on the server's side.
+Typically, response codes within the `2XX` range signifies successful requests, while those within the `4XX` range points to errors originating from the client's side. Meanwhile, response codes within the `5XX` range indicates problems on the server's side.
 
 The error response body is formatted like this:
 ```json
@@ -66,10 +65,10 @@ Let's go through every error code that we can respond with:
 
 The above list is not exhaustive of all the errors that you'll receive, but is categorized on the basis of error codes. You may see route-specific errors along with detailed error messages for better evaluating the response.
 
-<Tip>Reach out to our team when you see an error in the 5XX range for a longer duration. These errors should be very rare, but we try to fix them as soon as possible once detected.</Tip>
+<Tip>Reach out to our team when you see an error in the `5XX` range for a longer duration. These errors should be very rare, but we try to fix them as soon as possible once detected.</Tip>
 
 ### Pagination ###
-When utilizing pagination for endpoints that return lists of data such as transactions, UTXOs, or blocks, our API uses a straightforward mechanism to manage the navigation through large datasets. We divide data into pages and each page is limited with a pageSize number of elements as passed in the request. Users can navigate to subsequent pages using the page token received in the nextPageToken field. This method ensures efficient retrieval.
+When utilizing pagination for endpoints that return lists of data such as transactions, UTXOs, or blocks, our API uses a straightforward mechanism to manage the navigation through large datasets. We divide data into pages and each page is limited with a `pageSize` number of elements as passed in the request. Users can navigate to subsequent pages using the page token received in the `nextPageToken` field. This method ensures efficient retrieval.
 
 Routes with pagination have a following common response format:
 ```json

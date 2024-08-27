@@ -1,0 +1,222 @@
+---
+title: 'Ethers vs Webhooks'
+icon: 'swords-laser'
+mode: 'wide'
+---
+
+Reacting to real-time events from Avalanche smart contracts allows for immediate responses and automation, improving user experience and streamlining application functionality. It ensures that applications stay synchronized with the blockchain state.
+
+This article demonstrates how to monitor smart contract events using Ethers.js and Avacloud Webhooks. The comparison shows that Avacloud webhooks are easier and faster to integrate, delivering better uptime and reliability.
+
+
+
+## Why webhooks
+
+- Get everything you need in the payload, there is no need for extra requests
+- There is no complicated logic to handle disconnections and to re-sync and recover missed blocks or transactions.
+- Reduce complexity, cost, and time to market.
+
+Ethers.js Blockchain Listener
+
+```javascript
+const ethers = require("ethers");
+const ABI = require("./usdc-abi.json");
+require("dotenv").config();
+
+const NODE_URL = "wss://api.avax.network/ext/bc/C/ws";
+
+async function getTransfer() {
+    try {
+        const usdcAddress = "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"; // USDC contract
+        const network = new ethers.Network("avalanche", 43114);
+        const provider = new ethers.WebSocketProvider(NODE_URL, network);
+        const contract = new ethers.Contract(usdcAddress, ABI, provider);
+
+        contract.on("Transfer", (from, to, value, event) => {
+            let transferEvent = {
+                from: from,
+                to: to,
+                value: value,
+                eventData: event
+            };
+            console.log("*******");
+            console.log(transferEvent);
+            console.log(">>>>>Event Data:", transferEvent.eventData);
+
+        });
+
+    } catch (error) {
+        console.error("Error:", error.message);
+    }
+}
+```
+
+Output
+```json
+{
+  from: '0xfD93389fc075ff66045361423C2df68119c086Ab',
+  to: '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640',
+  value: 9999999999n,
+  eventData: ContractEventPayload {
+    filter: 'Transfer',
+    emitter: Contract {
+      target: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+      interface: [Interface],
+      runner: WebSocketProvider {},
+      filters: {},
+      fallback: null,
+      [Symbol(_ethersInternal_contract)]: {}
+    },
+    log: EventLog {
+      provider: WebSocketProvider {},
+      transactionHash: '0x5f90569fd43a894a01c3f85067ad509567498e95efeefc826b97d30b9086d1f9',
+      blockHash: '0x8c99e8555249b2460b7e50ef987d126655efb8bd6332512f010941567fa3f0b3',
+      blockNumber: 19744421,
+      removed: false,
+      address: '0xA0b86991c6218b36c1d19D4a2e9Eb0cE3606eB48',
+      data: '0x00000000000000000000000000000000000000000000000000000002540be3ff',
+      topics: [Array],
+      index: 17,
+      transactionIndex: 2,
+      interface: [Interface],
+      fragment: [EventFragment],
+      args: [Result]
+    },
+    args: Result(3) [
+      '0xfD93389fc075ff66045361423C2df68119c086Ab',
+      '0x88e6A0c2dDD26FEEb64F039a2c41296FcB3f5640',
+      9999999999n
+    ],
+    fragment: EventFragment {
+      type: 'event',
+      inputs: [Array],
+      name: 'Transfer',
+      anonymous: false
+    }
+  }
+}
+```
+
+Get undecoded raw data and then you need to call other API endpoints to get more data, for example, to get the current balance you need to make an API call, to get the token decimals you need to make an API call, to get the logo you need to make an API, you get it.
+
+<Tip> **Webhooks offer key advantages over manual parsing** <br />
+They provide real-time updates, reduce resource use, and enhance efficiency, allowing users to focus on building around these events rather than parsing data.</Tip>
+
+
+
+Listening to the same contract using AvaCloud Webhooks
+```json
+{
+  "webhookId": "c737d18a-fb40-4268-8efe-7154e73df604",
+  "eventType": "address_activity",
+  "messageId": "e5e2fc96-9aa3-43a1-9969-79f0830fe0ee",
+  "event": {
+    "transaction": {
+      "blockHash": "0xbc6ee8c2213262bc25dc2624bf4268e0583efa173bf9812ae888f15875cf0af1",
+      "blockNumber": "45689091",
+      "from": "0x3D3Bd891E386bFb248A9edC52cB35889ac003Db8",
+      "gas": "66372",
+      "gasPrice": "26000000000",
+      "maxFeePerGas": "26000000000",
+      "maxPriorityFeePerGas": "26000000000",
+      "txHash": "0x1d8f3c4f99191aec5e7cc10c58551e04e2f9ceaf5dc311b3828ab5b93435921d",
+      "txStatus": "1",
+      "input": "0xa9059cbb000000000000000000000000ffb3118124cdaebd9095fa9a479895042018cac20000000000000000000000000000000000000000000000000000000006970300",
+      "nonce": "0",
+      "to": "0x9702230a8ea53601f5cd2dc00fdbc13d4df4a8c7",
+      "transactionIndex": 7,
+      "value": "0",
+      "type": 0,
+      "chainId": "43114",
+      "receiptCumulativeGasUsed": "651035",
+      "receiptGasUsed": "44026",
+      "receiptEffectiveGasPrice": "26000000000",
+      "receiptRoot": "0x455be081717eed467de449ad5cd8075caf23f2d52acbd0fc4489aff7bedcddbf",
+      "erc20Transfers": [
+        {
+          "transactionHash": "0x1d8f3c4f99191aec5e7cc10c58551e04e2f9ceaf5dc311b3828ab5b93435921d",
+          "type": "ERC20",
+          "from": "0x3D3Bd891E386bFb248A9edC52cB35889ac003Db8",
+          "to": "0xffB3118124cdaEbD9095fA9a479895042018cac2",
+          "value": "110560000",
+          "blockTimestamp": 1716238687,
+          "logIndex": 0,
+          "erc20Token": {
+            "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+            "name": "TetherToken",
+            "symbol": "USDt",
+            "decimals": 6,
+            "valueWithDecimals": "110.56"
+          }
+        }
+      ],
+      "erc721Transfers": [],
+      "erc1155Transfers": [],
+      "internalTransactions": [
+        {
+          "from": "0x3D3Bd891E386bFb248A9edC52cB35889ac003Db8",
+          "to": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+          "internalTxType": "CALL",
+          "value": "0",
+          "gasUsed": "44026",
+          "gasLimit": "66372",
+          "transactionHash": "0x1d8f3c4f99191aec5e7cc10c58551e04e2f9ceaf5dc311b3828ab5b93435921d"
+        },
+        {
+          "from": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+          "to": "0xBA2a995Bd4ab9e605454cCEf88169352cd5F75A6",
+          "internalTxType": "DELEGATECALL",
+          "value": "0",
+          "gasUsed": "15096",
+          "gasLimit": "36898",
+          "transactionHash": "0x1d8f3c4f99191aec5e7cc10c58551e04e2f9ceaf5dc311b3828ab5b93435921d"
+        }
+      ],
+      "blockTimestamp": 1716238687
+    },
+    "logs": [
+      {
+        "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+        "topic0": "0xddf252ad1be2c89b69c2b068fc378daa952ba7f163c4a11628f55a4df523b3ef",
+        "topic1": "0x0000000000000000000000003d3bd891e386bfb248a9edc52cb35889ac003db8",
+        "topic2": "0x000000000000000000000000ffb3118124cdaebd9095fa9a479895042018cac2",
+        "topic3": null,
+        "data": "0x0000000000000000000000000000000000000000000000000000000006970300",
+        "transactionIndex": 7,
+        "logIndex": 14,
+        "removed": false
+      }
+    ]
+  }
+}
+```
+
+
+### Listening to native transactions
+
+To monitor native transactions for specific addresses in an Ethereum blockchain, you need to follow these steps:
+
+1. Listen for Every New Block: Set up a listener for new blocks.
+2. Go Through All Transactions in Each Block: For each block, iterate through all transactions.
+3. Check If from or to Matches Your List of Addresses: Filter the transactions to see if either the sender (from) or the recipient (to) matches your list of addresses.
+4. Handle Transactions: Implement logic to handle the transactions that match your criteria.
+
+
+
+### How Avacloud webhooks are better Than Ethers.js
+
+Ethers.js is a good alternative for setting blockchain listeners to monitor smart contract events. However, if you start working with this library, you will quickly notice its limitations.
+
+| Feature                    | Ethers/web3.js | Webhooks |
+|----------------------------|----------------|----------|
+| Real-time events           | Yes            | Yes      |
+| Enriched payload           | No             | Yes      |
+| 100% reliability           | No             | Yes      |
+| Multiple addresses         | No             | Yes      |
+| Listen to wallet addresses | No             | Yes      |
+
+### Resume capabilities ###
+
+Ethers.js does not natively support resuming operations if the connection is interrupted. When this happens, the blockchain continues to add new blocks, and any blocks that were added during the downtime can be missed. To address this, developers must implement custom code to track the last processed block and manually resume from that point to ensure no data is lost.
+
+In contrast, Webhooks are designed to handle interruptions more gracefully. They typically have built-in mechanisms to ensure that events are not lost, even if the connection is disrupted. When the connection is restored, Webhooks can automatically resume from where they left off, ensuring that no events are missed without requiring additional custom code. This makes Webhooks a more reliable solution for continuous data processing and real-time event handling.

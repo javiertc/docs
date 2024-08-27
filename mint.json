@@ -316,23 +316,11 @@
         },
         {
           "group": "Chain Metrics",
-          "icon": "server",
+          "icon": "chart-line",
           "pages": [
             "metrics-api/chain-metrics/get-metrics-for-evm-chains",
             "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
             "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet"
-          ]
-        },
-        {
-          "group": "Looking Glass",
-          "icon": "parachute-box",
-          "pages": [
-            "metrics-api/looking-glass/get-nft-holders-by-contract-address",
-            "metrics-api/looking-glass/get-addresses-by-balance-over-time",
-            "metrics-api/looking-glass/get-addresses-by-btcb-bridged-balance",
-            "metrics-api/looking-glass/get-addresses-running-validators-during-a-given-time-frame",
-            "metrics-api/looking-glass/composite-query",
-            "metrics-api/looking-glass/composite-query-1"
           ]
         },
         {
@@ -361,7 +349,7 @@
         },
         {
           "group": "Cumulative",
-          "icon": "pipe-circle-check",
+          "icon": "chart-area",
           "pages": [
             "metrics-api/cumulative/cumulative-number-of-addresses",
             "metrics-api/cumulative/cumulative-number-of-contracts",
@@ -387,7 +375,8 @@
         "webhooks-api/overview",
         "webhooks-api/getting-started",
         "webhooks-api/signature",
-        "webhooks-api/supported-chains"
+        "webhooks-api/supported-chains",
+        "webhooks-api/ethers-vs-webhooks"
       ]
     },
     {
