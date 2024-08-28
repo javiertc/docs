@@ -24,7 +24,8 @@
   "metadata": {
     "og:image": "/images/banner.jpg",
     "og:description": "All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code. Built by @AvaLabs",
-    "og:site_name": "Avacloud API Docs",
+    "og:site_name": "Avacloud Developer Documentation",
+    "og:site_logo": "https://avacloud.io/_next/static/media/Ava%20Cloud%20Logo.2cfa153a.svg",
     "twitter:site": "@AvaCloud"
   },
   "topbarLinks": [
