@@ -52,16 +52,12 @@
       "url": "webhooks-api"
     },
     {
-      "name": "Avalanche SDK",
+      "name": "Avacloud SDK",
       "url": "avalanche-sdk"
     },
     {
       "name": "Changelog",
       "url": "changelog"
-    },
-    {
-      "name": "RPC",
-      "url": "rpc"
     }
   ],
   "anchors": [
@@ -306,13 +302,7 @@
           "icon": "link",
           "pages": [
             "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
-            "metrics-api/evm-chains/get-chain-information-for-supported-blockchain",
-            "metrics-api/evm-chains/subnet-id-to-evm-chain-id-mappings",
-            "metrics-api/evm-chains/subnet-id-to-evm-chain-id-mappings-1",
-            "metrics-api/evm-chains/chain-information-by-network",
-            "metrics-api/evm-chains/chain-information-by-network-and-subnet-id",
-            "metrics-api/evm-chains/subnet-information-by-network",
-            "metrics-api/evm-chains/subnet-information-by-network-and-subnet-id"
+            "metrics-api/evm-chains/get-chain-information-for-supported-blockchain"
           ]
         },
         {
@@ -322,50 +312,6 @@
             "metrics-api/chain-metrics/get-metrics-for-evm-chains",
             "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
             "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet"
-          ]
-        },
-        {
-          "group": "Chain Throughput",
-          "icon": "gauge-high",
-          "pages": [
-            "metrics-api/chain-throughput/active-senders",
-            "metrics-api/chain-throughput/active-addresses",
-            "metrics-api/chain-throughput/gas-used",
-            "metrics-api/chain-throughput/transaction-count",
-            "metrics-api/chain-throughput/average-gas-consumed-per-second",
-            "metrics-api/chain-throughput/maxumum-gas-consumed-per-second",
-            "metrics-api/chain-throughput/average-transactions-per-second",
-            "metrics-api/chain-throughput/maximum-transactions-per-second",
-            "metrics-api/chain-throughput/average-gas-price",
-            "metrics-api/chain-throughput/maximum-gas-price",
-            "metrics-api/chain-throughput/rolling-window-of-gas-used",
-            "metrics-api/chain-throughput/rolling-window-of-tx-count",
-            "metrics-api/chain-throughput/rolling-window-of-average-gps-consumed",
-            "metrics-api/chain-throughput/rolling-window-of-max-gps",
-            "metrics-api/chain-throughput/rolling-window-of-average-tps",
-            "metrics-api/chain-throughput/rolling-window-of-max-tps",
-            "metrics-api/chain-throughput/rolling-window-of-average-gas-price",
-            "metrics-api/chain-throughput/rolling-window-of-max-gas-price"
-          ]
-        },
-        {
-          "group": "Cumulative",
-          "icon": "chart-area",
-          "pages": [
-            "metrics-api/cumulative/cumulative-number-of-addresses",
-            "metrics-api/cumulative/cumulative-number-of-contracts",
-            "metrics-api/cumulative/cumulative-transaction-count",
-            "metrics-api/cumulative/cumulative-number-of-deployers"
-          ]
-        },
-        {
-          "group": "Staking Information",
-          "icon": "square-poll-vertical",
-          "pages": [
-            "metrics-api/staking-information/get-validation-count-by-subnet-id",
-            "metrics-api/staking-information/get-validation-weight-by-subnet-id",
-            "metrics-api/staking-information/get-delegation-count-by-subnet-id",
-            "metrics-api/staking-information/get-delegation-weight-by-subnet-id"
           ]
         }
       ]
