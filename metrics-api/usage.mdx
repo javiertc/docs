@@ -4,9 +4,6 @@ icon: 'code'
 mode: 'wide'
 ---
 
-### Usage Guide
-
-#### Setup
 The Metrics API does not require authentication, making it straightforward to integrate into your applications. You can start making API requests without the need for an API key or any authentication headers.
 
 #### Making Requests
@@ -37,54 +34,47 @@ The API will return a JSON response containing the average TPS for the specified
 }
 ```
 
-### Rate Limits ###
+### Rate Limits
 
 Even though the Metrics API does not require authentication, it still enforces rate limits to ensure stability and performance. If you exceed these limits, the server will respond with a 429 Too Many Requests HTTP response code.
 
-  When you hit the rate limit, the server will include the following headers in the response to help you determine when you can resume sending requests:
 
-	•	ratelimit-limit: The number of requests allowed in the current rate limit window.
-	•	ratelimit-remaining: The number of requests remaining in the current rate limit window.
-	•	ratelimit-reset: The time at which the current rate limit window resets, expressed in UTC epoch seconds.
+### Error Types ###
+The API generates standard error responses along with error codes based on provided requests and parameters.
 
-  To avoid being temporarily blocked from accessing the API, it is recommended to monitor these headers and implement an exponential backoff strategy when you start receiving rate limit errors.
+Typically, response codes within the `2XX` range signifies successful requests, while those within the `4XX` range points to errors originating from the client's side. Meanwhile, response codes within the `5XX` range indicates problems on the server's side.
 
-  ### Error Types ###
-  The API generates standard error responses along with error codes based on provided requests and parameters.
+The error response body is formatted like this:
+```json
+{
+  "message": ["Invalid address format"], // route specific error message
+  "error": "Bad Request", // error type
+  "statusCode": 400 // http response code
+}
+```
 
-  Typically, response codes within the `2XX` range signifies successful requests, while those within the `4XX` range points to errors originating from the client's side. Meanwhile, response codes within the `5XX` range indicates problems on the server's side.
+Let's go through every error code that we can respond with:
+| Error Code | Error Type             | Description |
+| ---------- | ---------------------- | ----------- |
+| **400**    | Bad Request            | Bad requests generally mean the client has passed invalid or malformed parameters. Error messages in the response could help in evaluating the error. |
+| **401**    | Unauthorized           | When a client attempts to access resources that require authorization credentials but the client lacks proper authentication in the request, the server responds with 401. |
+| **403**    | Forbidden              | When a client attempts to access resources with valid credentials but doesn't have the privilege to perform that action, the server responds with 403. |
+| **404**    | Not Found              | The 404 error is mostly returned when the client requests with either mistyped URL, or the passed resource is moved or deleted, or the resource doesn't exist. |
+| **500**    | Internal Server Error   | The 500 error is a generic server-side error that is returned for any uncaught and unexpected issues on the server side. This should be very rare, and you may reach out to us if the problem persists for a longer duration. |
+| **502**    | Bad Gateway            | This is an internal error indicating invalid response received by the client-facing proxy or gateway from the upstream server. |
+| **503**    | Service Unavailable    | The 503 error is returned for certain routes on a particular Subnet. This indicates an internal problem with our Subnet node, and may not necessarily mean the Subnet is down or affected. |
 
-  The error response body is formatted like this:
-  ```json
-  {
-    "message": ["Invalid address format"], // route specific error message
-    "error": "Bad Request", // error type
-    "statusCode": 400 // http response code
-  }
-  ```
+### Pagination
 
-  Let's go through every error code that we can respond with:
-  | Error Code | Error Type             | Description |
-  | ---------- | ---------------------- | ----------- |
-  | **400**    | Bad Request            | Bad requests generally mean the client has passed invalid or malformed parameters. Error messages in the response could help in evaluating the error. |
-  | **401**    | Unauthorized           | When a client attempts to access resources that require authorization credentials but the client lacks proper authentication in the request, the server responds with 401. |
-  | **403**    | Forbidden              | When a client attempts to access resources with valid credentials but doesn't have the privilege to perform that action, the server responds with 403. |
-  | **404**    | Not Found              | The 404 error is mostly returned when the client requests with either mistyped URL, or the passed resource is moved or deleted, or the resource doesn't exist. |
-  | **500**    | Internal Server Error   | The 500 error is a generic server-side error that is returned for any uncaught and unexpected issues on the server side. This should be very rare, and you may reach out to us if the problem persists for a longer duration. |
-  | **502**    | Bad Gateway            | This is an internal error indicating invalid response received by the client-facing proxy or gateway from the upstream server. |
-  | **503**    | Service Unavailable    | The 503 error is returned for certain routes on a particular Subnet. This indicates an internal problem with our Subnet node, and may not necessarily mean the Subnet is down or affected. |
+For endpoints that return large datasets, the Metrics API employs pagination to manage the results. When querying for lists of data, you may receive a nextPageToken in the response, which can be used to request the next page of data.
 
-### Pagination ###
-
-  For endpoints that return large datasets, the Metrics API employs pagination to manage the results. When querying for lists of data, you may receive a nextPageToken in the response, which can be used to request the next page of data.
-
-  Example response with pagination:
-  ```json
-  {
-    "results": [...],
-    "nextPageToken": "3d22deea-ea64-4d30-8a1e-c2a353b67e90"
-  }
-  ```
+Example response with pagination:
+```json
+{
+  "results": [...],
+  "nextPageToken": "3d22deea-ea64-4d30-8a1e-c2a353b67e90"
+}
+```
 To retrieve the next set of results, include the nextPageToken in your subsequent request:
 ```bash
 curl -H "Content-Type: Application/json" \

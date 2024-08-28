@@ -4,30 +4,64 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-The Metrics API is designed to provide developers with powerful tools to analyze and monitor on-chain activity across Avalanche’s primary network, Avalanche Subnets, and other supported EVM chains. Below is an overview of the key features available:
+The Metrics API is designed to provide developers with powerful tools to analyze and monitor on-chain activity across Avalanche’s primary network, Avalanche L1s, and other supported EVM chains. Below is an overview of the key features available:
 
-**Chain Throughput Metrics**
-- **Gas Consumption:** Track the average and maximum gas consumption per second, helping to understand network performance and efficiency.
-- **Transactions Per Second (TPS):** Monitor the average and peak TPS to assess the network’s capacity and utilization.
-- **Gas Prices:** Analyze average and maximum gas prices over time to optimize transaction costs and predict fee trends.
+### Chain Throughput Metrics
+- **Gas Consumption** <br />
+  Track the average and maximum gas consumption per second, helping to understand network performance and efficiency.
+  <Frame>
+    <img src="/images/gas-used.png" />
+  </Frame>
+- **Transactions Per Second (TPS)** <br />
+  Monitor the average and peak TPS to assess the network’s capacity and utilization.
+  <Frame>
+    <img src="/images/tps.png" />
+  </Frame>
 
-**Cumulative Metrics**
-- **Address Growth:** Access the cumulative number of active addresses on a chain, providing insights into network adoption and user activity.
-- **Contract Deployment:** Monitor the cumulative number of smart contracts deployed, helping to gauge developer engagement and platform usage.
-- **Transaction Count:** Track the cumulative number of transactions, offering a clear view of network activity and transaction volume.
+- **Gas Prices** <br />
+  Analyze average and maximum gas prices over time to optimize transaction costs and predict fee trends.
+  Monitor the average and peak TPS to assess the network’s capacity and utilization.
+  <Frame>
+    <img src="/images/gas-price.png" />
+  </Frame>
 
-**Staking Information**
-- **Validator and Delegator Counts:** Retrieve the number of active validators and delegators for a given subnet, crucial for understanding network security and decentralization.
-- **Staking Weights:** Access the total stake weight of validators and delegators, helping to assess the distribution of staked assets across the network.
+### Cumulative Metrics
+- **Address Growth** <br />
+  Access the cumulative number of active addresses on a chain, providing insights into network adoption and user activity.
+  <Frame>
+    <img src="/images/address-growth.png" />
+  </Frame>
+- **Contract Deployment** <br />
+  Monitor the cumulative number of smart contracts deployed, helping to gauge developer engagement and platform usage.
+  <Frame>
+    <img src="/images/contracts-deployed.png" />
+  </Frame>
+- **Transaction Count** <br />
+  Track the cumulative number of transactions, offering a clear view of network activity and transaction volume.
+  <Frame>
+    <img src="/images/transactions.png" />
+  </Frame>
 
-**Rolling Window Analytics**
+### Staking Information
+- **Validator and Delegator Counts** <br />
+  Retrieve the number of active validators and delegators for a given L1, crucial for understanding network security and decentralization.
+  <Frame>
+    <img src="/images/validator-count.png" />
+  </Frame>
+- **Staking Weights** <br />
+  Access the total stake weight of validators and delegators, helping to assess the distribution of staked assets across the network.
+  <Frame>
+    <img src="/images/staking-weight.png" />
+  </Frame>
+
+### Rolling Window Analytics
 - **Short-Term and Long-Term Metrics:** Perform rolling window analysis on various metrics like gas used, TPS, and gas prices, allowing for both short-term and long-term trend analysis.
 - **Customizable Time Frames:** Choose from different time intervals (hourly, daily, monthly) to suit your specific analytical needs.
 
-**Blockchain and Subnet Information**
-- **Chain and Subnet Mapping:** Get detailed information about EVM chains and their associated subnets, including chain IDs, blockchain IDs, and subnet IDs, facilitating cross-chain analytics.
+### Blockchain and L1 Information
+- **Chain and L1 Mapping:** Get detailed information about EVM chains and their associated L1s, including chain IDs, blockchain IDs, and subnet IDs, facilitating cross-chain analytics.
 
-**Advanced Composite Queries**
+### Advanced Composite Queries
 - **Custom Metrics Combinations**: Combine multiple metrics and apply logical operators to perform sophisticated queries, enabling deep insights and tailored analytics.
 - **Paginated Results:** Handle large datasets efficiently with paginated responses, ensuring seamless data retrieval in your applications.
 
