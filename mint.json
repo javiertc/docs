@@ -22,7 +22,7 @@
     "thumbsRating": true
   },
   "metadata": {
-    "og:image": "https://avacloud.io/images/glacier.jpg",
+    "og:image": "/images/banner.jpg",
     "og:description": "All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code. Built by @AvaLabs",
     "og:site_name": "Avacloud API Docs",
     "twitter:site": "@AvaCloud"
@@ -30,7 +30,7 @@
   "topbarLinks": [
     {
       "name": "Support",
-      "url": "mailto:javier.toledo@avalabs.org"
+      "url": "https://discord.gg/avalanche-578992315641626624"
     }
   ],
   "topbarCtaButton": {
