@@ -312,4 +312,29 @@ async fn main() -> std::io::Result<()> {
     .await
 }
 ```
+```TypeScript AvaCloud SDK
+import { isValidSignature } from '@avalabs/avacloud-sdk/utils';
+import express from 'express';
+
+const app = express();
+app.use(express.json());
+
+const signingSecret = 'your-signing-secret'; // Replace with your signing secret
+
+app.post('/webhook', (req, res) => {
+    const signature = req.headers['x-signature'];
+    const payload = req.body;
+
+    if (isValidSignature(signingSecret, signature, payload)) {
+        console.log('Valid signature');
+        // Process the request
+    } else {
+        console.log('Invalid signature');
+    }
+
+    res.json({ received: true });
+});
+
+app.listen(8000, () => console.log('Server running on port 8000'));
+```
 </CodeGroup>
