@@ -5,7 +5,7 @@ paths:
             operationId: "glacier-health-check"
             x-speakeasy-group: "glacier.healthCheck"
             summary: "Get the health of the service"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.healthCheck.glacierHealthCheck();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "check", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.healthCheck.glacierHealthCheck();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             responses:
                 "200":
                     description: "The Health Check is successful"
@@ -98,7 +98,7 @@ paths:
             operationId: "reindexNft"
             x-speakeasy-usage-example: {"description": "Specified example for error responses", "tags": ["errors"]}
             x-speakeasy-group: "glacier.nfts"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  await avaCloudSDK.glacier.nfts.reindexNft({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n\n  \n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "reindexNft", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  await avalancheSDK.glacier.nfts.reindexNft({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n\n  \n}\n\nrun();"}]
             summary: "Reindex NFT metadata"
             description: "Triggers reindexing of token metadata for an NFT token. Reindexing can only be called once per hour for each NFT token."
             parameters:
@@ -173,7 +173,7 @@ paths:
             operationId: "listTokens"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.nfts"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.nfts.listTokens({\n    pageSize: 10,\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listTokens", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.nfts.listTokens({\n    pageSize: 10,\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List tokens"
             description: "Lists tokens for an NFT contract."
             parameters:
@@ -260,7 +260,7 @@ paths:
             operationId: "getTokenDetails"
             x-speakeasy-group: "glacier.nfts"
             summary: "Get token details"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.nfts.getTokenDetails({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getTokenDetails", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.nfts.getTokenDetails({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets token details for a specific token of an NFT contract."
             parameters:
                 - name: "chainId"
@@ -345,7 +345,7 @@ paths:
             operationId: "getOperationResult"
             x-speakeasy-group: "glacier.operations"
             summary: "Get operation"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.operations.getOperationResult({\n    operationId: \"aa22054a-cb7c-4a4e-9b83-59f2ede74138\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getOperationResult", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.operations.getOperationResult({\n    operationId: \"aa22054a-cb7c-4a4e-9b83-59f2ede74138\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets operation details for the given operation id."
             parameters:
                 - name: "operationId"
@@ -408,7 +408,7 @@ paths:
             operationId: "postTransactionExportJob"
             x-speakeasy-group: "glacier.operations"
             summary: "Create transaction export operation"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.operations.postTransactionExportJob({\n    type: \"TRANSACTION_EXPORT_PRIMARY_NETWORK_STAKING\",\n    firstDate: \"2023-05-01\",\n    lastDate: \"2023-05-02\",\n    startDate: \"2023-05-01\",\n    endDate: \"2023-05-02\",\n    options: {\n      includeChains: [\n        \"p-chain\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "postTransactionExportJob", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.operations.postTransactionExportJob({\n    type: \"TRANSACTION_EXPORT_PRIMARY_NETWORK_STAKING\",\n    firstDate: \"2023-05-01\",\n    lastDate: \"2023-05-02\",\n    startDate: \"2023-05-01\",\n    endDate: \"2023-05-02\",\n    options: {\n      includeChains: [\n        \"p-chain\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Trigger a transaction export operation with given parameters.\n\nThe transaction export operation runs asynchronously in the background. The status of the job can be retrieved from the `/v1/operations/:operationId` endpoint using the `operationId` returned from this endpoint."
             requestBody:
                 required: true
@@ -471,7 +471,7 @@ paths:
             operationId: "getTxByHash"
             x-speakeasy-group: "glacier.primaryNetwork.transactions"
             summary: "Get transaction"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.transactions.getTxByHash({\n    blockchainId: \"p-chain\",\n    txHash: \"3P91K6nuDFvDodcRuJTsgdf9SvYe5pMiKk38HppsoeAiEztCP\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getTxByHash", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.transactions.getTxByHash({\n    blockchainId: \"p-chain\",\n    txHash: \"3P91K6nuDFvDodcRuJTsgdf9SvYe5pMiKk38HppsoeAiEztCP\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets the details of a single transaction on one of the Primary Network chains."
             parameters:
                 - name: "blockchainId"
@@ -552,14 +552,14 @@ paths:
             operationId: "listLatestPrimaryNetworkTransactions"
             x-speakeasy-group: "glacier.primaryNetwork.transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.transactions.listLatestPrimaryNetworkTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listLatestPrimaryNetworkTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.transactions.listLatestPrimaryNetworkTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List latest transactions"
             description: "Lists the latest transactions on one of the Primary Network chains.\n\nTransactions are filterable by addresses, txTypes, and timestamps. When querying for latest transactions without an address parameter, filtering by txTypes and timestamps is not supported. An address filter must be provided to utilize txTypes and timestamp filters.\n\nGiven that each transaction may return a large number of UTXO objects, bounded only by the maximum transaction size, the query may return less transactions than the provided page size. The result will contain less results than the page size if the number of utxos contained in the resulting transactions reach a performance threshold."
             parameters:
                 - name: "addresses"
-                  required: true
+                  required: false
                   in: "query"
-                  description: "A comma separated list of X-Chain or P-Chain wallet addresses, starting with \"avax\"/\"fuji\", \"P-avax\"/\"P-fuji\" or \"X-avax\"/\"X-fuji\". Also accepts EVM formatted addresses starting with \"0x\" for C-Chain-related atomic transaction lookups."
+                  description: "A comma separated list of X-Chain or P-Chain wallet addresses, starting with \"avax\"/\"fuji\", \"P-avax\"/\"P-fuji\" or \"X-avax\"/\"X-fuji\"."
                   example: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg"
                   schema:
                     type: "string"
@@ -678,7 +678,7 @@ paths:
             operationId: "listActivePrimaryNetworkStakingTransactions"
             x-speakeasy-group: "glacier.primaryNetwork.transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.transactions.listActivePrimaryNetworkStakingTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listActivePrimaryNetworkStakingTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.transactions.listActivePrimaryNetworkStakingTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List staking transactions"
             description: "Lists active staking transactions on the P-Chain for the supplied addresses."
             parameters:
@@ -800,7 +800,7 @@ paths:
             operationId: "listPendingPrimaryNetworkRewards"
             x-speakeasy-group: "glacier.primaryNetwork.rewards"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.rewards.listPendingPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listPendingPrimaryNetworkRewards", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.rewards.listPendingPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List pending rewards"
             description: "Lists pending rewards on the Primary Network for the supplied addresses."
             parameters:
@@ -899,7 +899,7 @@ paths:
             operationId: "listHistoricalPrimaryNetworkRewards"
             x-speakeasy-group: "glacier.primaryNetwork.rewards"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.rewards.listHistoricalPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    currency: \"usd\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listHistoricalPrimaryNetworkRewards", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.rewards.listHistoricalPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    currency: \"usd\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List historical rewards"
             description: "Lists historical rewards on the Primary Network for the supplied addresses."
             parameters:
@@ -1004,7 +1004,7 @@ paths:
             operationId: "getUtxosByAddresses"
             x-speakeasy-group: "glacier.primaryNetwork.utxos"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.utxos.getUtxosByAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getUtxosByAddresses", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.utxos.getUtxosByAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List UTXOs"
             description: "Lists UTXOs on one of the Primary Network chains for the supplied addresses."
             parameters:
@@ -1117,7 +1117,7 @@ paths:
             operationId: "getBalancesByAddresses"
             x-speakeasy-group: "glacier.primaryNetwork.balances"
             summary: "Get balances"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.balances.getBalancesByAddresses({\n    blockTimestamp: 1599696000,\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    blockchainId: \"p-chain\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getBalancesByAddresses", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.balances.getBalancesByAddresses({\n    blockTimestamp: 1599696000,\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    blockchainId: \"p-chain\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets primary network balances for one of the Primary Network chains for the supplied addresses.\n\nC-Chain balances returned are only the shared atomic memory balance. For EVM balance, use the `/v1/chains/:chainId/addresses/:addressId/balances:getNative` endpoint."
             parameters:
                 - name: "blockTimestamp"
@@ -1203,7 +1203,7 @@ paths:
             operationId: "getBlockById"
             x-speakeasy-group: "glacier.primaryNetwork.blocks"
             summary: "Get block"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.blocks.getBlockById({\n    blockchainId: \"p-chain\",\n    blockId: \"5615di9ytxujackzaXNrVuWQy5y8Yrt8chPCscMr5Ku9YxJ1S\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getBlockById", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.blocks.getBlockById({\n    blockchainId: \"p-chain\",\n    blockId: \"5615di9ytxujackzaXNrVuWQy5y8Yrt8chPCscMr5Ku9YxJ1S\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets a block by block height or block hash on one of the Primary Network chains."
             parameters:
                 - name: "blockchainId"
@@ -1278,7 +1278,7 @@ paths:
             operationId: "listPrimaryNetworkBlocksByNodeId"
             x-speakeasy-group: "glacier.primaryNetwork.blocks"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.blocks.listPrimaryNetworkBlocksByNodeId({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listPrimaryNetworkBlocksByNodeId", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.blocks.listPrimaryNetworkBlocksByNodeId({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List blocks proposed by node"
             description: "Lists the latest blocks proposed by a given NodeID on one of the Primary Network chains."
             parameters:
@@ -1370,7 +1370,7 @@ paths:
             operationId: "listLatestPrimaryNetworkBlocks"
             x-speakeasy-group: "glacier.primaryNetwork.blocks"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.blocks.listLatestPrimaryNetworkBlocks({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listLatestPrimaryNetworkBlocks", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.blocks.listLatestPrimaryNetworkBlocks({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List latest blocks"
             description: "Lists latest blocks on one of the Primary Network chains."
             parameters:
@@ -1455,7 +1455,7 @@ paths:
             operationId: "listLatestXChainVertices"
             x-speakeasy-group: "glacier.primaryNetwork.vertices"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.vertices.listLatestXChainVertices({\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listLatestXChainVertices", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.vertices.listLatestXChainVertices({\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List vertices"
             description: "Lists latest vertices on the X-Chain."
             parameters:
@@ -1540,7 +1540,7 @@ paths:
             operationId: "getVertexByHash"
             x-speakeasy-group: "glacier.primaryNetwork.vertices"
             summary: "Get vertex"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.vertices.getVertexByHash({\n    vertexHash: \"haP1CW56cspZY7aEuqHNrtpvhqCaMTxQaYe6j5u2Mbn4L2Gqr\",\n    blockchainId: \"x-chain\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getVertexByHash", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.vertices.getVertexByHash({\n    vertexHash: \"haP1CW56cspZY7aEuqHNrtpvhqCaMTxQaYe6j5u2Mbn4L2Gqr\",\n    blockchainId: \"x-chain\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets a single vertex on the X-Chain."
             parameters:
                 - name: "vertexHash"
@@ -1615,7 +1615,7 @@ paths:
             operationId: "getVertexByHeight"
             x-speakeasy-group: "glacier.primaryNetwork.vertices"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.vertices.getVertexByHeight({\n    vertexHeight: 123,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getVertexByHeight", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.vertices.getVertexByHeight({\n    vertexHeight: 123,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List vertices by height"
             description: "Lists vertices at the given vertex height on the X-Chain."
             parameters:
@@ -1714,7 +1714,7 @@ paths:
             operationId: "getAssetDetails"
             x-speakeasy-group: "glacier.primaryNetwork"
             summary: "Get asset details"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.getAssetDetails({\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getAssetDetails", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.getAssetDetails({\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets asset details corresponding to the given asset id on the X-Chain."
             parameters:
                 - name: "blockchainId"
@@ -1789,7 +1789,7 @@ paths:
             operationId: "listAssetTransactions"
             x-speakeasy-group: "glacier.primaryNetwork.transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.transactions.listAssetTransactions({\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listAssetTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.transactions.listAssetTransactions({\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List asset transactions"
             description: "Lists asset transactions corresponding to the given asset id on the X-Chain."
             parameters:
@@ -1905,7 +1905,7 @@ paths:
             operationId: "getChainIdsForAddresses"
             x-speakeasy-group: "glacier.primaryNetwork"
             summary: "Get chain interactions for addresses"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.getChainIdsForAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getChainIdsForAddresses", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.getChainIdsForAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Returns Primary Network chains that each address has touched in the form of an address mapped array. If an address has had any on-chain interaction for a chain, that chain's chain id will be returned."
             parameters:
                 - name: "addresses"
@@ -1974,7 +1974,7 @@ paths:
             operationId: "getNetworkDetails"
             x-speakeasy-group: "glacier.primaryNetwork"
             summary: "Get network details"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.getNetworkDetails({});\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getNetworkDetails", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.getNetworkDetails({});\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets network details such as validator and delegator stats."
             parameters:
                 - name: "network"
@@ -2036,7 +2036,7 @@ paths:
             operationId: "listBlockchains"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.primaryNetwork"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.listBlockchains({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listBlockchains", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.listBlockchains({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List blockchains"
             description: "Lists all blockchains registered on the network."
             parameters:
@@ -2121,7 +2121,7 @@ paths:
             operationId: "listSubnets"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.primaryNetwork"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.listSubnets({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listSubnets", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.listSubnets({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List subnets"
             description: "Lists all subnets registered on the network."
             parameters:
@@ -2206,7 +2206,7 @@ paths:
             operationId: "getSubnetById"
             x-speakeasy-group: "glacier.primaryNetwork"
             summary: "Get Subnet details by ID"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.getSubnetById({\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getSubnetById", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.getSubnetById({\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Get details of the Subnet registered on the network."
             parameters:
                 - name: "network"
@@ -2275,7 +2275,7 @@ paths:
             operationId: "listValidators"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.primaryNetwork"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.listValidators({\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    validationStatus: \"completed\",\n    minDelegationCapacity: \"0\",\n    maxDelegationCapacity: \"720000000000000000\",\n    minTimeRemaining: 0,\n    maxTimeRemaining: 2147483647,\n    minFeePercentage: 2,\n    maxFeePercentage: 100,\n    minUptimePerformance: 90,\n    maxUptimePerformance: 100,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listValidators", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.listValidators({\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    validationStatus: \"completed\",\n    minDelegationCapacity: \"0\",\n    maxDelegationCapacity: \"720000000000000000\",\n    minTimeRemaining: 0,\n    maxTimeRemaining: 2147483647,\n    minFeePercentage: 2,\n    maxFeePercentage: 100,\n    minUptimePerformance: 90,\n    maxUptimePerformance: 100,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List validators"
             description: "Lists details for validators. By default, returns details for all validators. Filterable by validator node ids and minimum delegation capacity."
             parameters:
@@ -2452,7 +2452,7 @@ paths:
             operationId: "getSingleValidatorDetails"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.primaryNetwork"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.getSingleValidatorDetails({\n    pageSize: 10,\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n    validationStatus: \"completed\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getSingleValidatorDetails", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.getSingleValidatorDetails({\n    pageSize: 10,\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n    validationStatus: \"completed\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "Get single validator details"
             description: "List validator details for a single validator.  Filterable by validation status."
             parameters:
@@ -2550,7 +2550,7 @@ paths:
             operationId: "listDelegators"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.primaryNetwork"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.primaryNetwork.listDelegators({\n    pageSize: 10,\n    rewardAddresses: \"P-avax1679zrp3z9mf7z4an42ddq47qzj36zv6ga20vwl,P-avax1s7kd0kfndlz6mh3l0etrrcmkg5y366k8e0s6cc\",\n    sortOrder: \"asc\",\n    delegationStatus: \"completed\",\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listDelegators", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.primaryNetwork.listDelegators({\n    pageSize: 10,\n    rewardAddresses: \"P-avax1679zrp3z9mf7z4an42ddq47qzj36zv6ga20vwl,P-avax1s7kd0kfndlz6mh3l0etrrcmkg5y366k8e0s6cc\",\n    sortOrder: \"asc\",\n    delegationStatus: \"completed\",\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List delegators"
             description: "Lists details for delegators."
             parameters:
@@ -2655,7 +2655,7 @@ paths:
             operationId: "getApiUsageMetrics"
             x-speakeasy-group: "glacier.usageMetrics"
             summary: "Get usage metrics for the Glacier API"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.usageMetrics.getApiUsageMetrics({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    timeInterval: \"hourly\",\n    groupBy: \"requestPath\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getApiUsageMetrics", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.usageMetrics.getApiUsageMetrics({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    timeInterval: \"hourly\",\n    groupBy: \"requestPath\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets metrics for Glacier API usage over a specified time interval aggregated at the specified time-duration granularity."
             parameters:
                 - name: "orgId"
@@ -2697,15 +2697,6 @@ paths:
                   in: "query"
                   description: "Filter aggregated usage metrics by request path."
                   schema:
-                    type: "string"
-                - name: "requestType"
-                  required: false
-                  in: "query"
-                  description: "Filter aggregated usage metrics by request type."
-                  schema:
-                    enum:
-                        - "Glacier API Request"
-                        - "Glacier RPC Request"
                     type: "string"
                 - name: "responseStatusCode"
                   required: false
@@ -2778,7 +2769,7 @@ paths:
             operationId: "getApiLogs"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.usageMetrics"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.usageMetrics.getApiLogs({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getApiLogs", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.usageMetrics.getApiLogs({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "Get logs for requests made by client"
             description: "Gets logs for requests made by client over a specified time interval for a specific organization."
             parameters:
@@ -2867,12 +2858,18 @@ paths:
                             schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
             tags:
                 - "Glacier API Usage Metrics"
+    "/v1/media/uploadImage":
+        post:
+            operationId: "MediaController_uploadImage"
+            x-speakeasy-ignore: true
+            responses:
+                "201": {}
     "/v1/webhooks":
         post:
             operationId: "createWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Create a webhook"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.createWebhook({\n    url: \"https://unrealistic-well-being.name\",\n    chainId: \"<value>\",\n    eventType: \"address_activity\",\n    metadata: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n      eventSignatures: [\n        \"0x61cbb2a3dee0b6064c2e681aadd61677fb4ef319f0b547508d495626f5a62f64\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "createWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.createWebhook({\n    url: \"https://unrealistic-well-being.name\",\n    chainId: \"<value>\",\n    eventType: \"address_activity\",\n    metadata: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n      eventSignatures: [\n        \"0x61cbb2a3dee0b6064c2e681aadd61677fb4ef319f0b547508d495626f5a62f64\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Create a new webhook."
             requestBody:
                 required: true
@@ -2931,7 +2928,7 @@ paths:
             operationId: "listWebhooks"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.webhooks"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.listWebhooks({\n    pageSize: 10,\n    status: \"active\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listWebhooks", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.listWebhooks({\n    pageSize: 10,\n    status: \"active\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List webhooks"
             description: "Lists webhooks for the user."
             parameters:
@@ -3010,7 +3007,7 @@ paths:
             operationId: "getWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Get a webhook by ID"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.getWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.getWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Retrieves a webhook by ID."
             parameters:
                 - name: "id"
@@ -3072,7 +3069,7 @@ paths:
             operationId: "deactivateWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Deactivate a webhook"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.deactivateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "deactivateWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.deactivateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Deactivates a webhook by ID."
             parameters:
                 - name: "id"
@@ -3134,7 +3131,7 @@ paths:
             operationId: "updateWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Update a webhook"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.updateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    updateWebhookRequest: {},\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "updateWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.updateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    updateWebhookRequest: {},\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Updates an existing webhook."
             parameters:
                 - name: "id"
@@ -3202,7 +3199,7 @@ paths:
             operationId: "generateSharedSecret"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Generate a shared secret"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.generateSharedSecret();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "generateSharedSecret", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.generateSharedSecret();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Generates a new shared secret."
             responses:
                 "200":
@@ -3257,7 +3254,7 @@ paths:
             operationId: "getSharedSecret"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Get a shared secret"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.getSharedSecret();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getSharedSecret", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.getSharedSecret();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Get a previously generated shared secret."
             responses:
                 "200":
@@ -3312,7 +3309,7 @@ paths:
             operationId: "addAddressesToWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Add addresses to webhook"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.addAddressesToWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "addAddressesToWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.addAddressesToWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Add addresses to webhook."
             parameters:
                 - name: "id"
@@ -3379,7 +3376,7 @@ paths:
             operationId: "removeAddressesFromWebhook"
             x-speakeasy-group: "glacier.webhooks"
             summary: "Remove addresses from webhook"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.removeAddressesFromWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "removeAddressesFromWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.removeAddressesFromWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Remove addresses from webhook."
             parameters:
                 - name: "id"
@@ -3446,7 +3443,7 @@ paths:
             operationId: "getAddressesFromWebhook"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.webhooks"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.webhooks.getAddressesFromWebhook({\n    pageSize: 10,\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getAddressesFromWebhook", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.webhooks.getAddressesFromWebhook({\n    pageSize: 10,\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List adresses by webhook"
             description: "List adresses by webhook."
             parameters:
@@ -3526,7 +3523,7 @@ paths:
             operationId: "getTeleporterMessage"
             x-speakeasy-group: "glacier.teleporter"
             summary: "Get a teleporter message"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.teleporter.getTeleporterMessage({\n    messageId: \"acf1c8b06f9aec48e9fcbefbbe576ae8a7ca3b327fcae111396e7cc99956674d\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getTeleporterMessage", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.teleporter.getTeleporterMessage({\n    messageId: \"acf1c8b06f9aec48e9fcbefbbe576ae8a7ca3b327fcae111396e7cc99956674d\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets a teleporter message by message ID."
             parameters:
                 - name: "messageId"
@@ -3599,7 +3596,7 @@ paths:
             operationId: "listTeleporterMessages"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.teleporter"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.teleporter.listTeleporterMessages({\n    pageSize: 10,\n    sourceBlockchainId: \"2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY\",\n    destinationBlockchainId: \"yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp\",\n    to: \"0x664A4Be5Af2cFc824F9C0914CbAc4703396Da2DC\",\n    from: \"0x321eDA69247566D662178feE695C7026c604Cd94\",\n    network: \"mainnet\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listTeleporterMessages", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.teleporter.listTeleporterMessages({\n    pageSize: 10,\n    sourceBlockchainId: \"2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY\",\n    destinationBlockchainId: \"yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp\",\n    to: \"0x664A4Be5Af2cFc824F9C0914CbAc4703396Da2DC\",\n    from: \"0x321eDA69247566D662178feE695C7026c604Cd94\",\n    network: \"mainnet\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List teleporter messages"
             description: "Lists teleporter messages. Ordered by timestamp in descending order."
             parameters:
@@ -3712,7 +3709,7 @@ paths:
             operationId: "getNativeBalance"
             x-speakeasy-group: "glacier.evm.balances"
             summary: "Get native token balance"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.balances.getNativeBalance({\n    blockNumber: \"6479329\",\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    currency: \"usd\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getNativeBalance", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.balances.getNativeBalance({\n    blockNumber: \"6479329\",\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    currency: \"usd\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets native token balance of a wallet address.\n\nBalance at a given block can be retrieved with the `blockNumber` parameter."
             parameters:
                 - name: "blockNumber"
@@ -3795,7 +3792,7 @@ paths:
             operationId: "listErc20Balances"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.balances"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.balances.listErc20Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddresses: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7, 0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB\",\n    currency: \"usd\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc20Balances", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.balances.listErc20Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddresses: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7, 0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB\",\n    currency: \"usd\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-20 balances"
             description: "Lists ERC-20 token balances of a wallet address.\n\nBalance at a given block can be retrieved with the `blockNumber` parameter.\n\nBalance for specific contracts can be retrieved with the `contractAddresses` parameter."
             parameters:
@@ -3909,7 +3906,7 @@ paths:
             operationId: "listErc721Balances"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.balances"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.balances.listErc721Balances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc721Balances", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.balances.listErc721Balances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-721 balances"
             description: "Lists ERC-721 token balances of a wallet address.\n\nBalance for a specific contract can be retrieved with the `contractAddress` parameter."
             parameters:
@@ -4003,7 +4000,7 @@ paths:
             operationId: "listErc1155Balances"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.balances"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.balances.listErc1155Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc1155Balances", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.balances.listErc1155Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-1155 balances"
             description: "Lists ERC-1155 token balances of a wallet address.\n\nBalance at a given block can be retrieved with the `blockNumber` parameter.\n\nBalance for a specific contract can be retrieved with the `contractAddress` parameter."
             parameters:
@@ -4104,7 +4101,7 @@ paths:
             operationId: "listCollectibleBalances"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.balances"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.balances.listCollectibleBalances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listCollectibleBalances", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.balances.listCollectibleBalances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List collectible (ERC-721/ERC-1155) balances"
             description: "Lists ERC-721 and ERC-1155 token balances of a wallet address.\n\nBalance for a specific contract can be retrieved with the `contractAddress` parameter."
             parameters:
@@ -4198,7 +4195,7 @@ paths:
             operationId: "getLatestBlocks"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.blocks"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.blocks.getLatestBlocks({\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getLatestBlocks", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.blocks.getLatestBlocks({\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List latest blocks"
             description: "Lists the latest indexed blocks on the EVM-compatible chain sorted in descending order by block timestamp."
             parameters:
@@ -4278,7 +4275,7 @@ paths:
             operationId: "getBlock"
             x-speakeasy-group: "glacier.evm.blocks"
             summary: "Get block"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.blocks.getBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getBlock", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.blocks.getBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets the details of an individual block on the EVM-compatible chain."
             parameters:
                 - name: "chainId"
@@ -4348,7 +4345,7 @@ paths:
             operationId: "getDeploymentTransaction"
             x-speakeasy-group: "glacier.evm.transactions"
             summary: "Get deployment transaction"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.getDeploymentTransaction({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    currency: \"usd\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getDeploymentTransaction", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.getDeploymentTransaction({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    currency: \"usd\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "If the address is a smart contract, returns the transaction in which it was deployed."
             parameters:
                 - name: "chainId"
@@ -4424,7 +4421,7 @@ paths:
             operationId: "listContractDeployments"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listContractDeployments({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listContractDeployments", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listContractDeployments({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List deployed contracts"
             description: "Lists all contracts deployed by the given address."
             parameters:
@@ -4511,7 +4508,7 @@ paths:
             operationId: "getContractMetadata"
             x-speakeasy-group: "glacier.evm.contracts"
             summary: "Get contract metadata"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.contracts.getContractMetadata({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getContractMetadata", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.contracts.getContractMetadata({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets metadata about the contract at the given address."
             parameters:
                 - name: "chainId"
@@ -4588,12 +4585,86 @@ paths:
                             schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
             tags:
                 - "EVM Contracts"
+    "/v1/chains/{chainId}/contracts/{address}":
+        patch:
+            operationId: "updateContractInfo"
+            x-speakeasy-ignore: true
+            summary: "Update contract information"
+            description: "Update contract information. Updates will be reviewed by the Ava Labs team before they are published."
+            parameters:
+                - name: "chainId"
+                  required: true
+                  in: "path"
+                  description: "A supported evm chain id, chain alias or blockchain id. Use the `/chains` endpoint to get a list of supported chain ids."
+                  example: "43114"
+                  schema:
+                    type: "string"
+                - name: "address"
+                  required: true
+                  in: "path"
+                  description: "Contract address on the relevant chain."
+                  example: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
+                  schema:
+                    type: "string"
+            requestBody:
+                required: true
+                content:
+                    "application/json":
+                        schema: {"$ref": "#/components/schemas/ContractSubmissionBody"}
+            responses:
+                "200":
+                    description: "Successful response"
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/UpdateContractResponse"}
+                "400":
+                    description: "Bad requests generally mean the client has passed invalid \n    or malformed parameters. Error messages in the response could help in \n    evaluating the error."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/BadRequest"}
+                "401":
+                    description: "When a client attempts to access resources that require \n    authorization credentials but the client lacks proper authentication \n    in the request, the server responds with 401."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/Unauthorized"}
+                "403":
+                    description: "When a client attempts to access resources with valid\n    credentials but doesn't have the privilege to perform that action, \n    the server responds with 403."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/Forbidden"}
+                "404":
+                    description: "The error is mostly returned when the client requests\n    with either mistyped URL, or the passed resource is moved or deleted, \n    or the resource doesn't exist."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/NotFound"}
+                "429":
+                    description: "This error is returned when the client has sent too many,\n    and has hit the rate limit."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/TooManyRequests"}
+                "500":
+                    description: "The error is a generic server side error that is \n    returned for any uncaught and unexpected issues on the server side. \n    This should be very rare, and you may reach out to us if the problem \n    persists for a longer duration."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/InternalServerError"}
+                "502":
+                    description: "This is an internal error indicating invalid response \n      received by the client-facing proxy or gateway from the upstream server."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/BadGateway"}
+                "503":
+                    description: "The error is returned for certain routes on a particular\n    Subnet. This indicates an internal problem with our Subnet node, and may \n    not necessarily mean the Subnet is down or affected."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
+            tags:
+                - "EVM Contracts"
     "/v1/chains":
         get:
             operationId: "supportedChains"
             x-speakeasy-group: "glacier.evm.chains"
             summary: "List chains"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.chains.supportedChains({\n    network: \"mainnet\",\n    feature: \"nftIndexing\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "supportedChains", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.chains.supportedChains({\n    network: \"mainnet\",\n    feature: \"nftIndexing\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Lists the supported EVM-compatible chains. Filterable by network."
             parameters:
                 - name: "network"
@@ -4661,7 +4732,7 @@ paths:
             operationId: "getChainInfo"
             x-speakeasy-group: "glacier.evm.chains"
             summary: "Get chain information"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.chains.getChainInfo({});\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getChainInfo", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.chains.getChainInfo({});\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets chain information for the EVM-compatible chain if supported by the api."
             parameters:
                 - name: "chainId"
@@ -4724,7 +4795,7 @@ paths:
             operationId: "listTransfers"
             x-speakeasy-group: "glacier.evm.transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listTransfers({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listTransfers", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listTransfers({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC transfers"
             description: "Lists ERC transfers for an ERC-20, ERC-721, or ERC-1155 contract address."
             parameters:
@@ -4825,7 +4896,7 @@ paths:
             operationId: "listTransactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listTransactions({\n    pageSize: 10,\n    startBlock: 6479329,\n    endBlock: 6479330,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listTransactions({\n    pageSize: 10,\n    startBlock: 6479329,\n    endBlock: 6479330,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    sortOrder: \"asc\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List transactions"
             description: "Returns a list of transactions where the given wallet address had an on-chain interaction for the given chain. The ERC-20 transfers, ERC-721 transfers, ERC-1155, and internal transactions returned are only those where the input address had an interaction. Specifically, those lists only inlcude entries where the input address was the sender (`from` field) or the receiver (`to` field) for the sub-transaction. Therefore the transactions returned from this list may not be complete representations of the on-chain data. For a complete view of a transaction use the `/chains/:chainId/transactions/:txHash` endpoint.\n\nFilterable by block ranges."
             parameters:
@@ -4932,7 +5003,7 @@ paths:
             operationId: "listNativeTransactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listNativeTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listNativeTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listNativeTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List native transactions"
             description: "Lists native transactions for an address. Filterable by block range."
             parameters:
@@ -5033,7 +5104,7 @@ paths:
             operationId: "listErc20Transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listErc20Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc20Transactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listErc20Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-20 transfers"
             description: "Lists ERC-20 transfers for an address. Filterable by block range."
             parameters:
@@ -5134,7 +5205,7 @@ paths:
             operationId: "listErc721Transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listErc721Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc721Transactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listErc721Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-721 transfers"
             description: "Lists ERC-721 transfers for an address. Filterable by block range."
             parameters:
@@ -5235,7 +5306,7 @@ paths:
             operationId: "listErc1155Transactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listErc1155Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listErc1155Transactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listErc1155Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List ERC-1155 transfers"
             description: "Lists ERC-1155 transfers for an address. Filterable by block range."
             parameters:
@@ -5336,7 +5407,7 @@ paths:
             operationId: "listInternalTransactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listInternalTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listInternalTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listInternalTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List internal transactions"
             description: "Returns a list of internal transactions for an address and chain. Filterable by block range.\n\nNote that the internal transactions list only contains `CALL` or `CALLCODE` transactions with a non-zero value and `CREATE`/`CREATE2` transactions. To get a complete list of internal transactions use the `debug_` prefixed RPC methods on an archive node."
             parameters:
@@ -5437,7 +5508,7 @@ paths:
             operationId: "getTransaction"
             x-speakeasy-group: "glacier.evm.transactions"
             summary: "Get transaction"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.getTransaction({\n    txHash: \"0x8bf584d7b14b92a32a339872a66b134a70ba3ba7c305823f348db6f860253f45\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getTransaction", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.getTransaction({\n    txHash: \"0x8bf584d7b14b92a32a339872a66b134a70ba3ba7c305823f348db6f860253f45\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets the details of a single transaction."
             parameters:
                 - name: "chainId"
@@ -5507,7 +5578,7 @@ paths:
             operationId: "getTransactionsForBlock"
             x-speakeasy-group: "glacier.evm.transactions"
             summary: "List transactions for a block"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.getTransactionsForBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getTransactionsForBlock", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.getTransactionsForBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Lists the transactions that occured in a given block."
             parameters:
                 - name: "chainId"
@@ -5577,7 +5648,7 @@ paths:
             operationId: "listLatestTransactions"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "glacier.evm.transactions"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.glacier.evm.transactions.listLatestTransactions({\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listLatestTransactions", "source": "import { AvalancheSDK } from \"@avalabs/avalanche-sdk\";\n\nconst avalancheSDK = new AvalancheSDK({\n  glacierApiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avalancheSDK.glacier.evm.transactions.listLatestTransactions({\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // handle page\n  }\n}\n\nrun();"}]
             summary: "List latest transactions"
             description: "Lists the latest transactions. Filterable by status."
             parameters:
@@ -5657,6 +5728,87 @@ paths:
                             schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
             tags:
                 - "EVM Transactions"
+    "/v1/ext/bc/{chainId}/rpc":
+        post:
+            operationId: "rpc"
+            x-speakeasy-ignore: true
+            summary: "Calls JSON-RPC method"
+            description: "Calls JSON-RPC method."
+            parameters:
+                - name: "chainId"
+                  required: true
+                  in: "path"
+                  description: "A supported evm chain id, chain alias or blockchain id. Use the `/chains` endpoint to get a list of supported chain ids."
+                  example: "43114"
+                  schema:
+                    type: "string"
+            requestBody:
+                required: true
+                content:
+                    "application/json":
+                        schema:
+                            oneOf:
+                                - {"$ref": "#/components/schemas/RpcRequestBodyDto"}
+                                - type: "array"
+                                  items: {"$ref": "#/components/schemas/RpcRequestBodyDto"}
+            responses:
+                "200":
+                    description: "Successful response"
+                    content:
+                        "application/json":
+                            schema:
+                                oneOf:
+                                    - {"$ref": "#/components/schemas/RpcSuccessResponseDto"}
+                                    - {"$ref": "#/components/schemas/RpcErrorResponseDto"}
+                                    - type: "array"
+                                      items:
+                                        oneOf:
+                                            - {"$ref": "#/components/schemas/RpcSuccessResponseDto"}
+                                            - {"$ref": "#/components/schemas/RpcErrorResponseDto"}
+                "400":
+                    description: "Bad requests generally mean the client has passed invalid \n    or malformed parameters. Error messages in the response could help in \n    evaluating the error."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/BadRequest"}
+                "401":
+                    description: "When a client attempts to access resources that require \n    authorization credentials but the client lacks proper authentication \n    in the request, the server responds with 401."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/Unauthorized"}
+                "403":
+                    description: "When a client attempts to access resources with valid\n    credentials but doesn't have the privilege to perform that action, \n    the server responds with 403."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/Forbidden"}
+                "404":
+                    description: "The error is mostly returned when the client requests\n    with either mistyped URL, or the passed resource is moved or deleted, \n    or the resource doesn't exist."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/NotFound"}
+                "429":
+                    description: "This error is returned when the client has sent too many,\n    and has hit the rate limit."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/TooManyRequests"}
+                "500":
+                    description: "The error is a generic server side error that is \n    returned for any uncaught and unexpected issues on the server side. \n    This should be very rare, and you may reach out to us if the problem \n    persists for a longer duration."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/InternalServerError"}
+                "502":
+                    description: "This is an internal error indicating invalid response \n      received by the client-facing proxy or gateway from the upstream server."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/BadGateway"}
+                "503":
+                    description: "The error is returned for certain routes on a particular\n    Subnet. This indicates an internal problem with our Subnet node, and may \n    not necessarily mean the Subnet is down or affected."
+                    content:
+                        "application/json":
+                            schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
+                "504":
+                    description: "Request timed out"
+            tags:
+                - "RPC"
 info:
     title: "Glacier API"
     description: "The Glacier API provides web3 application developers with multi-chain data related to Avalanche's primary network, Avalanche subnets, and Ethereum. With Glacier, you can easily build products that leverage real-time and historical transaction and transfer history, native and token balances, and various types of token metadata. The API is in Beta and may be subject to change.</br></br>If you have feedback or feature requests for the API, please submit them <a href=\"https://portal.productboard.com/dndv9ahlkdfye4opdm8ksafi/tabs/4-glacier-api\">here</a>. Bug reports can be submitted <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeJQrcp7QoNiqozMDKrVJGX5wpU827d3cVTgF8qa7t_J1Pb-g/viewform\">here</a>, and any potential security issues can be reported <a href=\"https://immunefi.com/bounty/avalabs\">here</a>."
@@ -8143,7 +8295,6 @@ components:
                 - "responseCode"
                 - "chainId"
                 - "apiKeyId"
-                - "requestType"
         "UsageMetricsValueDTO":
             type: "object"
             properties:
@@ -8155,7 +8306,6 @@ components:
                         - "responseCode"
                         - "chainId"
                         - "apiKeyId"
-                        - "requestType"
                         - "None"
                 "groupValue":
                     description: "The value of the column used for data aggregation"
@@ -9628,6 +9778,183 @@ components:
                                 "UNKNOWN": "#/components/schemas/UnknownContract"
             required:
                 - "contracts"
+        "ContractSubmissionErc1155":
+            type: "object"
+            properties:
+                "description":
+                    type: "string"
+                "officialSite":
+                    type: "string"
+                "email":
+                    type: "string"
+                "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "color":
+                    type: "string"
+                "resourceLinks":
+                    type: "array"
+                    items: {"$ref": "#/components/schemas/ResourceLink"}
+                "tags":
+                    type: "array"
+                    items:
+                        type: "string"
+                "name":
+                    type: "string"
+                    description: "The contract name."
+                    example: "Wrapped AVAX"
+                "ercType":
+                    type: "string"
+                    enum:
+                        - "ERC-1155"
+                "symbol":
+                    type: "string"
+                    description: "The contract symbol."
+                    example: "WAVAX"
+                "pricingProviders": {"$ref": "#/components/schemas/PricingProviders"}
+            required:
+                - "name"
+                - "ercType"
+                - "symbol"
+        "ContractSubmissionErc20":
+            type: "object"
+            properties:
+                "description":
+                    type: "string"
+                "officialSite":
+                    type: "string"
+                "email":
+                    type: "string"
+                "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "color":
+                    type: "string"
+                "resourceLinks":
+                    type: "array"
+                    items: {"$ref": "#/components/schemas/ResourceLink"}
+                "tags":
+                    type: "array"
+                    items:
+                        type: "string"
+                "name":
+                    type: "string"
+                    description: "The contract name."
+                    example: "Wrapped AVAX"
+                "ercType":
+                    type: "string"
+                    enum:
+                        - "ERC-20"
+                "symbol":
+                    type: "string"
+                    description: "The contract symbol."
+                    example: "WAVAX"
+                "pricingProviders": {"$ref": "#/components/schemas/PricingProviders"}
+            required:
+                - "name"
+                - "ercType"
+                - "symbol"
+        "ContractSubmissionErc721":
+            type: "object"
+            properties:
+                "description":
+                    type: "string"
+                "officialSite":
+                    type: "string"
+                "email":
+                    type: "string"
+                "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "color":
+                    type: "string"
+                "resourceLinks":
+                    type: "array"
+                    items: {"$ref": "#/components/schemas/ResourceLink"}
+                "tags":
+                    type: "array"
+                    items:
+                        type: "string"
+                "name":
+                    type: "string"
+                    description: "The contract name."
+                    example: "Wrapped AVAX"
+                "ercType":
+                    type: "string"
+                    enum:
+                        - "ERC-721"
+                "symbol":
+                    type: "string"
+                    description: "The contract symbol."
+                    example: "WAVAX"
+            required:
+                - "name"
+                - "ercType"
+                - "symbol"
+        "ContractSubmissionUnknown":
+            type: "object"
+            properties:
+                "description":
+                    type: "string"
+                "officialSite":
+                    type: "string"
+                "email":
+                    type: "string"
+                "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
+                "color":
+                    type: "string"
+                "resourceLinks":
+                    type: "array"
+                    items: {"$ref": "#/components/schemas/ResourceLink"}
+                "tags":
+                    type: "array"
+                    items:
+                        type: "string"
+                "name":
+                    type: "string"
+                    description: "The contract name."
+                    example: "Wrapped AVAX"
+                "ercType":
+                    type: "string"
+                    enum:
+                        - "UNKNOWN"
+            required:
+                - "name"
+                - "ercType"
+        "ContractSubmissionBody":
+            type: "object"
+            properties:
+                "contract":
+                    oneOf:
+                        - {"$ref": "#/components/schemas/ContractSubmissionErc1155"}
+                        - {"$ref": "#/components/schemas/ContractSubmissionErc20"}
+                        - {"$ref": "#/components/schemas/ContractSubmissionErc721"}
+                        - {"$ref": "#/components/schemas/ContractSubmissionUnknown"}
+                    discriminator:
+                        propertyName: "ercType"
+                        mapping:
+                            "UNKNOWN": "#/components/schemas/ContractSubmissionUnknown"
+                            "ERC-1155": "#/components/schemas/ContractSubmissionErc1155"
+                            "ERC-20": "#/components/schemas/ContractSubmissionErc20"
+                            "ERC-721": "#/components/schemas/ContractSubmissionErc721"
+            required:
+                - "contract"
+        "UpdateContractResponse":
+            type: "object"
+            properties:
+                "contract":
+                    oneOf:
+                        - {"$ref": "#/components/schemas/UnknownContract"}
+                        - {"$ref": "#/components/schemas/Erc20Contract"}
+                        - {"$ref": "#/components/schemas/Erc721Contract"}
+                        - {"$ref": "#/components/schemas/Erc1155Contract"}
+                    discriminator:
+                        propertyName: "ercType"
+                        mapping:
+                            "UNKNOWN": "#/components/schemas/UnknownContract"
+                            "ERC-20": "#/components/schemas/Erc20Contract"
+                            "ERC-721": "#/components/schemas/Erc721Contract"
+                            "ERC-1155": "#/components/schemas/Erc1155Contract"
+            required:
+                - "contract"
         "GlacierApiFeature":
             type: "string"
             enum:
@@ -10083,6 +10410,69 @@ components:
             enum:
                 - "failed"
                 - "success"
+        "RpcSuccessResponseDto":
+            type: "object"
+            properties:
+                "jsonrpc":
+                    type: "string"
+                "id":
+                    oneOf:
+                        - type: "string"
+                        - type: "number"
+                "result":
+                    type: "object"
+            required:
+                - "jsonrpc"
+                - "result"
+        "RpcErrorDto":
+            type: "object"
+            properties:
+                "code":
+                    type: "number"
+                "message":
+                    type: "string"
+                "data":
+                    type: "object"
+            required:
+                - "code"
+                - "message"
+        "RpcErrorResponseDto":
+            type: "object"
+            properties:
+                "jsonrpc":
+                    type: "string"
+                "id":
+                    oneOf:
+                        - type: "string"
+                        - type: "number"
+                "error": {"$ref": "#/components/schemas/RpcErrorDto"}
+            required:
+                - "jsonrpc"
+                - "error"
+        "RpcRequestBodyDto":
+            type: "object"
+            properties:
+                "method":
+                    type: "string"
+                "params":
+                    oneOf:
+                        - type: "array"
+                          items:
+                            oneOf:
+                                - type: "string"
+                                - type: "number"
+                                - type: "object"
+                                  additionalProperties: true
+                        - type: "object"
+                          additionalProperties: true
+                "id":
+                    oneOf:
+                        - type: "string"
+                        - type: "number"
+                "jsonrpc":
+                    type: "string"
+            required:
+                - "method"
     parameters:
         "ChainId":
             name: "chainId"

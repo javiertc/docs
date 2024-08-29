@@ -1,15 +1,9 @@
-speakeasyVersion: 1.383.0
+speakeasyVersion: 1.378.0
 sources:
     avalanche-sdk:
         sourceNamespace: avalanche-sdk
         sourceRevisionDigest: sha256:6fb7bf9f16972b89b45abbe0b0adf2286c8981448c8aa546db6813892c46ec72
         sourceBlobDigest: sha256:e8530a8dc4f17af50cbeb48a5fd82dd370a857f72b59c4d49ec7727af2025060
-        tags:
-            - latest
-    data-api:
-        sourceNamespace: data-api
-        sourceRevisionDigest: sha256:af5314aa69aafc67b833ee6a4274fb7da472071bb677b79c3e67fade6df2975e
-        sourceBlobDigest: sha256:c8449063df603c963684d80fa5cd1276635047556a42dbc9e13c54379c3999f1
         tags:
             - latest
     glacier-api:
@@ -23,12 +17,12 @@ workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
     sources:
-        data-api:
+        avalanche-sdk:
             inputs:
-                - location: https://glacier-api.avax.network/api-json
+                - location: https://51ba-2405-201-3027-2887-41ce-a5b-9add-5061.ngrok-free.app/api-json
             overlays:
-                - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
-            output: data-api/data-api.yaml
+                - location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk-ts-code-samples
+            output: avalanche-sdk.yaml
             registry:
-                location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
+                location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk
     targets: {}
