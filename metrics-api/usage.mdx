@@ -85,7 +85,7 @@ curl -H "Content-Type: Application/json" \
 #### Page Token Structure
 The `nextPageToken` is a UUID-based token provided in the response when additional pages of data are available. This token serves as a pointer to the next set of data.
 
-- **UUID Generation**: The `nextPageToken` is generated uniquely for each pagination scenario, ensuring security and minimizing predictability.
+- **UUID Generation**: The `nextPageToken` is generated uniquely for each pagination scenario, ensuring security and ensuring predictability.
 - **Expiration**: The token is valid for 24 hours from the time it is generated. After this period, the token will expire, and a new request starting from the initial page will be required.
 - **Presence**: The token is only included in the response when there is additional data available. If no more data exists, the token will not be present.
 

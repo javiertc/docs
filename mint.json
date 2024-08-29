@@ -292,28 +292,13 @@
     {
       "group": "API Reference",
       "pages": [
-        {
-          "group": "Health Check",
-          "icon": "heart-pulse",
-          "pages": ["metrics-api/health-check/get-the-health-of-the-service"]
-        },
-        {
-          "group": "EVM Chains",
-          "icon": "link",
-          "pages": [
-            "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
-            "metrics-api/evm-chains/get-chain-information-for-supported-blockchain"
-          ]
-        },
-        {
-          "group": "Chain Metrics",
-          "icon": "chart-line",
-          "pages": [
-            "metrics-api/chain-metrics/get-metrics-for-evm-chains",
-            "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
-            "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet"
-          ]
-        }
+        "metrics-api/health-check/get-the-health-of-the-service",
+        "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
+        "metrics-api/evm-chains/get-chain-information-for-supported-blockchain",
+        "metrics-api/chain-metrics/get-metrics-for-evm-chains",
+        "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
+        "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet",
+        "metrics-api/looking-glass/get-nft-holders-by-contract-address"
       ]
     },
     {
