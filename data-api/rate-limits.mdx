@@ -11,7 +11,7 @@ The maximum rate-limiting score for a user depends on their subscription level a
 
 Subscription Level	Per Minute Limit	Per Day Limit
 | Subscription Level | Per Minute Limit | Per Day Limit |
-| ------------------ | ---------------- | ------------- |
+| :------------------ | :---------------- | :------------- |
 | Free               | 8,000            | 2,00,000      |
 | Base               | 10,000           | 3,750,000     |
 | Growth             | 14,000           | 11,200,000    |
@@ -22,7 +22,7 @@ To update your subscription level use the [AvaCloud Portal](https://app.avacloud
 ## Rate Limit Categories ##
 The keys and values for each weight are as follows:
 | Weight | Value |
-| ------ | ----- |
+| :------ | :----- |
 | Free   | 1     |
 | Small  | 10    |
 | Medium | 20    |
@@ -34,7 +34,7 @@ The keys and values for each weight are as follows:
 The weights for each route are defined in the table below:
 
 | Endpoint                                                              | Method | Weight | Value |
-| --------------------------------------------------------------------- | ------ | ------ | ----- |
+|:--------------------------------------------------------------------- | :------ | :------ | :----- |
 | `/v1/chains`                                                          | GET    | Free   | 1     |
 | `/v1/chains/{chainId}`                                                | GET    | Free   | 1     |
 | `/v1/chains/{chainId}/blocks`                                         | GET    | Small  | 10    |

@@ -1,12 +1,13 @@
 ---
-title: AvaCloud APIs
-description: 'All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code.'
+title: AvaCloud Developer Documentation
 mode: 'wide'
 ---
 
+Streamline your development across 50+ Layer 1 blockchains with our comprehensive SDKs, API references, guides, and tutorials.
+
 <CardGroup cols={2}>
   <Card
-    title="Web3 Data API"
+    title="Data API"
     icon="database"
     href="/data-api/"
   >
@@ -27,10 +28,33 @@ mode: 'wide'
    Monitor real-time events on the Avalanche C-Chain and L1s.
   </Card>
   <Card
-    title="Avalanche SDK"
+    title="Avacloud SDK"
     icon="code"
-    href="/avalanche-sdk/"
+    href="/avacloud-sdk/"
   >
     The Avalanche SDK offers all APIs, allowing developers to build and scale dApps with just a few lines of code.
   </Card>
 </CardGroup>
+
+All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code.
+```javascript
+import { AvacloudSDK } from "@avalabs/avacloud-sdk";
+
+const AvacloudSDK = new AvacloudSDK({
+    glacierApiKey: "<YOUR_API_KEY_HERE>",
+    chainId: "43114",
+    network: "mainnet",
+});
+
+async function run() {
+    const result = await AvacloudSDK.glacier.glacier.evm.blocks.getLatestBlocks({
+      pageSize: 10,
+    });
+
+    // Handle the result
+    console.log(JSON.stringify(result, null, 2));
+}
+
+run();
+
+```

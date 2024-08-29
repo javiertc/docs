@@ -4,22 +4,22 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-### Primary Network ###
+### Primary Network
 Avalanche is a heterogeneous network of blockchains. As opposed to homogeneous networks, where all applications reside in the same chain, heterogeneous networks allow separate chains to be created for different applications. The Primary Network is a special Subnet that runs three blockchains:
 
-### The Contract Chain (C-Chain) ###
+### The Contract Chain (C-Chain)
 The C-Chain is an implementation of the Ethereum Virtual Machine (EVM). The primary network endpoints only provide information related to C-Chain atomic memory balances and import/export transactions. For additional data, please reference the EVM APIs.
 
-### The Platform Chain (P-Chain) ###
+### The Platform Chain (P-Chain)
 The P-Chain is responsible for all validator and Subnet-level operations. The P-Chain supports the creation of new blockchains and Subnets, the addition of validators to Subnets, staking operations, and other platform-level operations.
 
-### The Exchange Chain (X-Chain) ###
+### The Exchange Chain (X-Chain)
 The X-Chain is responsible for operations on digital smart assets known as Avalanche Native Tokens. A smart asset is a representation of a real-world resource (for example, equity, or a bond) with sets of rules that govern its behavior, like "can’t be traded until tomorrow." The X-Chain supports the creation and trade of Avalanche Native Tokens.
-| Feature      | Description |
-| ------------ | ----------- |
-| **Chains**   | Utilize this endpoint to retrieve the Primary Network chains that an address has transaction history associated with. |
-| **Blocks**   | Blocks are the container for transactions executed on the Primary Network. Retrieve the latest blocks, a specific block by height or hash, or a list of blocks proposed by a specified NodeID on Primary Network chains. |
-| **Vertices** | Prior to Avalanche Cortina (v1.10.0), the X-Chain functioned as a DAG with vertices rather than blocks. These endpoints allow developers to retrieve historical data related to that period of chain history. Retrieve the latest vertices, a specific vertex, or a list of vertices at a specific height from the X-Chain. |
+| Feature       | Description |
+| :------------ | :----------- |
+| **Chains**    | Utilize this endpoint to retrieve the Primary Network chains that an address has transaction history associated with. |
+| **Blocks**    | Blocks are the container for transactions executed on the Primary Network. Retrieve the latest blocks, a specific block by height or hash, or a list of blocks proposed by a specified NodeID on Primary Network chains. |
+| **Vertices**  | Prior to Avalanche Cortina (v1.10.0), the X-Chain functioned as a DAG with vertices rather than blocks. These endpoints allow developers to retrieve historical data related to that period of chain history. Retrieve the latest vertices, a specific vertex, or a list of vertices at a specific height from the X-Chain. |
 | **Transactions** | Transactions are a user's primary form of interaction with a chain and provide details around their on-chain activity, including staking-related behavior. Retrieve a list of the latest transactions, a specific transaction, a list of active staking transactions for a specified address, or a list of transactions associated with a provided asset id from Primary Network chains. |
 | **UTXOs** | UTXOs are fundamental elements that denote the funds a user has available. Get a list of UTXOs for provided addresses from the Primary Network chains. |
 | **Balances** | User balances are an essential function of the blockchain. Retrieve balances related to the X and P-Chains, as well as atomic memory balances for the C-Chain. |
@@ -27,14 +27,14 @@ The X-Chain is responsible for operations on digital smart assets known as Avala
 | **Assets** | Get asset details corresponding to the given asset id on the X-Chain. |
 
 
-### EVM ###
+### EVM
 The C-Chain is an instance of the Coreth Virtual Machine, and many Avalanche subnets are instances of the Subnet-EVM, which is a Virtual Machine (VM) that defines the Subnet Contract Chains. Subnet-EVM is a simplified version of Coreth VM (C-Chain).
 | Feature      | Description |
-| ------------ | ----------- |
+| :------------ | :----------- |
 | **Chains**   | There are a number of chains supported by Glacier. These endpoints can be used to understand which chains are included/indexed as part of the API and retrieve information related to a specific chain. |
 | **Blocks**   | Blocks are the container for transactions executed within the EVM. Retrieve the latest blocks or a specific block by height or hash. |
 | **Transactions** | Transactions are a user's primary form of interaction with a chain and provide details around their on-chain activity. These endpoints can be used to retrieve information related to specific transaction details, internal transactions, contract deployments, specific token standard transfers, and more! |
 | **Balances** | User balances are an essential function of the blockchain. Easily retrieve native token, collectible, and fungible token balances related to an EVM chain with these endpoints. |
 
-### Operations ###
+### Operations
 The Operations API allows users to easily access their on-chain history by creating transaction exports returned in a CSV format. This API supports EVMs as well as non-EVM Primary Network chains.

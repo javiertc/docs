@@ -53,7 +53,7 @@
     },
     {
       "name": "Avacloud SDK",
-      "url": "avalanche-sdk"
+      "url": "avacloud-sdk"
     },
     {
       "name": "Changelog",
@@ -338,13 +338,13 @@
     {
       "group": "Get Started",
       "pages": [
-        "avalanche-sdk/quickstart",
-        "avalanche-sdk/authentication",
-        "avalanche-sdk/global-parameters",
-        "avalanche-sdk/retries",
-        "avalanche-sdk/pagination",
-        "avalanche-sdk/error",
-        "avalanche-sdk/custom-http"
+        "avacloud-sdk/quickstart",
+        "avacloud-sdk/authentication",
+        "avacloud-sdk/global-parameters",
+        "avacloud-sdk/retries",
+        "avacloud-sdk/pagination",
+        "avacloud-sdk/error",
+        "avacloud-sdk/custom-http"
       ]
     },
     {
