@@ -44,12 +44,12 @@
       "url": "data-api"
     },
     {
-      "name": "Metrics API",
-      "url": "metrics-api"
-    },
-    {
       "name": "Webhooks API",
       "url": "webhooks-api"
+    },
+    {
+      "name": "Metrics API",
+      "url": "metrics-api"
     },
     {
       "name": "Avacloud SDK",
@@ -85,8 +85,8 @@
     {
       "group": "Get Started",
       "pages": [
-        "data-api/quickstart",
         "data-api/features",
+        "data-api/quickstart",
         "data-api/usage",
         "data-api/rate-limits"
       ]
@@ -284,26 +284,6 @@
     {
       "group": "Get Started",
       "pages": [
-        "metrics-api/quickstart",
-        "metrics-api/features",
-        "metrics-api/usage"
-      ]
-    },
-    {
-      "group": "API Reference",
-      "pages": [
-        "metrics-api/health-check/get-the-health-of-the-service",
-        "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
-        "metrics-api/evm-chains/get-chain-information-for-supported-blockchain",
-        "metrics-api/chain-metrics/get-metrics-for-evm-chains",
-        "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
-        "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet",
-        "metrics-api/looking-glass/get-nft-holders-by-contract-address"
-      ]
-    },
-    {
-      "group": "Get Started",
-      "pages": [
         "webhooks-api/overview",
         "webhooks-api/getting-started",
         "webhooks-api/signature",
@@ -333,6 +313,26 @@
         "webhooks-api/webhooks/list-adresses-by-webhook",
         "webhooks-api/webhooks/remove-addresses-from-webhook",
         "webhooks-api/webhooks/add-addresses-to-webhook"
+      ]
+    },
+    {
+      "group": "Get Started",
+      "pages": [
+        "metrics-api/features",
+        "metrics-api/quickstart",
+        "metrics-api/usage"
+      ]
+    },
+    {
+      "group": "API Reference",
+      "pages": [
+        "metrics-api/health-check/get-the-health-of-the-service",
+        "metrics-api/evm-chains/get-a-list-of-supported-blockchains",
+        "metrics-api/evm-chains/get-chain-information-for-supported-blockchain",
+        "metrics-api/chain-metrics/get-metrics-for-evm-chains",
+        "metrics-api/chain-metrics/get-rolling-window-metrics-for-evm-chains",
+        "metrics-api/chain-metrics/get-staking-metrics-for-a-given-subnet",
+        "metrics-api/looking-glass/get-nft-holders-by-contract-address"
       ]
     },
     {
