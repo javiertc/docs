@@ -1,12 +1,12 @@
 workflowVersion: 1.0.0
 speakeasyVersion: latest
 sources:
-    avalanche-sdk:
+    data-api:
         inputs:
-            - location: https://51ba-2405-201-3027-2887-41ce-a5b-9add-5061.ngrok-free.app/api-json
+            - location: https://glacier-api.avax.network/api-json
         overlays:
-            - location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk-ts-code-samples
-        output: avalanche-sdk.yaml
+            - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
+        output: data-api/data-api.yaml
         registry:
-            location: registry.speakeasyapi.dev/avalabs/avalabs/avalanche-sdk
+            location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
 targets: {}
