@@ -1,60 +1,87 @@
 ---
 title: AvaCloud Developer Documentation
-mode: 'wide'
+mode: "custom"
 ---
 
-Streamline your development across 100+ Layer 1 blockchains with our comprehensive SDKs, API references, guides, and tutorials.
-
-<CardGroup cols={2}>
-  <Card
-    title="Data API"
-    icon="database"
-    href="/data-api/"
-  >
-     Retrieve data from multiple L1s with a few lines of code.
-  </Card>
-  <Card
-    title="Metrics APIs"
-    icon="chart-line"
-    href="/metrics-api/"
-  >
-    Data lake-powered service providing aggregated metrics for dApps.
-  </Card>
-  <Card
-    title="Webhooks API"
-    icon="webhook"
-    href="/webhooks-api/"
-  >
-   Monitor real-time events on the Avalanche C-Chain and L1s.
-  </Card>
-  <Card
-    title="Avacloud SDK"
-    icon="code"
-    href="/avacloud-sdk/"
-  >
-    The Avalanche SDK offers all APIs, allowing developers to build and scale dApps with just a few lines of code.
-  </Card>
-</CardGroup>
-
-All the data you need, all in one place. Supercharge your dApps with scalable, reliable endpoints in just a few lines of code.
-```javascript
-import { AvacloudSDK } from "@avalabs/avacloud-sdk";
-
-const AvacloudSDK = new AvacloudSDK({
-    glacierApiKey: "<YOUR_API_KEY_HERE>",
-    chainId: "43114",
-    network: "mainnet",
-});
-
-async function run() {
-    const result = await AvacloudSDK.glacier.glacier.evm.blocks.getLatestBlocks({
-      pageSize: 10,
-    });
-
-    // Handle the result
-    console.log(JSON.stringify(result, null, 2));
+export function openSearch() {
+    document.getElementById("search-bar-entry").click();
 }
 
-run();
+<div className="relative w-full flex items-center justify-center" style={{ height: '24rem', overflow: 'hidden'}}>
+  <div className="absolute inset-0 bg-primary dark:bg-primary-light" style={{opacity: 0.05 }}></div>
+  <div style={{ position: 'absolute', textAlign: 'center', padding: '0 1rem' }}>
+    <div
+      className="text-gray-900 dark:text-gray-200"
+      style={{
+       fontWeight: '600',
+       fontSize: '28px',
+       margin: '0',
+      }}
+    >
+    </div>
+    <div class="flex flex-col items-center justify-center">
+      <span class="font-bold text-5xl py-7 dark:text-white">AvaCloud Developer Hub</span>
+    </div>
 
-```
+    <p
+      className="prose prose-gray dark:prose-invert"
+      style={{
+        marginTop: '1rem',
+       fontWeight: '400',
+       fontSize: '16px',
+       maxWidth: '42rem'
+      }}
+    >
+      Streamline your development across 100+ Layer 1 blockchains with our comprehensive SDKs, API references, guides, and tutorials.
+    </p>
+
+    <div className="flex items-center justify-center">
+    <button
+      type="button"
+      className="hidden w-full lg:flex items-center text-sm leading-6 rounded-lg py-1.5 pl-2.5 pr-3 shadow-sm text-gray-400 dark:text-white/50 bg-background-light dark:bg-background-dark dark:brightness-[1.1] dark:ring-1 dark:hover:brightness-[1.25] ring-1 ring-gray-400/20 hover:ring-gray-600/25 dark:ring-gray-600/30 dark:hover:ring-gray-500/30 focus:outline-primary"
+      id="home-search-entry"
+      style={{
+        marginTop: '2rem',
+        maxWidth: '28rem',
+      }}
+      onClick={openSearch}
+    >
+      <svg
+        className="h-4 w-4 ml-1.5 mr-3 flex-none bg-gray-500 hover:bg-gray-600 dark:bg-white/50 dark:hover:bg-white/70"
+        style={{
+         maskImage:
+           'url("https://mintlify.b-cdn.net/v6.5.1/solid/magnifying-glass.svg")',
+         maskRepeat: 'no-repeat',
+         maskPosition: 'center center',
+        }}
+      />
+
+      Search or ask
+    </button>
+    </div>
+
+  </div>
+</div>
+
+<div className="max-w-6xl mx-auto px-12 mt-12">
+<div class="flex flex-col items-center justify-center">
+    <span class="font-bold text-2xl py-7 dark:text-white">Get started with family of APIs</span>
+</div>
+
+<CardGroup cols={2}>
+    <Card title="Data API" icon="database" href="/data-api/">
+        Retrieve data from multiple L1s with a few lines of code.
+    </Card>
+    <Card title="Metrics APIs" icon="chart-line" href="/metrics-api/">
+        Data lake-powered service providing aggregated metrics for dApps.
+    </Card>
+    <Card title="Webhooks API" icon="webhook" href="/webhooks-api/">
+        Monitor real-time events on the Avalanche C-Chain and L1s.
+    </Card>
+    <Card title="Avacloud SDK" icon="code" href="/avacloud-sdk/">
+        The Avalanche SDK offers all APIs, allowing developers to build and
+        scale dApps with just a few lines of code.
+    </Card>
+</CardGroup>
+
+</div>
