@@ -38,6 +38,9 @@
     "name": "Dashboard",
     "url": "https://app.avacloud.io/"
   },
+  "primaryTab": {
+    "name": "Welcome"
+  },
   "tabs": [
     {
       "name": "Data API",
