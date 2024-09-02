@@ -1,4 +1,4 @@
-speakeasyVersion: 1.383.0
+speakeasyVersion: 1.385.0
 sources:
     avalanche-sdk:
         sourceNamespace: avalanche-sdk
@@ -8,14 +8,20 @@ sources:
             - latest
     data-api:
         sourceNamespace: data-api
-        sourceRevisionDigest: sha256:af5314aa69aafc67b833ee6a4274fb7da472071bb677b79c3e67fade6df2975e
-        sourceBlobDigest: sha256:c8449063df603c963684d80fa5cd1276635047556a42dbc9e13c54379c3999f1
+        sourceRevisionDigest: sha256:39fa7d97b6eaa0c2759104e2c3e26f96d3e48bdf84697a503de0bd95b2a1029c
+        sourceBlobDigest: sha256:8440f36974cff97a204f97823c5680a0e6de866b34d0dede567064493492765b
         tags:
             - latest
     glacier-api:
         sourceNamespace: glacier-api
         sourceRevisionDigest: sha256:71248e70dcddb6998042883a393167603b6b1bad9ed2425a8459d4a89003a3fa
         sourceBlobDigest: sha256:4ce081e450276bacfffb6e3802908e3ec17d8de62c9a17737d75947067a74777
+        tags:
+            - latest
+    metrics-api:
+        sourceNamespace: metrics-api
+        sourceRevisionDigest: sha256:347016954f38ef80631ae78b3bb614396757de47eb45ba11349277086488e978
+        sourceBlobDigest: sha256:5f0f4b9728478f4f96d5f152ebb29ba18829ef66938aeb509df26d7ad444cf93
         tags:
             - latest
 targets: {}
@@ -31,4 +37,12 @@ workflow:
             output: data-api/data-api.yaml
             registry:
                 location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
+        metrics-api:
+            inputs:
+                - location: https://popsicle-api.avax.network/api-json
+            overlays:
+                - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
+            output: metrics-api/metrics-api.yaml
+            registry:
+                location: registry.speakeasyapi.dev/avalabs/avalabs/metrics-api
     targets: {}
