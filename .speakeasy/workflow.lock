@@ -8,8 +8,8 @@ sources:
             - latest
     data-api:
         sourceNamespace: data-api
-        sourceRevisionDigest: sha256:39fa7d97b6eaa0c2759104e2c3e26f96d3e48bdf84697a503de0bd95b2a1029c
-        sourceBlobDigest: sha256:8440f36974cff97a204f97823c5680a0e6de866b34d0dede567064493492765b
+        sourceRevisionDigest: sha256:c5b3b2bc2c165b9dfbff1e2c41063ea0b1367490a07bd15c06debb4f83ef6971
+        sourceBlobDigest: sha256:356c3746dfc5a932c1afb90e2506d91a350ba0b5bedb6fe32fc45cab79ed0626
         tags:
             - latest
     glacier-api:
@@ -20,7 +20,7 @@ sources:
             - latest
     metrics-api:
         sourceNamespace: metrics-api
-        sourceRevisionDigest: sha256:347016954f38ef80631ae78b3bb614396757de47eb45ba11349277086488e978
+        sourceRevisionDigest: sha256:b85dfb252133d68197c95e72868a619af8328f24c9d195afcc2783b38dff0038
         sourceBlobDigest: sha256:5f0f4b9728478f4f96d5f152ebb29ba18829ef66938aeb509df26d7ad444cf93
         tags:
             - latest
@@ -31,15 +31,16 @@ workflow:
     sources:
         data-api:
             inputs:
-                - location: https://glacier-api.avax.network/api-json
+                - location: https://c6cd-2405-201-3027-2887-c59f-283b-9808-8aac.ngrok-free.app/api-json
             overlays:
+                - location: overlay/data-api-overlay.yaml
                 - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
             output: data-api/data-api.yaml
             registry:
                 location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
         metrics-api:
             inputs:
-                - location: https://popsicle-api.avax.network/api-json
+                - location: https://e4db-2405-201-3027-2887-c59f-283b-9808-8aac.ngrok-free.app/api-json
             overlays:
                 - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
             output: metrics-api/metrics-api.yaml
