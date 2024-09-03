@@ -5,8 +5,17 @@ sources:
         inputs:
             - location: https://glacier-api.avax.network/api-json
         overlays:
+            - location: overlay/data-api-overlay.yaml
             - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
         output: data-api/data-api.yaml
         registry:
             location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
+    metrics-api:
+        inputs:
+            - location: https://popsicle-api.avax.network/api-json
+        overlays:
+            - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
+        output: metrics-api/metrics-api.yaml
+        registry:
+            location: registry.speakeasyapi.dev/avalabs/avalabs/metrics-api
 targets: {}

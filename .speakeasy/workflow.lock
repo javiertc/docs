@@ -1,4 +1,4 @@
-speakeasyVersion: 1.383.0
+speakeasyVersion: 1.385.0
 sources:
     avalanche-sdk:
         sourceNamespace: avalanche-sdk
@@ -8,14 +8,20 @@ sources:
             - latest
     data-api:
         sourceNamespace: data-api
-        sourceRevisionDigest: sha256:af5314aa69aafc67b833ee6a4274fb7da472071bb677b79c3e67fade6df2975e
-        sourceBlobDigest: sha256:c8449063df603c963684d80fa5cd1276635047556a42dbc9e13c54379c3999f1
+        sourceRevisionDigest: sha256:c5b3b2bc2c165b9dfbff1e2c41063ea0b1367490a07bd15c06debb4f83ef6971
+        sourceBlobDigest: sha256:356c3746dfc5a932c1afb90e2506d91a350ba0b5bedb6fe32fc45cab79ed0626
         tags:
             - latest
     glacier-api:
         sourceNamespace: glacier-api
         sourceRevisionDigest: sha256:71248e70dcddb6998042883a393167603b6b1bad9ed2425a8459d4a89003a3fa
         sourceBlobDigest: sha256:4ce081e450276bacfffb6e3802908e3ec17d8de62c9a17737d75947067a74777
+        tags:
+            - latest
+    metrics-api:
+        sourceNamespace: metrics-api
+        sourceRevisionDigest: sha256:b85dfb252133d68197c95e72868a619af8328f24c9d195afcc2783b38dff0038
+        sourceBlobDigest: sha256:5f0f4b9728478f4f96d5f152ebb29ba18829ef66938aeb509df26d7ad444cf93
         tags:
             - latest
 targets: {}
@@ -25,10 +31,19 @@ workflow:
     sources:
         data-api:
             inputs:
-                - location: https://glacier-api.avax.network/api-json
+                - location: https://c6cd-2405-201-3027-2887-c59f-283b-9808-8aac.ngrok-free.app/api-json
             overlays:
+                - location: overlay/data-api-overlay.yaml
                 - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
             output: data-api/data-api.yaml
             registry:
                 location: registry.speakeasyapi.dev/avalabs/avalabs/data-api
+        metrics-api:
+            inputs:
+                - location: https://e4db-2405-201-3027-2887-c59f-283b-9808-8aac.ngrok-free.app/api-json
+            overlays:
+                - location: registry.speakeasyapi.dev/avalabs/avalabs/avacloud-sdk-ts-code-samples
+            output: metrics-api/metrics-api.yaml
+            registry:
+                location: registry.speakeasyapi.dev/avalabs/avalabs/metrics-api
     targets: {}
