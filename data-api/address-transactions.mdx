@@ -4,4 +4,130 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-[TODO]
+This guide will walk you through how to retrieve all transactions associated with a specific wallet address on the Avalanche network using Avacloud’s API.
+
+### Step 1: Setup Avacloud
+
+First, ensure that you have set up Avacloud and have access to your API key. If you’re new to Avacloud, create an account and obtain an API key required to make requests.
+
+### Step 2: Get All Transactions for an Address
+
+To get all transactions for a specific address on the Avalanche network, you can use Avacloud’s API endpoint. You’ll need to specify the chainId and the address for which you want to retrieve the transactions.
+
+Here’s how you can do it in different programming languages:
+
+<CodeGroup>
+```javascript AvacloudSDK
+import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
+
+const avaCloudSDK = new AvaCloudSDK({
+  glacierApiKey: "<YOUR_API_KEY_HERE>",
+  chainId: "43114",
+  network: "mainnet",
+});
+
+async function run() {
+  const result = await avaCloudSDK.glacier.evm.transactions.listTransactions({
+    pageSize: 10,
+    startBlock: 6479329,
+    endBlock: 6479330,
+    address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+    sortOrder: "asc",
+  });
+
+  for await (const page of result) {
+    // Handle the page
+    console.log(page);
+  }
+}
+
+run();
+```
+```bash cUrl
+curl --request GET \
+  --url https://glacier-api.avax.network/v1/chains/{chainId}/addresses/{address}/transactions \
+  --header 'x-glacier-api-key: <api-key>'
+```
+</CodeGroup>
+### Step 3: Run the Script
+
+Once you’ve copied the code into your preferred programming environment, you can run it using the following commands:
+```bash
+node index.js
+```
+
+Example JSON Response
+
+After running the script, you should see a JSON response similar to this in your terminal:
+```json
+{
+  "transactions": [
+    {
+      "nativeTransaction": {
+        "blockNumber": "43281797",
+        "blockIndex": 3,
+        "blockHash": "0x85ad9ece9c384554f100318c7d88834ebacf5c9dd970d1406297eb4c90ee850f",
+        "txHash": "0x4dde404e7ac7fb9eb10ab780fba9715ef07105312aa3a6367cfc2322cbd352fe",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "92394",
+        "gasUsed": "61126",
+        "gasPrice": "26500000000",
+        "nonce": "16",
+        "blockTimestamp": 1711218299,
+        "from": {
+          "address": "0x5AEdcCaeCA2cb3f87a90713c83872f7515e19c90"
+        },
+        "to": {
+          "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+          "name": "TetherToken",
+          "symbol": "USDT",
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/4ac7cb0c-5260-473b-a4bc-b809801aa5da/49d45340a82166bdb26fce4d3e62ce65/43114-0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7.png"
+        },
+        "method": {
+          "callType": "CONTRACT_CALL",
+          "methodHash": "0xa9059cbb"
+        },
+        "value": "0"
+      },
+      "erc20Transfers": [
+        {
+          "from": {
+            "address": "0x5AEdcCaeCA2cb3f87a90713c83872f7515e19c90"
+          },
+          "to": {
+            "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+          },
+          "logIndex": 10,
+          "value": "400000",
+          "erc20Token": {
+            "ercType": "ERC-20",
+            "address": "0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7",
+            "name": "TetherToken",
+            "symbol": "USDT",
+            "decimals": 6,
+            "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/4ac7cb0c-5260-473b-a4bc-b809801aa5da/49d45340a82166bdb26fce4d3e62ce65/43114-0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7.png",
+            "price": {
+              "value": 0.999579,
+              "currencyCode": "usd"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "nextPageToken": "75e2aeb3-7198-44a3-ab81-7b286a63e960"
+}
+```
+
+Congratulations 🎉
+
+You’ve successfully retrieved all transactions for a wallet address on the Avalanche network using Avacloud! With just a few lines of code, you can now access this data easily and integrate it into your projects.
+
+### API Reference
+
+To learn more about the endpoint and optional parameters, visit the Avacloud API documentation.
+
+### Support
+
+If you encounter any issues while following this tutorial, feel free to reach out to the Avacloud community or support team for assistance.

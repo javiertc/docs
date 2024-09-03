@@ -63,25 +63,36 @@ export function openSearch() {
   </div>
 </div>
 
-<div className="max-w-6xl mx-auto px-12 mt-12">
-<div class="flex flex-col items-center justify-center">
-    <span class="font-bold text-2xl py-7 dark:text-white">Discover our suite of APIs</span>
-</div>
+<div className="max-w-6xl mx-auto px-12 mt-3">
+    <div class="flex flex-col items-center justify-center">
+        <span class="font-bold text-2xl py-7 dark:text-white">Popular Tutorials</span>
+        <div class="search-buttons">
+            <a href="/data-api/address-transactions">Get transaction history</a>
+            <a href="/webhooks-api/push-notifications">Send push notification</a>
+            <a href="webhooks-api/erc20-transfers">Track ERC20 transfers</a>
+            <a href="#">Token prices</a>
+            <a href="#">Get NFTs</a>
+        </div>
+    </div>
 
-<CardGroup cols={2}>
-    <Card title="Data API" icon="database" href="/data-api/">
-        Retrieve data from multiple L1s with a few lines of code.
-    </Card>
-    <Card title="Metrics APIs" icon="chart-line" href="/metrics-api/">
-        Data lake-powered service providing aggregated metrics for dApps.
-    </Card>
-    <Card title="Webhooks API" icon="webhook" href="/webhooks-api/">
-        Monitor real-time events on the Avalanche C-Chain and L1s.
-    </Card>
-    <Card title="Avacloud SDK" icon="code" href="/avacloud-sdk/">
-        The Avalanche SDK offers all APIs, allowing developers to build and
-        scale dApps with just a few lines of code.
-    </Card>
-</CardGroup>
+    <div class="flex flex-col items-center justify-center mt-6">
+        <span class="font-bold text-2xl py-7 dark:text-white">Discover our suite of APIs</span>
+    </div>
+
+    <CardGroup cols={2}>
+        <Card title="Data API" icon="database" href="/data-api/">
+            Retrieve data from multiple L1s with a few lines of code.
+        </Card>
+        <Card title="Metrics APIs" icon="chart-line" href="/metrics-api/">
+            Data lake-powered service providing aggregated metrics for dApps.
+        </Card>
+        <Card title="Webhooks API" icon="webhook" href="/webhooks-api/">
+            Monitor real-time events on the Avalanche C-Chain and L1s.
+        </Card>
+        <Card title="Avacloud SDK" icon="code" href="/avacloud-sdk/">
+            The Avalanche SDK offers all APIs, allowing developers to build and
+            scale dApps with just a few lines of code.
+        </Card>
+    </CardGroup>
 
 </div>

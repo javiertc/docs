@@ -26,3 +26,34 @@
 .text-lg p {
     font-size: 1.025rem;
 }
+
+.search-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.search-buttons a {
+    /* background-color: #2a2a2a; */
+    /* color: #5a8dfd; */
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 30px;
+    display: inline-block;
+    font-size: 16px;
+    border: 1px solid #7979797a; /* Solid gray border */
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border 0.3s ease,
+        font-weight 0.3s ease;
+    font-weight: 500; /* Normal weight */
+}
+
+.search-buttons a:hover {
+    background-color: #3e6bf9;
+    color: #ffffff;
+    border: 1px solid #5a8dfd;
+    font-weight: 500; /* Slightly bolder */
+}

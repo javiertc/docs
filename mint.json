@@ -298,9 +298,9 @@
       "group": "Tutorials",
       "pages": [
         "webhooks-api/multiple",
-        "webhooks-api/erc20",
-        "webhooks-api/erc721",
-        "webhooks-api/push"
+        "webhooks-api/erc20-transfers",
+        "webhooks-api/erc721-transfers",
+        "webhooks-api/push-notifications"
       ]
     },
     {
