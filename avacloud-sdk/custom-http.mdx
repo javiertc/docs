@@ -9,8 +9,8 @@ The `HTTPClient` constructor takes an optional `fetcher` argument that can be us
 The following example shows how to use the `beforeRequest` hook to to add a custom header and a timeout to requests and how to use the `requestError` hook to log errors:
 
 ```javascript
-import { AvalancheSDK } from "@avalabs/avalanche-sdk";
-import { HTTPClient } from "@avalabs/avalanche-sdk/lib/http";
+import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
+import { HTTPClient } from "@avalabs/avacloud-sdk/lib/http";
 
 const httpClient = new HTTPClient({
   // fetcher takes a function that has the same signature as native `fetch`.
@@ -36,5 +36,5 @@ httpClient.addHook("requestError", (error, request) => {
   console.groupEnd();
 });
 
-const sdk = new AvalancheSDK({ httpClient });
+const sdk = new AvaCloudSDK({ httpClient });
 ```

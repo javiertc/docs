@@ -6,7 +6,7 @@
     "light": "/logo/avacloud-light.svg"
   },
   "theme": "prism",
-  "favicon": "./favicon.svg",
+  "favicon": "/favicon.png",
   "colors": {
     "primary": "#3E6BF9",
     "light": "#3E6BF9",
@@ -55,7 +55,7 @@
       "url": "metrics-api"
     },
     {
-      "name": "Avacloud SDK",
+      "name": "AvaCloud SDK",
       "url": "avacloud-sdk"
     },
     {
@@ -88,9 +88,9 @@
     {
       "group": "Get Started",
       "pages": [
-        "data-api/features",
-        "data-api/quickstart",
-        "data-api/usage",
+        "data-api/overview",
+        "data-api/getting-started",
+        "data-api/usage-guide",
         "data-api/rate-limits"
       ]
     },
@@ -321,9 +321,9 @@
     {
       "group": "Get Started",
       "pages": [
-        "metrics-api/features",
-        "metrics-api/quickstart",
-        "metrics-api/usage"
+        "metrics-api/overview",
+        "metrics-api/getting-started",
+        "metrics-api/usage-guide"
       ]
     },
     {
@@ -341,7 +341,7 @@
     {
       "group": "Get Started",
       "pages": [
-        "avacloud-sdk/quickstart",
+        "avacloud-sdk/getting-started",
         "avacloud-sdk/authentication",
         "avacloud-sdk/global-parameters",
         "avacloud-sdk/retries",
