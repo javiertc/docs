@@ -1,15 +1,15 @@
 ---
 title: 'Changelog'
 icon: 'newspaper'
-mode: "wide"
 ---
 
 
-### New endpoint - Get subnet details by subnetID ###
-August 6th, 2024 <br />
+
+### August 6th, 2024
+**New endpoint - Get subnet details by subnetID**
 **Get Subnet Details by ID**
 
-Endpoint: GET https://glacier-api.avax.network/v1/networks/{network}/subnets/{subnetId}
+Endpoint: `GET https://glacier-api.avax.network/v1/networks/{network}/subnets/{subnetId}`
 
 This endpoint retrieves detailed information about a specific subnet registered on the network. By providing the network type (mainnet or a testnet) and the subnet ID, you can fetch various details including the subnet’s creation timestamp, ownership information, and associated blockchains.
 
@@ -46,20 +46,20 @@ Example response:
 }
 ```
 
+### Aug  20th, 2024
+**Webhook service launched**
 
-### Webhook service launched ###
-Aug  20th, 2024 <br />
 With Glacier Webhooks, you can monitor real-time events on the Avalanche C-chain and L1s. For example, you can monitor smart contract events, track NFT transfers, and observe wallet-to-wallet transactions.
 
 ![webhooks](/images/webhooks.png)
 
-### Key Features: ###
+**Key Features:** <br />
 - **Real-time notifications**: Receive immediate updates on specified on-chain activities without polling.
 - **Customizable**: Specify the desired event type to listen for, customizing notifications according to individual requirements.
 - **Secure**: Employ shared secrets and signature-based verification to guarantee that notifications originate from a trusted source.
 - **Broad Coverage**: Support for C-chain mainnet, testnet, and L1s within the Avalanche ecosystem, ensuring wide-ranging monitoring capabilities.
 
-### Use cases ###
+**Use cases** <br />
 - **NFT Marketplace Transactions**: Get alerts for NFT minting, transfers, auctions, bids, sales, and other interactions within NFT marketplaces.
 - **Wallet Notifications**: Receive alerts when an address performs actions such as sending, receiving, swapping, or burning assets.
 - **DeFi Activities**: Receive notifications for various DeFi activities such as liquidity provisioning, yield farming, borrowing, lending, and liquidations.
