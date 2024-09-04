@@ -4,4 +4,317 @@ icon: 'wallet'
 mode: 'wide'
 ---
 
-[TODO]
+This guide will walk you through the process of listing all ERC-20 transfers associated with a specific wallet address on the DFK L1 network using the Data API.
+
+### Step 1: Set Up AvaCloud
+
+First, ensure that you have set up [AvaCloud](https://app.avacloud.io/) and have access to your API key. If you’re new to Avacloud, create an account and obtain an API key.
+
+### Step 2: Retrieve the Native Balance of an Address
+
+To obtain a list of ERC-20 transfers you can use the [List ERC-20 transfers](/data-api/evm-transactions/list-erc-20-transfers) endpoint. You’ll need to specify the `chainId` and the `address` for which you want to retrieve the balance.
+
+Here’s how you can do it:
+
+
+<CodeGroup>
+```javascript AvacloudSDK
+import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
+
+const avaCloudSDK = new AvaCloudSDK({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  chainId: "53935",
+  network: "mainnet",
+});
+
+async function run() {
+  const result = await avaCloudSDK.data.evm.transactions.listErc20Transactions({
+    pageSize: 10,
+    address: "0x1137643FE14b032966a59Acd68EBf3c1271Df316",
+  });
+
+  // Handle the result
+  console.log(JSON.stringify(result, null, 2));
+}
+
+run();
+```
+```bash cURL
+curl --request GET \
+  --url https://glacier-api.avax.network/v1/chains/43114/addresses/0x71C7656EC7ab88b098defB751B7401B5f6d8976F/transactions:listErc20 \
+  --header 'x-glacier-api-key: <api-key>'
+```
+</CodeGroup>
+
+Response
+```json
+{
+  "result": {
+    "nextPageToken": "f8dba2d2-b128-41ae-be6b-5a6f76ca5141",
+    "transactions": [
+      {
+        "blockNumber": "36952303",
+        "blockTimestamp": 1725460283,
+        "blockHash": "0xb18c21736207b15efa0bdc1377c9ffde8c95bd20bd8b7422cc5eaefad41375a6",
+        "txHash": "0x5d88c29e5d10d60a56f98d44883b6f8a82461dfe4c7b15e4c5726d626c41a484",
+        "from": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "to": {
+          "address": "0x6ef29103747EdFA66bcb3237D5AE4f773a5B9beE"
+        },
+        "logIndex": 21,
+        "value": "16800000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952300",
+        "blockTimestamp": 1725460277,
+        "blockHash": "0xf0c3017e0428ae2442fb0162d5ed0bd3c735ab25b5e85e94b0fe3cb97a914ede",
+        "txHash": "0xea4aa8e2fa0b78aaf624252b762a32bcf5361ce441a7bc464edfd0bae3302a0e",
+        "from": {
+          "address": "0x3f04bAD8c90984e16e51656270f82D6C3B73a571"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 83,
+        "value": "1350000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952297",
+        "blockTimestamp": 1725460271,
+        "blockHash": "0x1e9a118d60b931b7968c9bb5fbf615cecf14a1e0c15ab0ee4bdbca69150ef3f9",
+        "txHash": "0x21fcc2430fe3d437bbb3147a877552a94a33bd02d29eb23731f26b80674fd78c",
+        "from": {
+          "address": "0x3f04bAD8c90984e16e51656270f82D6C3B73a571"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 197,
+        "value": "1350000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952297",
+        "blockTimestamp": 1725460271,
+        "blockHash": "0x1e9a118d60b931b7968c9bb5fbf615cecf14a1e0c15ab0ee4bdbca69150ef3f9",
+        "txHash": "0x5ec8a1e8ad42e2190633da46c69529ecf4d8c6c85d9df74db641e6f2a8a5e383",
+        "from": {
+          "address": "0x3f04bAD8c90984e16e51656270f82D6C3B73a571"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 183,
+        "value": "1350000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952297",
+        "blockTimestamp": 1725460271,
+        "blockHash": "0x1e9a118d60b931b7968c9bb5fbf615cecf14a1e0c15ab0ee4bdbca69150ef3f9",
+        "txHash": "0x643b4c239820667452fd5c38d2f1f980cbbb8ccd120682e76b21fcd742d43cb3",
+        "from": {
+          "address": "0x3f04bAD8c90984e16e51656270f82D6C3B73a571"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 167,
+        "value": "1350000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952294",
+        "blockTimestamp": 1725460263,
+        "blockHash": "0xa15acd24ce980ce5ffcf12daf6ce538fd4f9896634b4a3f48c599c77192577cf",
+        "txHash": "0x370627ddb71c638305a8cce92ecae69423115668039902f83aa4fd3a25983ee0",
+        "from": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "to": {
+          "address": "0x6ef29103747EdFA66bcb3237D5AE4f773a5B9beE"
+        },
+        "logIndex": 246,
+        "value": "18000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952294",
+        "blockTimestamp": 1725460263,
+        "blockHash": "0xa15acd24ce980ce5ffcf12daf6ce538fd4f9896634b4a3f48c599c77192577cf",
+        "txHash": "0xe8b58b9a413de06d4dbfebc226e3607f34a5071e7a0a315478a37d5ad76a7026",
+        "from": {
+          "address": "0xC475ecce788ECBF4b6E78BC501f4B1Ce73c46232"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 38,
+        "value": "300000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952294",
+        "blockTimestamp": 1725460263,
+        "blockHash": "0xa15acd24ce980ce5ffcf12daf6ce538fd4f9896634b4a3f48c599c77192577cf",
+        "txHash": "0xe8b58b9a413de06d4dbfebc226e3607f34a5071e7a0a315478a37d5ad76a7026",
+        "from": {
+          "address": "0xC475ecce788ECBF4b6E78BC501f4B1Ce73c46232"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 22,
+        "value": "300000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952294",
+        "blockTimestamp": 1725460263,
+        "blockHash": "0xa15acd24ce980ce5ffcf12daf6ce538fd4f9896634b4a3f48c599c77192577cf",
+        "txHash": "0xe8b58b9a413de06d4dbfebc226e3607f34a5071e7a0a315478a37d5ad76a7026",
+        "from": {
+          "address": "0xC475ecce788ECBF4b6E78BC501f4B1Ce73c46232"
+        },
+        "to": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "logIndex": 6,
+        "value": "300000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      },
+      {
+        "blockNumber": "36952292",
+        "blockTimestamp": 1725460259,
+        "blockHash": "0x2b59f6314f27da325237afd457757cbd48302b7e292cc711f9b8d20cb5befea6",
+        "txHash": "0xc6a98299de6cb14b8dccaeb9204fca3c93966f5a6da77d6dd799aa94e72f51ff",
+        "from": {
+          "address": "0x1137643FE14b032966a59Acd68EBf3c1271Df316"
+        },
+        "to": {
+          "address": "0x063DEB90452247AEcE9Be5F6c076446b3ca01910"
+        },
+        "logIndex": 19,
+        "value": "5000000000000000",
+        "erc20Token": {
+          "address": "0x04b9dA42306B023f3572e106B11D82aAd9D32EBb",
+          "name": "Crystals",
+          "symbol": "CRYSTAL",
+          "decimals": 18,
+          "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/0212db53-26f6-4e56-99a2-05526ce32816/4a62bf9e90f401ea69fcf89496cbe96a/53935-0x04b9dA42306B023f3572e106B11D82aAd9D32EBb.png",
+          "ercType": "ERC-20",
+          "price": {
+            "currencyCode": "usd",
+            "value": 0.00719546
+          }
+        }
+      }
+    ]
+  }
+}
+```
+
+Congratulations 🎉 You’ve successfully retrieved the list of ERC-20 transfers for a wallet address with just a few lines of code using the AvaCloud Data API!​

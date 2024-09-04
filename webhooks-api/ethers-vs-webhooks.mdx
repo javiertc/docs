@@ -1,14 +1,11 @@
 ---
 title: 'Ethers vs Webhooks'
 icon: 'swords-laser'
-mode: 'wide'
 ---
 
 Reacting to real-time events from Avalanche smart contracts allows for immediate responses and automation, improving user experience and streamlining application functionality. It ensures that applications stay synchronized with the blockchain state.
 
 This article demonstrates how to monitor smart contract events using Ethers.js and Avacloud Webhooks. The comparison shows that Avacloud webhooks are easier and faster to integrate, delivering better uptime and reliability.
-
-
 
 ## Why webhooks
 
@@ -102,8 +99,6 @@ Get undecoded raw data and then you need to call other API endpoints to get more
 <Tip> **Webhooks offer key advantages over manual parsing** <br />
 They provide real-time updates, reduce resource use, and enhance efficiency, allowing users to focus on building around these events rather than parsing data.</Tip>
 
-
-
 Listening to the same contract using AvaCloud Webhooks
 ```json
 {
@@ -191,7 +186,6 @@ Listening to the same contract using AvaCloud Webhooks
 }
 ```
 
-
 ### Listening to native transactions
 
 To monitor native transactions for specific addresses in an Ethereum blockchain, you need to follow these steps:
@@ -201,19 +195,17 @@ To monitor native transactions for specific addresses in an Ethereum blockchain,
 3. Check If from or to Matches Your List of Addresses: Filter the transactions to see if either the sender (from) or the recipient (to) matches your list of addresses.
 4. Handle Transactions: Implement logic to handle the transactions that match your criteria.
 
-
-
 ### How Avacloud webhooks are better Than Ethers.js
 
 Ethers.js is a good alternative for setting blockchain listeners to monitor smart contract events. However, if you start working with this library, you will quickly notice its limitations.
 
-| Feature                    | Ethers/web3.js | Webhooks |
-|----------------------------|----------------|----------|
-| Real-time events           | Yes            | Yes      |
-| Enriched payload           | No             | Yes      |
-| 100% reliability           | No             | Yes      |
-| Multiple addresses         | No             | Yes      |
-| Listen to wallet addresses | No             | Yes      |
+| Feature                     | Ethers/web3.js  | Webhooks |
+|:----------------------------|:----------------|:----------|
+| Real-time events            | Yes             | Yes      |
+| Enriched payload            | No              | Yes      |
+| 100% reliability            | No              | Yes      |
+| Multiple addresses          | No              | Yes      |
+| Listen to wallet addresses  | No              | Yes      |
 
 ### Resume capabilities ###
 

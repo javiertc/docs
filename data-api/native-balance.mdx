@@ -4,22 +4,49 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-**Step 1: Set Up AvaCloud**
+This guide will walk you through how to get the native balance associated with a specific wallet address on the C-chain network using the Data API.
 
-Begin by reading the article Setting Up AvaCloud: Getting Started and ensure you complete all the steps outlined there. It is essential to finish this setup before proceeding with the rest of this guide.
+### Step 1: Set Up AvaCloud
 
-**Step 2: Retrieve the Native Balance of an Address**
+First, ensure that you have set up [AvaCloud](https://app.avacloud.io/) and have access to your API key. If you’re new to Avacloud, create an account and obtain an API key.
 
-To obtain the native balance of a wallet address, AvaCloud offers the Get Native Token Balance API endpoint.
+### Step 2: Retrieve the Native Balance of an Address
 
-You’ll need two parameters: chainId and address.
+To obtain the native balance of a wallet address you can use [Get native token balance](/data-api/evm-balances/get-native-token-balance) endpoint. You’ll need to specify the `chainId` and the `address` for which you want to retrieve the balance.
 
-Once you have both the address and chain ID, use the following command:
+Here’s how you can do it:
 
-```bash
-curl --request GET \
-  --url https://glacier-api.avax.network/v1/chains/{chainId}/addresses/{address}/balances:getNative
+
+<CodeGroup>
+```javascript AvacloudSDK
+import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
+
+const avaCloudSDK = new AvaCloudSDK({
+  apiKey: "<YOUR_API_KEY_HERE>",
+  chainId: "43114",
+  network: "mainnet",
+});
+
+async function run() {
+  const result = await avaCloudSDK.data.evm.balances.getNativeBalance({
+    blockNumber: "6479329",
+    address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
+    currency: "usd",
+  });
+
+  // Handle the result
+  console.log(JSON.stringify(result, null, 2));
+}
+
+run();
 ```
+```bash cURL
+curl --request GET \
+   --url https://glacier-api.avax.network/v1/chains/43114/addresses/0x71C7656EC7ab88b098defB751B7401B5f6d8976F/balances:getNative \
+  --header 'x-glacier-api-key: <api-key>'
+```
+</CodeGroup>
+
 
 Response
 ```json
@@ -42,7 +69,4 @@ Response
   }
 }
 ```
-
-Success! 🎉
-
-You’ve successfully retrieved the native balance of a wallet address using just a few lines of code with the AvaCloud Data API!
+Congratulations 🎉  You’ve successfully retrieved the native balance of a wallet address using just a few lines of code with the AvaCloud Data API!

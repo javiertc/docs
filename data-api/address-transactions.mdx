@@ -4,59 +4,53 @@ icon: 'ballot-check'
 mode: 'wide'
 ---
 
-This guide will walk you through how to retrieve all transactions associated with a specific wallet address on the Avalanche network using Avacloud’s API.
+This guide will walk you through how to retrieve all transactions associated with a specific wallet address on the C-chain network using the Data API.
 
 ### Step 1: Setup Avacloud
 
-First, ensure that you have set up Avacloud and have access to your API key. If you’re new to Avacloud, create an account and obtain an API key required to make requests.
+First, ensure that you have set up [AvaCloud](https://app.avacloud.io/) and have access to your API key. If you’re new to Avacloud, create an account and obtain an API key.
 
 ### Step 2: Get All Transactions for an Address
 
-To get all transactions for a specific address on the Avalanche network, you can use Avacloud’s API endpoint. You’ll need to specify the chainId and the address for which you want to retrieve the transactions.
+To get all transactions for a specific address you can use [list transactions](/data-api/evm-transactions/list-transactions) endpoint. You’ll need to specify the `chainId` and the `address` for which you want to retrieve the transactions.
 
-Here’s how you can do it in different programming languages:
+Here’s how you can do it:
 
 <CodeGroup>
 ```javascript AvacloudSDK
 import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
 
 const avaCloudSDK = new AvaCloudSDK({
-  glacierApiKey: "<YOUR_API_KEY_HERE>",
+  glacierApiKey: "<YOUR_API_KEY>",
   chainId: "43114",
   network: "mainnet",
 });
 
 async function run() {
-  const result = await avaCloudSDK.glacier.evm.transactions.listTransactions({
+  const result = await avaCloudSDK.data.evm.transactions.listTransactions({
     pageSize: 10,
-    startBlock: 6479329,
-    endBlock: 6479330,
     address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
     sortOrder: "asc",
   });
 
-  for await (const page of result) {
-    // Handle the page
-    console.log(page);
-  }
+  console.log(JSON.stringify(result, null, 2));
+
 }
 
 run();
 ```
-```bash cUrl
+```bash cURL
 curl --request GET \
-  --url https://glacier-api.avax.network/v1/chains/{chainId}/addresses/{address}/transactions \
+  --url https://glacier-api.avax.network/v1/chains/43114/addresses/0x71C7656EC7ab88b098defB751B7401B5f6d8976F/transactions \
   --header 'x-glacier-api-key: <api-key>'
 ```
 </CodeGroup>
-### Step 3: Run the Script
+### Step 3: Run the script
 
-Once you’ve copied the code into your preferred programming environment, you can run it using the following commands:
+Once you’ve copied the code into your preferred developer tool, you can run it using the following commands:
 ```bash
 node index.js
 ```
-
-Example JSON Response
 
 After running the script, you should see a JSON response similar to this in your terminal:
 ```json
@@ -108,26 +102,295 @@ After running the script, you should see a JSON response similar to this in your
             "decimals": 6,
             "logoUri": "https://images.ctfassets.net/gcj8jwzm6086/4ac7cb0c-5260-473b-a4bc-b809801aa5da/49d45340a82166bdb26fce4d3e62ce65/43114-0x9702230A8Ea53601f5cD2dc00fDBc13d4dF4A8c7.png",
             "price": {
-              "value": 0.999579,
+              "value": 0.999436,
               "currencyCode": "usd"
             }
           }
         }
       ]
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "26002777",
+        "blockIndex": 0,
+        "blockHash": "0x83c8d5bb1b885d1efaf116da6a9d776088d19c9fdfd06a71d16156c80b339261",
+        "txHash": "0xc96e00ce365f2fae67f940985fc8b9af97a051f5bf0f29c891205ca1ae3287d4",
+        "txStatus": "1",
+        "txType": 0,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "27500000000",
+        "nonce": "11",
+        "blockTimestamp": 1675878866,
+        "from": {
+          "address": "0x444782F140e31B5687d166FA077C3049062911Ba"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "3005020000000000"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "25037477",
+        "blockIndex": 6,
+        "blockHash": "0x048a00b6e40ffdb2b3a4b596cfa6ee2e4479c53099f23afed3145569d2cbfb02",
+        "txHash": "0x4c29443c0d8f08d2be1cc6c20bc7a1a05211b91340550edf26d0bd9196c593a3",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "31500",
+        "gasUsed": "21000",
+        "gasPrice": "26500000000",
+        "nonce": "2590",
+        "blockTimestamp": 1673917315,
+        "from": {
+          "address": "0x1C42F2fCc9c7F4a30dC15ACf9C047DDeCF39de06"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "150000000000000000"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "23826282",
+        "blockIndex": 0,
+        "blockHash": "0x96caae2487206cba32000e49e2f593406981fcf26cffd646da92661ce907fc62",
+        "txHash": "0x7aaa1beff9466f8e099b8a25e37b1f748b2623856f65cd479bd721e983ee84ac",
+        "txStatus": "1",
+        "txType": 0,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "31250000000",
+        "nonce": "0",
+        "blockTimestamp": 1671433238,
+        "from": {
+          "address": "0x6B69f15BCEeB1a2326De003ca97b1F61AE57b774"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "57557140067572377"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "23249650",
+        "blockIndex": 4,
+        "blockHash": "0xf0161747357482ce078d398f55e9413ce4a4e21611b20f5488b74e4d181536bd",
+        "txHash": "0x760ac8c147a9ec795a7695f3c3383408890f53fc23e39f43f938f513910a9612",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "26843560317",
+        "nonce": "9",
+        "blockTimestamp": 1670254442,
+        "from": {
+          "address": "0xcd661208b0138A9468D5B6E3E119215e5aA14c15"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "9942019140711807"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "21989662",
+        "blockIndex": 8,
+        "blockHash": "0x9eefeb39b435c625cf659674df2a0d56b85b2efffb677edd8a4365d7fc39dd68",
+        "txHash": "0x0e1f96c84ddc07d74a19ee748381048e1876bf8a706e5e8f917897f6761eef51",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "2146729",
+        "gasUsed": "1431153",
+        "gasPrice": "26000000000",
+        "nonce": "4",
+        "blockTimestamp": 1667660826,
+        "from": {
+          "address": "0x55906a1d87f7426497fDBa498B8F5edB1C741cef"
+        },
+        "to": {
+          "address": "0xF9d922c055A3f1759299467dAfaFdf43BE844f7a"
+        },
+        "method": {
+          "callType": "CONTRACT_CALL",
+          "methodHash": "0x74a72e41"
+        },
+        "value": "0"
+      },
+      "erc20Transfers": [
+        {
+          "from": {
+            "address": "0xF9d922c055A3f1759299467dAfaFdf43BE844f7a"
+          },
+          "to": {
+            "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+          },
+          "logIndex": 33,
+          "value": "30000000000000",
+          "erc20Token": {
+            "ercType": "ERC-20",
+            "address": "0xF9d922c055A3f1759299467dAfaFdf43BE844f7a",
+            "name": "Minereum AVAX",
+            "symbol": "MNEAV",
+            "decimals": 8
+          }
+        }
+      ]
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "17768295",
+        "blockIndex": 3,
+        "blockHash": "0x55f934b32644b9c6d53283ac9275747929779e38ad0687d9c8e895a8699986b2",
+        "txHash": "0x8138fea77335fd208ec7618a67fdd3a104577e8e89a6d0665407202163ff9d07",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "77829",
+        "gasUsed": "51886",
+        "gasPrice": "26500000000",
+        "nonce": "6",
+        "blockTimestamp": 1658716784,
+        "from": {
+          "address": "0x7e31af176DA39a9986c8f5c7632178B4AcF0c868"
+        },
+        "to": {
+          "address": "0x4cb70De91e6Bb85fB132880D5Af3418477a90083"
+        },
+        "method": {
+          "callType": "CONTRACT_CALL",
+          "methodHash": "0xa9059cbb"
+        },
+        "value": "0"
+      },
+      "erc20Transfers": [
+        {
+          "from": {
+            "address": "0x7e31af176DA39a9986c8f5c7632178B4AcF0c868"
+          },
+          "to": {
+            "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+          },
+          "logIndex": 6,
+          "value": "50000000000000000",
+          "erc20Token": {
+            "ercType": "ERC-20",
+            "address": "0x4cb70De91e6Bb85fB132880D5Af3418477a90083",
+            "name": "Woodcut Token",
+            "symbol": "WOOD",
+            "decimals": 18
+          }
+        }
+      ]
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "17328312",
+        "blockIndex": 0,
+        "blockHash": "0x96c1554115937f2ea11efac5d08c9a844925dace3ff4b62679fd3183fc8c8aa9",
+        "txHash": "0xdcc0cf0982aed703d72da1fefd686e97fa549bd3717972a547440a3abc384bfb",
+        "txStatus": "1",
+        "txType": 0,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "30000000000",
+        "nonce": "3",
+        "blockTimestamp": 1657827243,
+        "from": {
+          "address": "0x6ae30413ddA067f8BB2D904d630081784f4c2a3E"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "3694737000000000"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "13923067",
+        "blockIndex": 17,
+        "blockHash": "0x22c7369d613a8ee600fa8dd0a178c575139150d18d04220633cc682465774536",
+        "txHash": "0x9a8822afb1f082f1250ac1876223384fac8370f9dd1f785ce54c3acbcaf7341a",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "72048389636",
+        "nonce": "1",
+        "blockTimestamp": 1650975303,
+        "from": {
+          "address": "0xffc83E3777DB33ff4af4A3fB72056fF3bDF02e47"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "31240000000000000"
+      }
+    },
+    {
+      "nativeTransaction": {
+        "blockNumber": "13922287",
+        "blockIndex": 19,
+        "blockHash": "0x42c6a341b8d5794b83026cd1aa63606cbeb917b2e58a017b48c8d24b69fe788c",
+        "txHash": "0x12681543ad3f41cb2146f959528fbedea3250afbed14f152cf0ec87bce4c69c2",
+        "txStatus": "1",
+        "txType": 2,
+        "gasLimit": "21000",
+        "gasUsed": "21000",
+        "gasPrice": "69081184341",
+        "nonce": "9",
+        "blockTimestamp": 1650973723,
+        "from": {
+          "address": "0xB30228A0FfB21f68a144Dd4f3af703ce975Cf490"
+        },
+        "to": {
+          "address": "0x71C7656EC7ab88b098defB751B7401B5f6d8976F"
+        },
+        "method": {
+          "callType": "NATIVE_TRANSFER",
+          "methodHash": "",
+          "methodName": "Native Transfer"
+        },
+        "value": "33305869282988272"
+      }
     }
   ],
-  "nextPageToken": "75e2aeb3-7198-44a3-ab81-7b286a63e960"
+  "nextPageToken": "5b7c89d0-1f1b-45d1-a539-57b8e70d034f"
 }
 ```
 
-Congratulations 🎉
-
-You’ve successfully retrieved all transactions for a wallet address on the Avalanche network using Avacloud! With just a few lines of code, you can now access this data easily and integrate it into your projects.
-
-### API Reference
-
-To learn more about the endpoint and optional parameters, visit the Avacloud API documentation.
-
-### Support
-
-If you encounter any issues while following this tutorial, feel free to reach out to the Avacloud community or support team for assistance.
+Congratulations 🎉  You’ve successfully retrieved all transactions for a wallet address on the C-chain using the Data API! With just a few lines of code, you can now access this data easily and integrate it into your projects.
