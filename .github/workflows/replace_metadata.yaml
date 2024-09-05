@@ -1,0 +1,54 @@
+name: Override Code Sample Metadata
+
+on:
+  pull_request:
+    types: [opened, synchronize]
+
+jobs:
+  replace_text:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Check out the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Define the files array and apply the regex patterns
+      - name: Replace lang and label in multiple files
+        run: |
+          # Define the list of files (both JSON and YAML)
+          files=(metrics-api/metrics-api.yaml data-api/data-api.yaml)
+
+          # Loop through JSON files and apply the first regex pattern
+          for file in "${files[@]}"; do
+            if [[ $file == *.json ]]; then
+              sed -i 's/"lang":\s*"typescript",\s*"label":\s*".*?"/"lang": "javascript", "label": "JavaScript"/g' "$file"
+            fi
+          done
+
+          # Loop through YAML files and apply the second regex pattern
+          for file in "${files[@]}"; do
+            if [[ $file == *.yaml ]]; then
+              sed -i '/- lang:\s*typescript\s*\n\s*label:/ {
+                N;
+                s/- lang:\s*typescript\s*\n\s*label:\s*\S+/- lang: javascript\n  label: JavaScript/;
+              }' "$file"
+            fi
+          done
+
+      # Step 3: Check if there are changes, and commit only if necessary
+      - name: Commit and Push Changes if needed
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          
+          # Check if there are changes
+          if git diff --quiet; then
+            echo "No changes to commit"
+          else
+            git add .
+            git commit -m "Auto replace lang and label text in multiple files"
+            git push
+          fi
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
