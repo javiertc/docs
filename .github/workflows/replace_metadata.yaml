@@ -29,13 +29,11 @@ jobs:
               cp "$file" "$file.bak"
 
               # Apply the JSON regex pattern
-              sed -i 's/"lang":\s*"typescript",\s*"label":\s*".*?"/"lang": "javascript", "label": "JavaScript"/g' "$file"
+              sed -i 's/"lang": "typescript", "label": "[^"]*"/"lang": "javascript", "label": "JavaScript"/' "$file"
 
               # Apply the YAML regex pattern
-              sed -i '/- lang:\s*typescript\s*\n\s*label:/ {
-                N;
-                s/- lang:\s*typescript\s*\n\s*label:\s*\S+/- lang: javascript\n  label: JavaScript/;
-              }' "$file"
+              sed -i 's/- lang: typescript/- lang: javascript/' "$file"
+              sed -i '/- lang: javascript/{n; s/^\( *\)label: [^\s\n]*/\1label: JavaScript/}' "$file"
 
               # Check if there are changes compared to the backup
               if ! diff "$file" "$file.bak" > /dev/null; then
