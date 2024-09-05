@@ -29,10 +29,10 @@ jobs:
               cp "$file" "$file.bak"
 
               # Apply the JSON regex pattern
-              sed -i '' 's/"lang":\s*"typescript",\s*"label":\s*".*?"/"lang": "javascript", "label": "JavaScript"/g' "$file"
+              sed -i 's/"lang":\s*"typescript",\s*"label":\s*".*?"/"lang": "javascript", "label": "JavaScript"/g' "$file"
 
               # Apply the YAML regex pattern
-              sed -i '' '/- lang:\s*typescript\s*\n\s*label:/ {
+              sed -i '/- lang:\s*typescript\s*\n\s*label:/ {
                 N;
                 s/- lang:\s*typescript\s*\n\s*label:\s*\S+/- lang: javascript\n  label: JavaScript/;
               }' "$file"
