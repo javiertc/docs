@@ -5,7 +5,7 @@ paths:
             operationId: "metrics-health-check"
             x-speakeasy-group: "metrics.healthCheck"
             summary: "Get the health of the service"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.healthCheck.metricsHealthCheck();\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "check", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.healthCheck.metricsHealthCheck();\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             responses:
                 "200":
                     description: "The Health Check is successful"
@@ -98,7 +98,7 @@ paths:
             operationId: "listChains"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.evm.chains"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.evm.chains.listChains({\n    network: \"mainnet\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "listChains", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.evm.chains.listChains({\n    network: \"mainnet\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get a list of supported blockchains"
             description: "Get a list of Popsicle API supported blockchains."
             parameters:
@@ -167,7 +167,7 @@ paths:
             operationId: "getChain"
             x-speakeasy-group: "metrics.evm.chains"
             summary: "Get chain information for supported blockchain"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.evm.chains.getChain({});\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getChain", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.evm.chains.getChain({});\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Get chain information for Popsicle API supported blockchain."
             parameters:
                 - name: "chainId"
@@ -230,7 +230,7 @@ paths:
             operationId: "getEvmChainMetrics"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.chain.metrics"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getEvmChainMetrics({\n    metric: \"activeAddresses\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    timeInterval: \"day\",\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getEvmChainMetrics", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getEvmChainMetrics({\n    metric: \"activeAddresses\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    timeInterval: \"day\",\n    pageSize: 10,\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get metrics for EVM chains"
             description: "Gets metrics for an EVM chain over a specified time interval aggregated at the specified time-interval granularity."
             parameters:
@@ -338,7 +338,7 @@ paths:
             operationId: "getEvmChainRollingWindowMetrics"
             x-speakeasy-group: "metrics.chain.metrics"
             summary: "Get rolling window metrics for EVM chains"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getEvmChainRollingWindowMetrics({\n    metric: \"txCount\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getEvmChainRollingWindowMetrics", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getEvmChainRollingWindowMetrics({\n    metric: \"txCount\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Gets the rolling window metrics for an EVM chain for the last hour, day, month, year, and all time."
             parameters:
                 - name: "metric"
@@ -407,7 +407,7 @@ paths:
             operationId: "getStakingMetrics"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.chain.metrics"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getStakingMetrics({\n    metric: \"validatorCount\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getStakingMetrics", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.chain.metrics.getStakingMetrics({\n    metric: \"validatorCount\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get staking metrics for a given subnet"
             description: "Gets staking metrics for a given subnet."
             parameters:
@@ -515,7 +515,7 @@ paths:
             operationId: "getNftHoldersByContractAddress"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.lookingGlass"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getNftHoldersByContractAddress({\n    pageSize: 10,\n    address: \"0x7a420AEFF902AAa2c85a190D7B91Ce8BEFffFE14\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getNftHoldersByContractAddress", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getNftHoldersByContractAddress({\n    pageSize: 10,\n    address: \"0x7a420AEFF902AAa2c85a190D7B91Ce8BEFffFE14\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get NFT holders by contract address"
             description: "Get list of NFT holders and number of NFTs held by contract address."
             parameters:
@@ -602,9 +602,9 @@ paths:
             operationId: "getAddressesByBalanceOverTime"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.lookingGlass"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getAddressesByBalanceOverTime({\n    threshold: \"1000000\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getAddressesByBalanceOverTime", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getAddressesByBalanceOverTime({\n    threshold: \"1000000\",\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get addresses by balance over time"
-            description: "Get list of addresses and their latest balances  that have held more than a certain threshold of a given token during the specified time frame."
+            description: "Get list of addresses and their latest balances that have held more than a certain threshold of a given token during the specified time frame."
             parameters:
                 - name: "threshold"
                   required: true
@@ -712,7 +712,7 @@ paths:
             operationId: "getAddressesByBtcbBridged"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.lookingGlass"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getAddressesByBtcbBridged({\n    threshold: \"1000000\",\n    pageSize: 10,\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getAddressesByBtcbBridged", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getAddressesByBtcbBridged({\n    threshold: \"1000000\",\n    pageSize: 10,\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get addresses by BTCb bridged balance"
             description: "Get list of addresses and their net bridged amounts that have bridged more than a certain threshold."
             parameters:
@@ -792,9 +792,9 @@ paths:
             operationId: "getValidatorsByDateRange"
             x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
             x-speakeasy-group: "metrics.lookingGlass"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getValidatorsByDateRange({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n    network: \"mainnet\",\n  });\n\n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "getValidatorsByDateRange", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.getValidatorsByDateRange({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n    network: \"mainnet\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"}]
             summary: "Get addresses running validators during a given time frame"
-            description: "Get list of addresses and AddValidatorTx timestamps set to receive  awards for validation periods during the specified time frame."
+            description: "Get list of addresses and AddValidatorTx timestamps set to receive awards for validation periods during the specified time frame."
             parameters:
                 - name: "startTimestamp"
                   required: false
@@ -955,7 +955,7 @@ paths:
             x-speakeasy-name-override: "compositeQuery"
             x-speakeasy-group: "metrics.lookingGlass"
             summary: "Composite query"
-            x-codeSamples: [{"lang": "javascript", "label": "JavaScript", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.compositeQuery({\n    queries: [\n  \n    ],\n    operator: \"OR\",\n  });\n\n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
+            x-codeSamples: [{"lang": "typescript", "label": "compositeQueryV2", "source": "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.metrics.lookingGlass.compositeQuery({\n    queries: [\n  \n    ],\n    operator: \"OR\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"}]
             description: "Composite query to get list of addresses from multiple subqueries."
             requestBody:
                 required: true

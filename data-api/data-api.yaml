@@ -93,25 +93,9 @@ paths:
       tags:
         - "Health Check"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.healthCheck.dataHealthCheck();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: check
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.healthCheck.dataHealthCheck();\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}:reindex":
     post:
       operationId: "reindexNft"
@@ -187,9 +171,25 @@ paths:
       tags:
         - "NFTs"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  await avaCloudSDK.data.nfts.reindexNft({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n\n  \n}\n\nrun();"
+        - lang: typescript
+          label: reindexNft
+          source: |-
+            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
+
+            const avaCloudSDK = new AvaCloudSDK({
+              apiKey: "<YOUR_API_KEY_HERE>",
+              chainId: "43114",
+              network: "mainnet",
+            });
+
+            async function run() {
+              await avaCloudSDK.data.nfts.reindexNft({
+                address: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
+                tokenId: "145",
+              });
+            }
+
+            run();
   "/v1/chains/{chainId}/nfts/collections/{address}/tokens":
     get:
       operationId: "listTokens"
@@ -277,30 +277,9 @@ paths:
       tags:
         - "NFTs"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.nfts.listTokens({
-                pageSize: 10,
-                address: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listTokens
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.nfts.listTokens({\n    pageSize: 10,\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/nfts/collections/{address}/tokens/{tokenId}":
     get:
       operationId: "getTokenDetails"
@@ -386,28 +365,9 @@ paths:
       tags:
         - "NFTs"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.nfts.getTokenDetails({
-                address: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-                tokenId: "145",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getTokenDetails
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.nfts.getTokenDetails({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    tokenId: \"145\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/operations/{operationId}":
     get:
       operationId: "getOperationResult"
@@ -471,27 +431,9 @@ paths:
       tags:
         - "Operations"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.operations.getOperationResult({
-                operationId: "aa22054a-cb7c-4a4e-9b83-59f2ede74138",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getOperationResult
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.operations.getOperationResult({\n    operationId: \"aa22054a-cb7c-4a4e-9b83-59f2ede74138\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/operations/transactions:export":
     post:
       operationId: "postTransactionExportJob"
@@ -555,36 +497,9 @@ paths:
       tags:
         - "Operations"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.operations.postTransactionExportJob({
-                type: "TRANSACTION_EXPORT_PRIMARY_NETWORK_STAKING",
-                firstDate: "2023-05-01",
-                lastDate: "2023-05-02",
-                startDate: "2023-05-01",
-                endDate: "2023-05-02",
-                options: {
-                  includeChains: [
-                    "p-chain",
-                  ],
-                },
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: postTransactionExportJob
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.operations.postTransactionExportJob({\n    type: \"TRANSACTION_EXPORT_PRIMARY_NETWORK_STAKING\",\n    firstDate: \"2023-05-01\",\n    lastDate: \"2023-05-02\",\n    startDate: \"2023-05-01\",\n    endDate: \"2023-05-02\",\n    options: {\n      includeChains: [\n        \"p-chain\",\n      ],\n    },\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/transactions/{txHash}":
     get:
       operationId: "getTxByHash"
@@ -666,28 +581,9 @@ paths:
       tags:
         - "Primary Network Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.transactions.getTxByHash({
-                blockchainId: "p-chain",
-                txHash: "3P91K6nuDFvDodcRuJTsgdf9SvYe5pMiKk38HppsoeAiEztCP",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getTxByHash
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.transactions.getTxByHash({\n    blockchainId: \"p-chain\",\n    txHash: \"3P91K6nuDFvDodcRuJTsgdf9SvYe5pMiKk38HppsoeAiEztCP\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/transactions":
     get:
       operationId: "listLatestPrimaryNetworkTransactions"
@@ -814,37 +710,9 @@ paths:
       tags:
         - "Primary Network Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.transactions.listLatestPrimaryNetworkTransactions({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                txTypes: [
-                  "AddValidatorTx",
-                ],
-                startTimestamp: 1689541049,
-                endTimestamp: 1689800249,
-                pageSize: 10,
-                blockchainId: "p-chain",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listLatestPrimaryNetworkTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.transactions.listLatestPrimaryNetworkTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/transactions:listStaking":
     get:
       operationId: "listActivePrimaryNetworkStakingTransactions"
@@ -967,37 +835,9 @@ paths:
       tags:
         - "Primary Network Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.transactions.listActivePrimaryNetworkStakingTransactions({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                txTypes: [
-                  "AddValidatorTx",
-                ],
-                startTimestamp: 1689541049,
-                endTimestamp: 1689800249,
-                pageSize: 10,
-                blockchainId: "p-chain",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listActivePrimaryNetworkStakingTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.transactions.listActivePrimaryNetworkStakingTransactions({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/rewards:listPending":
     get:
       operationId: "listPendingPrimaryNetworkRewards"
@@ -1097,32 +937,9 @@ paths:
       tags:
         - "Primary Network Rewards"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.rewards.listPendingPrimaryNetworkRewards({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                pageSize: 10,
-                nodeIds: "NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listPendingPrimaryNetworkRewards
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.rewards.listPendingPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/rewards":
     get:
       operationId: "listHistoricalPrimaryNetworkRewards"
@@ -1228,33 +1045,9 @@ paths:
       tags:
         - "Primary Network Rewards"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.rewards.listHistoricalPrimaryNetworkRewards({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                pageSize: 10,
-                nodeIds: "NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs",
-                sortOrder: "asc",
-                currency: "usd",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listHistoricalPrimaryNetworkRewards
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.rewards.listHistoricalPrimaryNetworkRewards({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    currency: \"usd\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/utxos":
     get:
       operationId: "getUtxosByAddresses"
@@ -1368,32 +1161,9 @@ paths:
       tags:
         - "Primary Network UTXOs"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.utxos.getUtxosByAddresses({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                pageSize: 10,
-                blockchainId: "p-chain",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getUtxosByAddresses
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.utxos.getUtxosByAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/balances":
     get:
       operationId: "getBalancesByAddresses"
@@ -1480,29 +1250,9 @@ paths:
       tags:
         - "Primary Network Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.balances.getBalancesByAddresses({
-                blockTimestamp: 1599696000,
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-                blockchainId: "p-chain",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getBalancesByAddresses
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.balances.getBalancesByAddresses({\n    blockTimestamp: 1599696000,\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n    blockchainId: \"p-chain\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/blocks/{blockId}":
     get:
       operationId: "getBlockById"
@@ -1578,28 +1328,9 @@ paths:
       tags:
         - "Primary Network Blocks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.blocks.getBlockById({
-                blockchainId: "p-chain",
-                blockId: "5615di9ytxujackzaXNrVuWQy5y8Yrt8chPCscMr5Ku9YxJ1S",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getBlockById
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.blocks.getBlockById({\n    blockchainId: \"p-chain\",\n    blockId: \"5615di9ytxujackzaXNrVuWQy5y8Yrt8chPCscMr5Ku9YxJ1S\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/nodes/{nodeId}/blocks":
     get:
       operationId: "listPrimaryNetworkBlocksByNodeId"
@@ -1692,31 +1423,9 @@ paths:
       tags:
         - "Primary Network Blocks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.blocks.listPrimaryNetworkBlocksByNodeId({
-                pageSize: 10,
-                blockchainId: "p-chain",
-                nodeId: "NodeID-111111111111111111116DBWJs",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listPrimaryNetworkBlocksByNodeId
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.blocks.listPrimaryNetworkBlocksByNodeId({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/blocks":
     get:
       operationId: "listLatestPrimaryNetworkBlocks"
@@ -1802,30 +1511,9 @@ paths:
       tags:
         - "Primary Network Blocks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.blocks.listLatestPrimaryNetworkBlocks({
-                pageSize: 10,
-                blockchainId: "p-chain",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listLatestPrimaryNetworkBlocks
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.blocks.listLatestPrimaryNetworkBlocks({\n    pageSize: 10,\n    blockchainId: \"p-chain\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/vertices":
     get:
       operationId: "listLatestXChainVertices"
@@ -1911,30 +1599,9 @@ paths:
       tags:
         - "Primary Network Vertices"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.vertices.listLatestXChainVertices({
-                pageSize: 10,
-                blockchainId: "x-chain",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listLatestXChainVertices
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.vertices.listLatestXChainVertices({\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/vertices/{vertexHash}":
     get:
       operationId: "getVertexByHash"
@@ -2010,28 +1677,9 @@ paths:
       tags:
         - "Primary Network Vertices"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.vertices.getVertexByHash({
-                vertexHash: "haP1CW56cspZY7aEuqHNrtpvhqCaMTxQaYe6j5u2Mbn4L2Gqr",
-                blockchainId: "x-chain",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getVertexByHash
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.vertices.getVertexByHash({\n    vertexHash: \"haP1CW56cspZY7aEuqHNrtpvhqCaMTxQaYe6j5u2Mbn4L2Gqr\",\n    blockchainId: \"x-chain\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/vertices:listByHeight":
     get:
       operationId: "getVertexByHeight"
@@ -2131,32 +1779,9 @@ paths:
       tags:
         - "Primary Network Vertices"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.vertices.getVertexByHeight({
-                vertexHeight: 123,
-                pageSize: 10,
-                blockchainId: "x-chain",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getVertexByHeight
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.vertices.getVertexByHeight({\n    vertexHeight: 123,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}":
     get:
       operationId: "getAssetDetails"
@@ -2232,28 +1857,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.getAssetDetails({
-                blockchainId: "x-chain",
-                assetId: "th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getAssetDetails
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.getAssetDetails({\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains/{blockchainId}/assets/{assetId}/transactions":
     get:
       operationId: "listAssetTransactions"
@@ -2370,36 +1976,9 @@ paths:
       tags:
         - "Primary Network Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.transactions.listAssetTransactions({
-                txTypes: [
-                  "AddValidatorTx",
-                ],
-                startTimestamp: 1689541049,
-                endTimestamp: 1689800249,
-                pageSize: 10,
-                blockchainId: "x-chain",
-                assetId: "th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listAssetTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.transactions.listAssetTransactions({\n    txTypes: [\n      \"AddValidatorTx\",\n    ],\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    pageSize: 10,\n    blockchainId: \"x-chain\",\n    assetId: \"th5aLdWLi32yS9ED6uLGoMMubqHjzMsXhKWwzP6yZTYQKYzof\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/addresses:listChainIds":
     get:
       operationId: "getChainIdsForAddresses"
@@ -2469,27 +2048,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.getChainIdsForAddresses({
-                addresses: "avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getChainIdsForAddresses
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.getChainIdsForAddresses({\n    addresses: \"avax1h2ccj9f5ay5acl6tyn9mwmw32p8wref8vl8ctg\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}":
     get:
       operationId: "getNetworkDetails"
@@ -2552,25 +2113,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.getNetworkDetails({});
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getNetworkDetails
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.getNetworkDetails({});\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/blockchains":
     get:
       operationId: "listBlockchains"
@@ -2656,30 +2201,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.listBlockchains({
-                pageSize: 10,
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listBlockchains
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.listBlockchains({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/subnets":
     get:
       operationId: "listSubnets"
@@ -2765,30 +2289,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.listSubnets({
-                pageSize: 10,
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listSubnets
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.listSubnets({\n    pageSize: 10,\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/subnets/{subnetId}":
     get:
       operationId: "getSubnetById"
@@ -2858,27 +2361,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.getSubnetById({
-                subnetId: "11111111111111111111111111111111LpoYY",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getSubnetById
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.getSubnetById({\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/networks/{network}/validators":
     get:
       operationId: "listValidators"
@@ -3056,41 +2541,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.listValidators({
-                pageSize: 10,
-                nodeIds: "NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs",
-                sortOrder: "asc",
-                validationStatus: "completed",
-                minDelegationCapacity: "0",
-                maxDelegationCapacity: "720000000000000000",
-                minTimeRemaining: 0,
-                maxTimeRemaining: 2147483647,
-                minFeePercentage: 2,
-                maxFeePercentage: 100,
-                minUptimePerformance: 90,
-                maxUptimePerformance: 100,
-                subnetId: "11111111111111111111111111111111LpoYY",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listValidators
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.listValidators({\n    pageSize: 10,\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n    sortOrder: \"asc\",\n    validationStatus: \"completed\",\n    minDelegationCapacity: \"0\",\n    maxDelegationCapacity: \"720000000000000000\",\n    minTimeRemaining: 0,\n    maxTimeRemaining: 2147483647,\n    minFeePercentage: 2,\n    maxFeePercentage: 100,\n    minUptimePerformance: 90,\n    maxUptimePerformance: 100,\n    subnetId: \"11111111111111111111111111111111LpoYY\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/validators/{nodeId}":
     get:
       operationId: "getSingleValidatorDetails"
@@ -3189,32 +2642,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.getSingleValidatorDetails({
-                pageSize: 10,
-                nodeId: "NodeID-111111111111111111116DBWJs",
-                validationStatus: "completed",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getSingleValidatorDetails
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.getSingleValidatorDetails({\n    pageSize: 10,\n    nodeId: \"NodeID-111111111111111111116DBWJs\",\n    validationStatus: \"completed\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/networks/{network}/delegators":
     get:
       operationId: "listDelegators"
@@ -3320,33 +2750,9 @@ paths:
       tags:
         - "Primary Network"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.primaryNetwork.listDelegators({
-                pageSize: 10,
-                rewardAddresses: "P-avax1679zrp3z9mf7z4an42ddq47qzj36zv6ga20vwl,P-avax1s7kd0kfndlz6mh3l0etrrcmkg5y366k8e0s6cc",
-                sortOrder: "asc",
-                delegationStatus: "completed",
-                nodeIds: "NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listDelegators
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.primaryNetwork.listDelegators({\n    pageSize: 10,\n    rewardAddresses: \"P-avax1679zrp3z9mf7z4an42ddq47qzj36zv6ga20vwl,P-avax1s7kd0kfndlz6mh3l0etrrcmkg5y366k8e0s6cc\",\n    sortOrder: \"asc\",\n    delegationStatus: \"completed\",\n    nodeIds: \"NodeID-111111111111111111116DBWJs,NodeID-222222222222222222227DBWJs\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/apiUsageMetrics":
     get:
       operationId: "getApiUsageMetrics"
@@ -3400,10 +2806,10 @@ paths:
           description: "Filter data by request type."
           schema:
             enum:
-              - "Glacier API Request"
-              - "Glacier RPC Request"
+              - "data"
+              - "rpc"
             type: "string"
-        - name: "responseStatusCode"
+        - name: "responseCode"
           required: false
           in: "query"
           description: "Filter data by response status code."
@@ -3470,30 +2876,9 @@ paths:
       tags:
         - "Glacier API Usage Metrics"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.usageMetrics.getApiUsageMetrics({
-                startTimestamp: 1689541049,
-                endTimestamp: 1689800249,
-                timeInterval: "daily",
-                groupBy: "requestPath",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getApiUsageMetrics
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.usageMetrics.getApiUsageMetrics({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n    timeInterval: \"daily\",\n    groupBy: \"requestPath\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/apiLogs":
     get:
       operationId: "getApiLogs"
@@ -3536,10 +2921,10 @@ paths:
           description: "Filter data by request type."
           schema:
             enum:
-              - "Glacier API Request"
-              - "Glacier RPC Request"
+              - "data"
+              - "rpc"
             type: "string"
-        - name: "responseStatusCode"
+        - name: "responseCode"
           required: false
           in: "query"
           description: "Filter data by response status code."
@@ -3621,30 +3006,9 @@ paths:
       tags:
         - "Glacier API Usage Metrics"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.usageMetrics.getApiLogs({
-                startTimestamp: 1689541049,
-                endTimestamp: 1689800249,
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getApiLogs
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.usageMetrics.getApiLogs({\n    startTimestamp: 1689541049,\n    endTimestamp: 1689800249,\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/webhooks":
     post:
       operationId: "createWebhook"
@@ -3705,37 +3069,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.createWebhook({
-                url: "https://unrealistic-well-being.name",
-                chainId: "<value>",
-                eventType: "address_activity",
-                metadata: {
-                  addresses: [
-                    "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-                  ],
-                  eventSignatures: [
-                    "0x61cbb2a3dee0b6064c2e681aadd61677fb4ef319f0b547508d495626f5a62f64",
-                  ],
-                },
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: createWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.createWebhook({\n    url: \"https://unrealistic-well-being.name\",\n    chainId: \"<value>\",\n    eventType: \"address_activity\",\n    metadata: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n      eventSignatures: [\n        \"0x61cbb2a3dee0b6064c2e681aadd61677fb4ef319f0b547508d495626f5a62f64\",\n      ],\n    },\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
     get:
       operationId: "listWebhooks"
       x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
@@ -3814,30 +3150,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.listWebhooks({
-                pageSize: 10,
-                status: "active",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listWebhooks
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.listWebhooks({\n    pageSize: 10,\n    status: \"active\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/webhooks/{id}":
     get:
       operationId: "getWebhook"
@@ -3901,27 +3216,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.getWebhook({
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.getWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
     delete:
       operationId: "deactivateWebhook"
       x-speakeasy-group: "data.webhooks"
@@ -3984,27 +3281,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.deactivateWebhook({
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: deactivateWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.deactivateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
     patch:
       operationId: "updateWebhook"
       x-speakeasy-group: "data.webhooks"
@@ -4072,28 +3351,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.updateWebhook({
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-                updateWebhookRequest: {},
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: updateWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.updateWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    updateWebhookRequest: {},\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/webhooks:generateOrRotateSharedSecret":
     post:
       operationId: "generateSharedSecret"
@@ -4149,25 +3409,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.generateSharedSecret();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: generateSharedSecret
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.generateSharedSecret();\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/webhooks:getSharedSecret":
     get:
       operationId: "getSharedSecret"
@@ -4223,25 +3467,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.getSharedSecret();
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getSharedSecret
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.getSharedSecret();\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/webhooks/{id}/addresses":
     patch:
       operationId: "addAddressesToWebhook"
@@ -4310,32 +3538,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.addAddressesToWebhook({
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-                addressesChangeRequest: {
-                  addresses: [
-                    "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-                  ],
-                },
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: addAddressesToWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.addAddressesToWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
     delete:
       operationId: "removeAddressesFromWebhook"
       x-speakeasy-group: "data.webhooks"
@@ -4403,32 +3608,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.removeAddressesFromWebhook({
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-                addressesChangeRequest: {
-                  addresses: [
-                    "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-                  ],
-                },
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: removeAddressesFromWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.removeAddressesFromWebhook({\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n    addressesChangeRequest: {\n      addresses: [\n        \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n      ],\n    },\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
     get:
       operationId: "getAddressesFromWebhook"
       x-speakeasy-pagination: {"type": "cursor", "inputs": [{"name": "pageToken", "in": "parameters", "type": "cursor"}], "outputs": {"nextCursor": "$.nextPageToken"}}
@@ -4508,30 +3690,9 @@ paths:
       tags:
         - "Webhooks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.webhooks.getAddressesFromWebhook({
-                pageSize: 10,
-                id: "f33de69c-d13b-4691-908f-870d6e2e6b04",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getAddressesFromWebhook
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.webhooks.getAddressesFromWebhook({\n    pageSize: 10,\n    id: \"f33de69c-d13b-4691-908f-870d6e2e6b04\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/teleporter/messages/{messageId}":
     get:
       operationId: "getTeleporterMessage"
@@ -4605,27 +3766,9 @@ paths:
       tags:
         - "Teleporter"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.teleporter.getTeleporterMessage({
-                messageId: "acf1c8b06f9aec48e9fcbefbbe576ae8a7ca3b327fcae111396e7cc99956674d",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getTeleporterMessage
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.teleporter.getTeleporterMessage({\n    messageId: \"acf1c8b06f9aec48e9fcbefbbe576ae8a7ca3b327fcae111396e7cc99956674d\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/teleporter/messages":
     get:
       operationId: "listTeleporterMessages"
@@ -4739,34 +3882,9 @@ paths:
       tags:
         - "Teleporter"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.teleporter.listTeleporterMessages({
-                pageSize: 10,
-                sourceBlockchainId: "2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY",
-                destinationBlockchainId: "yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp",
-                to: "0x664A4Be5Af2cFc824F9C0914CbAc4703396Da2DC",
-                from: "0x321eDA69247566D662178feE695C7026c604Cd94",
-                network: "mainnet",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listTeleporterMessages
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.teleporter.listTeleporterMessages({\n    pageSize: 10,\n    sourceBlockchainId: \"2D8RG4UpSXbPbvPCAWppNJyqTG2i2CAXSkTgmTBBvs7GKNZjsY\",\n    destinationBlockchainId: \"yH8D7ThNJkxmtkuv2jgBa4P1Rn3Qpr4pPr7QYNfcdoS6k6HWp\",\n    to: \"0x664A4Be5Af2cFc824F9C0914CbAc4703396Da2DC\",\n    from: \"0x321eDA69247566D662178feE695C7026c604Cd94\",\n    network: \"mainnet\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/balances:getNative":
     get:
       operationId: "getNativeBalance"
@@ -4850,29 +3968,9 @@ paths:
       tags:
         - "EVM Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.balances.getNativeBalance({
-                blockNumber: "6479329",
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                currency: "usd",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getNativeBalance
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.balances.getNativeBalance({\n    blockNumber: \"6479329\",\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    currency: \"usd\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/balances:listErc20":
     get:
       operationId: "listErc20Balances"
@@ -4987,33 +4085,9 @@ paths:
       tags:
         - "EVM Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.balances.listErc20Balances({
-                blockNumber: "6479329",
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                contractAddresses: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7, 0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB",
-                currency: "usd",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc20Balances
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.balances.listErc20Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddresses: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7, 0x49D5c2BdFfac6CE2BFdB6640F4F80f226bc10bAB\",\n    currency: \"usd\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/balances:listErc721":
     get:
       operationId: "listErc721Balances"
@@ -5108,31 +4182,9 @@ paths:
       tags:
         - "EVM Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.balances.listErc721Balances({
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                contractAddress: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc721Balances
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.balances.listErc721Balances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/balances:listErc1155":
     get:
       operationId: "listErc1155Balances"
@@ -5234,32 +4286,9 @@ paths:
       tags:
         - "EVM Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.balances.listErc1155Balances({
-                blockNumber: "6479329",
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                contractAddress: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc1155Balances
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.balances.listErc1155Balances({\n    blockNumber: \"6479329\",\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/balances:listCollectibles":
     get:
       operationId: "listCollectibleBalances"
@@ -5354,31 +4383,9 @@ paths:
       tags:
         - "EVM Balances"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.balances.listCollectibleBalances({
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                contractAddress: "0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listCollectibleBalances
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.balances.listCollectibleBalances({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    contractAddress: \"0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/blocks":
     get:
       operationId: "getLatestBlocks"
@@ -5459,29 +4466,9 @@ paths:
       tags:
         - "EVM Blocks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.blocks.getLatestBlocks({
-                pageSize: 10,
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: getLatestBlocks
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.blocks.getLatestBlocks({\n    pageSize: 10,\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/blocks/{blockId}":
     get:
       operationId: "getBlock"
@@ -5552,27 +4539,9 @@ paths:
       tags:
         - "EVM Blocks"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.blocks.getBlock({
-                blockId: "0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getBlock
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.blocks.getBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/contracts/{address}/transactions:getDeployment":
     get:
       operationId: "getDeploymentTransaction"
@@ -5649,28 +4618,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.getDeploymentTransaction({
-                address: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-                currency: "usd",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getDeploymentTransaction
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.getDeploymentTransaction({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n    currency: \"usd\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/contracts/{address}/deployments":
     get:
       operationId: "listContractDeployments"
@@ -5758,30 +4708,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listContractDeployments({
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listContractDeployments
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listContractDeployments({\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}":
     get:
       operationId: "getContractMetadata"
@@ -5864,101 +4793,9 @@ paths:
       tags:
         - "EVM Contracts"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.contracts.getContractMetadata({
-                address: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
-  "/v1/chains/{chainId}/contracts/{address}":
-    patch:
-      operationId: "updateContractInfo"
-      x-speakeasy-ignore: true
-      summary: "Update contract information"
-      description: "Update contract information. Updates will be reviewed by the Ava Labs team before they are published."
-      parameters:
-        - name: "chainId"
-          required: true
-          in: "path"
-          description: "A supported evm chain id, chain alias or blockchain id. Use the `/chains` endpoint to get a list of supported chain ids."
-          example: "43114"
-          schema:
-            type: "string"
-        - name: "address"
-          required: true
-          in: "path"
-          description: "Contract address on the relevant chain."
-          example: "0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E"
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          "application/json":
-            schema: {"$ref": "#/components/schemas/ContractSubmissionBody"}
-      responses:
-        "200":
-          description: "Successful response"
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/UpdateContractResponse"}
-        "400":
-          description: "Bad requests generally mean the client has passed invalid \n    or malformed parameters. Error messages in the response could help in \n    evaluating the error."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/BadRequest"}
-        "401":
-          description: "When a client attempts to access resources that require \n    authorization credentials but the client lacks proper authentication \n    in the request, the server responds with 401."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/Unauthorized"}
-        "403":
-          description: "When a client attempts to access resources with valid\n    credentials but doesn't have the privilege to perform that action, \n    the server responds with 403."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/Forbidden"}
-        "404":
-          description: "The error is mostly returned when the client requests\n    with either mistyped URL, or the passed resource is moved or deleted, \n    or the resource doesn't exist."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/NotFound"}
-        "429":
-          description: "This error is returned when the client has sent too many,\n    and has hit the rate limit."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/TooManyRequests"}
-        "500":
-          description: "The error is a generic server side error that is \n    returned for any uncaught and unexpected issues on the server side. \n    This should be very rare, and you may reach out to us if the problem \n    persists for a longer duration."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/InternalServerError"}
-        "502":
-          description: "This is an internal error indicating invalid response \n      received by the client-facing proxy or gateway from the upstream server."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/BadGateway"}
-        "503":
-          description: "The error is returned for certain routes on a particular\n    Subnet. This indicates an internal problem with our Subnet node, and may \n    not necessarily mean the Subnet is down or affected."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
-      tags:
-        - "EVM Contracts"
+        - lang: typescript
+          label: getContractMetadata
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.contracts.getContractMetadata({\n    address: \"0xB97EF9Ef8734C71904D8002F8b6Bc66Dd9c48a6E\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains":
     get:
       operationId: "supportedChains"
@@ -6027,28 +4864,9 @@ paths:
       tags:
         - "EVM Chains"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.chains.supportedChains({
-                network: "mainnet",
-                feature: "nftIndexing",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: supportedChains
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.chains.supportedChains({\n    network: \"mainnet\",\n    feature: \"nftIndexing\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}":
     get:
       operationId: "getChainInfo"
@@ -6112,25 +4930,9 @@ paths:
       tags:
         - "EVM Chains"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.chains.getChainInfo({});
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getChainInfo
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.chains.getChainInfo({});\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/tokens/{address}/transfers":
     get:
       operationId: "listTransfers"
@@ -6232,32 +5034,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listTransfers({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listTransfers
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listTransfers({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions":
     get:
       operationId: "listTransactions"
@@ -6365,33 +5144,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listTransactions({
-                pageSize: 10,
-                startBlock: 6479329,
-                endBlock: 6479330,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-                sortOrder: "asc",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listTransactions({\n    pageSize: 10,\n    startBlock: 6479329,\n    endBlock: 6479330,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n    sortOrder: \"asc\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions:listNative":
     get:
       operationId: "listNativeTransactions"
@@ -6493,32 +5248,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listNativeTransactions({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listNativeTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listNativeTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions:listErc20":
     get:
       operationId: "listErc20Transactions"
@@ -6620,32 +5352,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listErc20Transactions({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc20Transactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listErc20Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions:listErc721":
     get:
       operationId: "listErc721Transactions"
@@ -6747,32 +5456,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listErc721Transactions({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc721Transactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listErc721Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions:listErc1155":
     get:
       operationId: "listErc1155Transactions"
@@ -6874,32 +5560,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listErc1155Transactions({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listErc1155Transactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listErc1155Transactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/addresses/{address}/transactions:listInternals":
     get:
       operationId: "listInternalTransactions"
@@ -7001,32 +5664,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listInternalTransactions({
-                startBlock: 6479329,
-                endBlock: 6479330,
-                pageSize: 10,
-                address: "0x71C7656EC7ab88b098defB751B7401B5f6d8976F",
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
+        - lang: typescript
+          label: listInternalTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listInternalTransactions({\n    startBlock: 6479329,\n    endBlock: 6479330,\n    pageSize: 10,\n    address: \"0x71C7656EC7ab88b098defB751B7401B5f6d8976F\",\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
   "/v1/chains/{chainId}/transactions/{txHash}":
     get:
       operationId: "getTransaction"
@@ -7097,27 +5737,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.getTransaction({
-                txHash: "0x8bf584d7b14b92a32a339872a66b134a70ba3ba7c305823f348db6f860253f45",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getTransaction
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.getTransaction({\n    txHash: \"0x8bf584d7b14b92a32a339872a66b134a70ba3ba7c305823f348db6f860253f45\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/blocks/{blockId}/transactions":
     get:
       operationId: "getTransactionsForBlock"
@@ -7188,27 +5810,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.getTransactionsForBlock({
-                blockId: "0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c",
-              });
-
-              // Handle the result
-              console.log(result)
-            }
-
-            run();
+        - lang: typescript
+          label: getTransactionsForBlock
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.getTransactionsForBlock({\n    blockId: \"0x17533aeb5193378b9ff441d61728e7a2ebaf10f61fd5310759451627dfca2e7c\",\n  });\n  \n  // Handle the result\n  console.log(result)\n}\n\nrun();"
   "/v1/chains/{chainId}/transactions":
     get:
       operationId: "listLatestTransactions"
@@ -7294,110 +5898,9 @@ paths:
       tags:
         - "EVM Transactions"
       x-codeSamples:
-        - lang: javascript
-          label: JavaScript
-          source: |-
-            import { AvaCloudSDK } from "@avalabs/avacloud-sdk";
-
-            const avaCloudSDK = new AvaCloudSDK({
-              apiKey: "<YOUR_API_KEY_HERE>",
-              chainId: "43114",
-              network: "mainnet",
-            });
-
-            async function run() {
-              const result = await avaCloudSDK.data.evm.transactions.listLatestTransactions({
-                pageSize: 10,
-              });
-
-              for await (const page of result) {
-                // Handle the page
-                console.log(page);
-              }
-            }
-
-            run();
-  "/v1/ext/bc/{chainId}/rpc":
-    post:
-      operationId: "rpc"
-      x-speakeasy-ignore: true
-      summary: "Calls JSON-RPC method"
-      description: "Calls JSON-RPC method."
-      parameters:
-        - name: "chainId"
-          required: true
-          in: "path"
-          description: "A supported evm chain id, chain alias or blockchain id. Use the `/chains` endpoint to get a list of supported chain ids."
-          example: "43114"
-          schema:
-            type: "string"
-      requestBody:
-        required: true
-        content:
-          "application/json":
-            schema:
-              oneOf:
-                - {"$ref": "#/components/schemas/RpcRequestBodyDto"}
-                - type: "array"
-                  items: {"$ref": "#/components/schemas/RpcRequestBodyDto"}
-      responses:
-        "200":
-          description: "Successful response"
-          content:
-            "application/json":
-              schema:
-                oneOf:
-                  - {"$ref": "#/components/schemas/RpcSuccessResponseDto"}
-                  - {"$ref": "#/components/schemas/RpcErrorResponseDto"}
-                  - type: "array"
-                    items:
-                      oneOf:
-                        - {"$ref": "#/components/schemas/RpcSuccessResponseDto"}
-                        - {"$ref": "#/components/schemas/RpcErrorResponseDto"}
-        "400":
-          description: "Bad requests generally mean the client has passed invalid \n    or malformed parameters. Error messages in the response could help in \n    evaluating the error."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/BadRequest"}
-        "401":
-          description: "When a client attempts to access resources that require \n    authorization credentials but the client lacks proper authentication \n    in the request, the server responds with 401."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/Unauthorized"}
-        "403":
-          description: "When a client attempts to access resources with valid\n    credentials but doesn't have the privilege to perform that action, \n    the server responds with 403."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/Forbidden"}
-        "404":
-          description: "The error is mostly returned when the client requests\n    with either mistyped URL, or the passed resource is moved or deleted, \n    or the resource doesn't exist."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/NotFound"}
-        "429":
-          description: "This error is returned when the client has sent too many,\n    and has hit the rate limit."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/TooManyRequests"}
-        "500":
-          description: "The error is a generic server side error that is \n    returned for any uncaught and unexpected issues on the server side. \n    This should be very rare, and you may reach out to us if the problem \n    persists for a longer duration."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/InternalServerError"}
-        "502":
-          description: "This is an internal error indicating invalid response \n      received by the client-facing proxy or gateway from the upstream server."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/BadGateway"}
-        "503":
-          description: "The error is returned for certain routes on a particular\n    Subnet. This indicates an internal problem with our Subnet node, and may \n    not necessarily mean the Subnet is down or affected."
-          content:
-            "application/json":
-              schema: {"$ref": "#/components/schemas/ServiceUnavailable"}
-        "504":
-          description: "Request timed out"
-      tags:
-        - "RPC"
+        - lang: typescript
+          label: listLatestTransactions
+          source: "import { AvaCloudSDK } from \"@avalabs/avacloud-sdk\";\n\nconst avaCloudSDK = new AvaCloudSDK({\n  apiKey: \"<YOUR_API_KEY_HERE>\",\n  chainId: \"43114\",\n  network: \"mainnet\",\n});\n\nasync function run() {\n  const result = await avaCloudSDK.data.evm.transactions.listLatestTransactions({\n    pageSize: 10,\n  });\n  \n  for await (const page of result) {\n    // Handle the page\n    console.log(page);\n  }\n}\n\nrun();"
 info:
   title: "Glacier API"
   description: "The Glacier API provides web3 application developers with multi-chain data related to Avalanche's primary network, Avalanche subnets, and Ethereum. With Glacier, you can easily build products that leverage real-time and historical transaction and transfer history, native and token balances, and various types of token metadata. The API is in Beta and may be subject to change.</br></br>If you have feedback or feature requests for the API, please submit them <a href=\"https://portal.productboard.com/dndv9ahlkdfye4opdm8ksafi/tabs/4-glacier-api\">here</a>. Bug reports can be submitted <a href=\"https://docs.google.com/forms/d/e/1FAIpQLSeJQrcp7QoNiqozMDKrVJGX5wpU827d3cVTgF8qa7t_J1Pb-g/viewform\">here</a>, and any potential security issues can be reported <a href=\"https://immunefi.com/bounty/avalabs\">here</a>."
@@ -9967,8 +8470,8 @@ components:
       type: "string"
       description: "The type of request made by the client."
       enum:
-        - "Glacier API Request"
-        - "Glacier RPC Request"
+        - "data"
+        - "rpc"
     "LogsFormatMetadata":
       type: "object"
       properties:
@@ -11369,183 +9872,6 @@ components:
                 "UNKNOWN": "#/components/schemas/UnknownContract"
       required:
         - "contracts"
-    "ContractSubmissionErc1155":
-      type: "object"
-      properties:
-        "description":
-          type: "string"
-        "officialSite":
-          type: "string"
-        "email":
-          type: "string"
-        "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "color":
-          type: "string"
-        "resourceLinks":
-          type: "array"
-          items: {"$ref": "#/components/schemas/ResourceLink"}
-        "tags":
-          type: "array"
-          items:
-            type: "string"
-        "name":
-          type: "string"
-          description: "The contract name."
-          example: "Wrapped AVAX"
-        "ercType":
-          type: "string"
-          enum:
-            - "ERC-1155"
-        "symbol":
-          type: "string"
-          description: "The contract symbol."
-          example: "WAVAX"
-        "pricingProviders": {"$ref": "#/components/schemas/PricingProviders"}
-      required:
-        - "name"
-        - "ercType"
-        - "symbol"
-    "ContractSubmissionErc20":
-      type: "object"
-      properties:
-        "description":
-          type: "string"
-        "officialSite":
-          type: "string"
-        "email":
-          type: "string"
-        "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "color":
-          type: "string"
-        "resourceLinks":
-          type: "array"
-          items: {"$ref": "#/components/schemas/ResourceLink"}
-        "tags":
-          type: "array"
-          items:
-            type: "string"
-        "name":
-          type: "string"
-          description: "The contract name."
-          example: "Wrapped AVAX"
-        "ercType":
-          type: "string"
-          enum:
-            - "ERC-20"
-        "symbol":
-          type: "string"
-          description: "The contract symbol."
-          example: "WAVAX"
-        "pricingProviders": {"$ref": "#/components/schemas/PricingProviders"}
-      required:
-        - "name"
-        - "ercType"
-        - "symbol"
-    "ContractSubmissionErc721":
-      type: "object"
-      properties:
-        "description":
-          type: "string"
-        "officialSite":
-          type: "string"
-        "email":
-          type: "string"
-        "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "color":
-          type: "string"
-        "resourceLinks":
-          type: "array"
-          items: {"$ref": "#/components/schemas/ResourceLink"}
-        "tags":
-          type: "array"
-          items:
-            type: "string"
-        "name":
-          type: "string"
-          description: "The contract name."
-          example: "Wrapped AVAX"
-        "ercType":
-          type: "string"
-          enum:
-            - "ERC-721"
-        "symbol":
-          type: "string"
-          description: "The contract symbol."
-          example: "WAVAX"
-      required:
-        - "name"
-        - "ercType"
-        - "symbol"
-    "ContractSubmissionUnknown":
-      type: "object"
-      properties:
-        "description":
-          type: "string"
-        "officialSite":
-          type: "string"
-        "email":
-          type: "string"
-        "logoAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "bannerAsset": {"$ref": "#/components/schemas/ImageAsset"}
-        "color":
-          type: "string"
-        "resourceLinks":
-          type: "array"
-          items: {"$ref": "#/components/schemas/ResourceLink"}
-        "tags":
-          type: "array"
-          items:
-            type: "string"
-        "name":
-          type: "string"
-          description: "The contract name."
-          example: "Wrapped AVAX"
-        "ercType":
-          type: "string"
-          enum:
-            - "UNKNOWN"
-      required:
-        - "name"
-        - "ercType"
-    "ContractSubmissionBody":
-      type: "object"
-      properties:
-        "contract":
-          oneOf:
-            - {"$ref": "#/components/schemas/ContractSubmissionErc1155"}
-            - {"$ref": "#/components/schemas/ContractSubmissionErc20"}
-            - {"$ref": "#/components/schemas/ContractSubmissionErc721"}
-            - {"$ref": "#/components/schemas/ContractSubmissionUnknown"}
-          discriminator:
-            propertyName: "ercType"
-            mapping:
-              "UNKNOWN": "#/components/schemas/ContractSubmissionUnknown"
-              "ERC-1155": "#/components/schemas/ContractSubmissionErc1155"
-              "ERC-20": "#/components/schemas/ContractSubmissionErc20"
-              "ERC-721": "#/components/schemas/ContractSubmissionErc721"
-      required:
-        - "contract"
-    "UpdateContractResponse":
-      type: "object"
-      properties:
-        "contract":
-          oneOf:
-            - {"$ref": "#/components/schemas/UnknownContract"}
-            - {"$ref": "#/components/schemas/Erc20Contract"}
-            - {"$ref": "#/components/schemas/Erc721Contract"}
-            - {"$ref": "#/components/schemas/Erc1155Contract"}
-          discriminator:
-            propertyName: "ercType"
-            mapping:
-              "UNKNOWN": "#/components/schemas/UnknownContract"
-              "ERC-20": "#/components/schemas/Erc20Contract"
-              "ERC-721": "#/components/schemas/Erc721Contract"
-              "ERC-1155": "#/components/schemas/Erc1155Contract"
-      required:
-        - "contract"
     "ChainStatus":
       type: "string"
       description: "Status of chain nodes. Chain nodes can become temporarily `UNAVAILABLE` for several reasons, such as validator stake falling below threshold. If chain nodes are `UNAVAILABLE`, requests that rely on data from the chain nodes may return 503 errors."
@@ -12008,69 +10334,6 @@ components:
       enum:
         - "failed"
         - "success"
-    "RpcSuccessResponseDto":
-      type: "object"
-      properties:
-        "jsonrpc":
-          type: "string"
-        "id":
-          oneOf:
-            - type: "string"
-            - type: "number"
-        "result":
-          type: "object"
-      required:
-        - "jsonrpc"
-        - "result"
-    "RpcErrorDto":
-      type: "object"
-      properties:
-        "code":
-          type: "number"
-        "message":
-          type: "string"
-        "data":
-          type: "object"
-      required:
-        - "code"
-        - "message"
-    "RpcErrorResponseDto":
-      type: "object"
-      properties:
-        "jsonrpc":
-          type: "string"
-        "id":
-          oneOf:
-            - type: "string"
-            - type: "number"
-        "error": {"$ref": "#/components/schemas/RpcErrorDto"}
-      required:
-        - "jsonrpc"
-        - "error"
-    "RpcRequestBodyDto":
-      type: "object"
-      properties:
-        "method":
-          type: "string"
-        "params":
-          oneOf:
-            - type: "array"
-              items:
-                oneOf:
-                  - type: "string"
-                  - type: "number"
-                  - type: "object"
-                    additionalProperties: true
-            - type: "object"
-              additionalProperties: true
-        "id":
-          oneOf:
-            - type: "string"
-            - type: "number"
-        "jsonrpc":
-          type: "string"
-      required:
-        - "method"
   parameters:
     "GlobalParamChainId":
       name: "chainId"
