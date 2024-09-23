@@ -1,68 +1,43 @@
 name: Override Code Sample Metadata
 
 on:
+  workflow_dispatch:
   pull_request:
-    types: [opened, synchronize]
+    types:
+      - opened
+      - synchronize
+    branches:
+      - main
+  workflow_run:
+    workflows: ["Generate"]
+    types:
+      - completed
 
 jobs:
   replace_text:
+    if: >
+      ${{ github.event_name == 'workflow_run' && github.event.workflow_run.conclusion == 'success' || github.event_name == 'pull_request' }}
     runs-on: ubuntu-latest
 
     steps:
-      # Step 1: Check out the repository
-      - name: Checkout code
-        uses: actions/checkout@v3
-
-      # Step 2: Define the files array and apply the regex patterns
-      - name: Replace lang and label in multiple files
+      - name: Check if PR exists
+        id: check_pr
         run: |
-          # Define the list of files (both JSON and YAML)
-          files=(metrics-api/metrics-api.yaml data-api/data-api.yaml)
-
-          # Loop through files and apply regex patterns with logging
-          for file in "${files[@]}"; do
-            # Check if the file exists
-            if [[ -f $file ]]; then
-              echo "Processing $file"
-
-              # Store the file before changes
-              cp "$file" "$file.bak"
-
-              # Apply the JSON regex pattern
-              sed -i 's/"lang": "typescript", "label": "[^"]*"/"lang": "javascript", "label": "JavaScript"/' "$file"
-
-              # Apply the YAML regex pattern
-              sed -i 's/- lang: typescript/- lang: javascript/' "$file"
-              sed -i '/- lang: javascript/{n; s/^\( *\)label: [^\s\n]*/\1label: JavaScript/}' "$file"
-
-              # Check if there are changes compared to the backup
-              if ! diff "$file" "$file.bak" > /dev/null; then
-                echo "Changes were made to $file"
-              else
-                echo "No changes were made to $file"
-              fi
-
-              # Remove the backup file
-              rm "$file.bak"
-            else
-              echo "$file does not exist"
-            fi
-          done
-
-      # Step 3: Check if there are changes, and commit only if necessary
-      - name: Commit and Push Changes if needed
-        run: |
-          git config --global user.name "github-actions[bot]"
-          git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          
-          # Check if there are changes
-          if git diff --quiet; then
-            echo "No changes to commit"
+          if [[ "${{ github.event_name }}" == "workflow_run" && -z "${{ github.event.workflow_run.pull_requests }}" ]]; then
+            echo "No PR was created by the Generate workflow. Skipping further steps."
+            echo "pr_exists=false" >> $GITHUB_ENV
           else
-            git add .
-            git commit -m "Auto replace lang and label text in multiple files"
-            # Push changes to the branch from which the PR was created
-            git push origin HEAD:$(echo "${GITHUB_REF#refs/pull/}/head")
+            echo "pr_exists=true" >> $GITHUB_ENV
           fi
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Debug event information
+        run: |
+          echo "Event Name: ${{ github.event_name }}"
+          echo "Workflow Run Head Branch: ${{ github.event.workflow_run.head_branch }}"
+          echo "Pull Request Head Ref: ${{ github.head_ref }}" 
+  
+      - name: Checkout repository
+        if: env.pr_exists == 'true'
+        uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event_name == 'workflow_run' && github.event.workflow_run.head_branch || github.event_name == 'pull_request' && github.head_ref }}
